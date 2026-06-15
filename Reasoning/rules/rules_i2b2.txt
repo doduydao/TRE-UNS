@@ -1,0 +1,21 @@
+# Transitivity Rules
+# Before + Before -> Before
+R_Trans_BB: Before(E1, E2) & Before(E2, E3) => Before(E1, E3) [HARD]
+# Before + Overlap -> Before
+R_Trans_BO: Before(E1, E2) & Overlap(E2, E3) => Before(E1, E3) [HARD]
+# Overlap + Before -> Before
+R_Trans_OB: Overlap(E1, E2) & Before(E2, E3) => Before(E1, E3) [HARD]
+# Overlap + Overlap -> Overlap
+R_Trans_OO: Overlap(E1, E2) & Overlap(E2, E3) => Overlap(E1, E3) [HARD]
+# After + After -> After
+R_Trans_AA: After(E1, E2) & After(E2, E3) => After(E1, E3) [HARD]
+# After + Overlap -> After
+R_Trans_AO: After(E1, E2) & Overlap(E2, E3) => After(E1, E3) [HARD]
+# Overlap + After -> After
+R_Trans_OA: Overlap(E1, E2) & After(E2, E3) => After(E1, E3) [HARD]
+
+# Symmetry Rules
+# Before(A,B) -> After(B,A)
+R_Symm_BA: Before(E1, E2) => After(E2, E1) [HARD]
+# After(A,B) -> Before(B,A)
+R_Symm_AB: After(E1, E2) => Before(E2, E1) [HARD]

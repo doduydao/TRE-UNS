@@ -1,0 +1,29 @@
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Using device: cuda:0
+Loading Data...
+Initializing Model...
+DEBUG REASONING: Initialized with 28 rules. First rule: R_Symm_BA
+Loading checkpoint TBD/checkpoint/TBD_baseline_reasoning_model.pt...
+Running Inference...
+  0%|          | 0/12 [00:00<?, ?it/s]  8%|▊         | 1/12 [00:30<05:35, 30.49s/it] 17%|█▋        | 2/12 [00:56<04:36, 27.70s/it] 25%|██▌       | 3/12 [01:22<04:02, 26.95s/it] 33%|███▎      | 4/12 [01:48<03:34, 26.78s/it] 42%|████▏     | 5/12 [02:12<03:00, 25.74s/it] 50%|█████     | 6/12 [02:41<02:40, 26.80s/it] 58%|█████▊    | 7/12 [03:10<02:17, 27.48s/it] 67%|██████▋   | 8/12 [03:37<01:49, 27.37s/it] 75%|███████▌  | 9/12 [04:02<01:20, 26.68s/it] 83%|████████▎ | 10/12 [04:28<00:52, 26.43s/it] 92%|█████████▏| 11/12 [04:53<00:25, 25.83s/it]100%|██████████| 12/12 [04:59<00:00, 19.82s/it]100%|██████████| 12/12 [04:59<00:00, 24.93s/it]
+
+[Predictive Performance]
+              precision    recall  f1-score   support
+
+       AFTER     0.8555    0.8212    0.8380       274
+      BEFORE     0.8810    0.8672    0.8740       384
+    INCLUDES     0.4792    0.4107    0.4423        56
+ IS_INCLUDED     0.8158    0.5849    0.6813        53
+SIMULTANEOUS     1.0000    0.0455    0.0870        22
+
+   micro avg     0.8420    0.7769    0.8082       789
+   macro avg     0.8063    0.5459    0.5845       789
+weighted avg     0.8425    0.7769    0.7960       789
+
+[Micro Avg] P=0.7769, R=0.7769, F1=0.7769
+
+[Consistency Analysis]
+Warning: Consistency logic not defined for TBD. Skipping specifics.
+Transitivity Violation Rate: 0.0000 (on 0 triplets)
+Symmetry Violation Rate:     0.0000 (on 0 pairs)
+Predictions saved to TBD/prediction_steps1000.csv

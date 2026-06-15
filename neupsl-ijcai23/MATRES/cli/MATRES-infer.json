@@ -1,0 +1,71 @@
+{
+    "options": {
+        "runtime.db.intids": true,
+        "predicate.deep.python.port": 12346,
+        "runtime.log.level": "DEBUG",
+        "categoricalevaluator.defaultpredicate": "Rel",
+        "admmreasoner.computeperiod": 100,
+        "admmreasoner.epsilonabs": 1.0e-6,
+        "admmreasoner.epsilonrel": 1.0e-4,
+        "admmreasoner.maxiterations": 1000,
+        "admmreasoner.stepsize": 1.0,
+        "atomstore.storeallatoms": true,
+        "pam.throw": false
+    },
+    "rules": [
+        "1.0: Neural(E1, E2, Label) = Rel(E1, E2, Label) ^2",
+        "Rel(E1, E2, +Label) = 1 .",
+        "1.0: Rel(A, B, '0') -> Rel(B, A, '1') ^2",
+        "1.0: Rel(A, B, '1') -> Rel(B, A, '0') ^2",
+        "1.0: Rel(A, B, '2') -> Rel(B, A, '2') ^2",
+        "1.0: Rel(A, B, '0') & Rel(B, C, '0') -> Rel(A, C, '0') ^2",
+        "1.0: Rel(A, B, '0') & Rel(B, C, '2') -> Rel(A, C, '0') ^2",
+        "1.0: Rel(A, B, '2') & Rel(B, C, '0') -> Rel(A, C, '0') ^2",
+        "1.0: Rel(A, B, '2') & Rel(B, C, '2') -> Rel(A, C, '2') ^2",
+        "1.0: Rel(A, B, '1') & Rel(B, C, '1') -> Rel(A, C, '1') ^2",
+        "1.0: Rel(A, B, '1') & Rel(B, C, '2') -> Rel(A, C, '1') ^2",
+        "1.0: Rel(A, B, '2') & Rel(B, C, '1') -> Rel(A, C, '1') ^2"
+    ],
+    "predicates": {
+        "Neural/3": {
+            "type": "DeepPredicate",
+            "options": {
+                "model-path": "../scripts/neupsl-model.py::TREModel",
+                "class-size": 3,
+                "batch-size": 128,
+                "entity-data-map-path": "../data/entity-data-map.txt",
+                "entity-argument-indexes": "0,1",
+                "load-path": "../../results/MATRES",
+                "cache-path": "/data/ddao/TRE/pretrained_models/Reasoning/MATRES/cache/",
+                "freeze-bert": "true",
+                "simple-learning-rate": 1.0e-4,
+                "smoothed-learning-rate": 1.0e-4
+            },
+            "targets": {
+                "infer": [
+                    "../data/category-target-test.txt"
+                ]
+            }
+        },
+        "Rel/3": {
+            "evaluations": [
+                {
+                    "evaluator": "CategoricalEvaluator",
+                    "options": {
+                        "categoricalevaluator.categoryindexes": 2
+                    }
+                }
+            ],
+            "targets": {
+                "infer": [
+                    "../data/category-target-test.txt"
+                ]
+            },
+            "truth": {
+                "infer": [
+                    "../data/category-truth-test.txt"
+                ]
+            }
+        }
+    }
+}

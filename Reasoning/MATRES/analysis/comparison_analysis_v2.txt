@@ -1,0 +1,172 @@
+# Detailed Comparative Analysis Report (Tabular)
+
+## 1. Performance and Violation Metrics
+| Metric | Baseline | Logic-Aware (V2) |
+| :--- | :--- | :--- |
+| Accuracy | 0.8195 | 0.8336 |
+| Logic Violation Count (Triplets) | 5 | 0 |
+| Violation Reduction Rate | - | 100.00% |
+
+## 2. Label Transition Dynamics
+| Transition Type | Count |
+| :--- | :--- |
+| Agreement | 94.50% |
+| Total Label Changes | 39 |
+| Repairs (Logic fixes Baseline) | 22 |
+| Breaks (Logic harms Baseline) | 12 |
+
+## 3. Detailed Repair Cases
+| ID | Document | Pair (u, v) | GT | Baseline | Logic Evidence (u->k->v) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | CNN_20130322_1003 | (9, 10) | AFTER | BEFORE | N/A (Complex/Multi-step) |
+| 2 | CNN_20130322_1003 | (17, 19) | BEFORE | AFTER | N/A (Complex/Multi-step) |
+| 3 | CNN_20130322_1003 | (40, 41) | BEFORE | AFTER | N/A (Complex/Multi-step) |
+| 4 | CNN_20130322_1003 | (44, 45) | AFTER | BEFORE | N/A (Complex/Multi-step) |
+| 5 | CNN_20130322_248 | (2, 3) | AFTER | BEFORE | N/A (Complex/Multi-step) |
+| 6 | WSJ_20130321_1145 | (29, 31) | AFTER | BEFORE | N/A (Complex/Multi-step) |
+| 7 | WSJ_20130322_159 | (5, 6) | BEFORE | EQUAL | N/A (Complex/Multi-step) |
+| 8 | WSJ_20130322_804 | (13, 14) | AFTER | BEFORE | N/A (Complex/Multi-step) |
+| 9 | bbc_20130322_1150 | (6, 8) | AFTER | BEFORE | N/A (Complex/Multi-step) |
+| 10 | bbc_20130322_1353 | (33, 37) | BEFORE | AFTER | N/A (Complex/Multi-step) |
+| 11 | bbc_20130322_1600 | (2, 9) | BEFORE | AFTER | 2-(BEFORE)->5-(BEFORE)->9 |
+| 12 | bbc_20130322_1600 | (5, 9) | BEFORE | AFTER | N/A (Complex/Multi-step) |
+| 13 | bbc_20130322_1600 | (9, 10) | AFTER | BEFORE | N/A (Complex/Multi-step) |
+| 14 | bbc_20130322_1600 | (12, 13) | AFTER | BEFORE | N/A (Complex/Multi-step) |
+| 15 | bbc_20130322_332 | (30, 31) | AFTER | BEFORE | N/A (Complex/Multi-step) |
+| 16 | nyt_20130321_china_pollution | (15, 22) | AFTER | BEFORE | N/A (Complex/Multi-step) |
+| 17 | nyt_20130321_cyprus | (22, 23) | AFTER | BEFORE | N/A (Complex/Multi-step) |
+| 18 | nyt_20130321_cyprus | (35, 36) | AFTER | BEFORE | N/A (Complex/Multi-step) |
+| 19 | nyt_20130321_women_senate | (17, 20) | AFTER | BEFORE | N/A (Complex/Multi-step) |
+| 20 | nyt_20130321_women_senate | (19, 20) | AFTER | BEFORE | N/A (Complex/Multi-step) |
+| 21 | nyt_20130321_women_senate | (36, 1000015) | AFTER | EQUAL | N/A (Complex/Multi-step) |
+| 22 | nyt_20130321_women_senate | (41, 43) | AFTER | BEFORE | N/A (Complex/Multi-step) |
+
+## 4. Detailed Break Cases
+| ID | Document | Pair (u, v) | GT | Baseline | Logic | Evidence (Error-inducing chain) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | CNN_20130322_248 | (2, 7) | AFTER | AFTER | BEFORE | N/A |
+| 2 | CNN_20130322_314 | (9, 10) | AFTER | AFTER | BEFORE | N/A |
+| 3 | CNN_20130322_314 | (10, 12) | BEFORE | BEFORE | AFTER | N/A |
+| 4 | WSJ_20130318_731 | (11, 13) | BEFORE | BEFORE | AFTER | N/A |
+| 5 | WSJ_20130318_731 | (13, 14) | AFTER | AFTER | BEFORE | N/A |
+| 6 | WSJ_20130322_159 | (12, 14) | AFTER | AFTER | BEFORE | N/A |
+| 7 | WSJ_20130322_159 | (37, 38) | AFTER | AFTER | BEFORE | N/A |
+| 8 | bbc_20130322_1150 | (7, 11) | AFTER | AFTER | BEFORE | N/A |
+| 9 | bbc_20130322_332 | (17, 18) | AFTER | AFTER | BEFORE | N/A |
+| 10 | bbc_20130322_332 | (29, 30) | BEFORE | BEFORE | AFTER | N/A |
+| 11 | bbc_20130322_721 | (13, 16) | AFTER | AFTER | BEFORE | N/A |
+| 12 | nyt_20130321_women_senate | (41, 48) | AFTER | AFTER | BEFORE | 41-(BEFORE)->47-(BEFORE)->48 |
+
+## 5. Mutual and Persistent Errors
+| Type | Document | Pair (u, v) | GT | Baseline | Logic |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Mutual | bbc_20130322_1150 | (18, 19) | EQUAL | AFTER | BEFORE |
+| Mutual | bbc_20130322_1150 | (18, 20) | AFTER | EQUAL | BEFORE |
+| Mutual | bbc_20130322_332 | (19, 23) | EQUAL | BEFORE | AFTER |
+| Mutual | nyt_20130321_cyprus | (21, 23) | EQUAL | BEFORE | AFTER |
+| Mutual | nyt_20130321_women_senate | (17, 19) | EQUAL | AFTER | BEFORE |
+| Persistent | CNN_20130322_1003 | (1, 6) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN_20130322_1003 | (1, 7) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN_20130322_1003 | (2, 7) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN_20130322_1003 | (3, 6) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN_20130322_1003 | (3, 7) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN_20130322_1003 | (7, 1000) | BEFORE | AFTER | AFTER |
+| Persistent | CNN_20130322_1003 | (10, 13) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN_20130322_1003 | (11, 13) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN_20130322_1003 | (11, 14) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN_20130322_1003 | (1000, 13) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN_20130322_1003 | (1000, 14) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN_20130322_1003 | (12, 13) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN_20130322_1003 | (12, 14) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN_20130322_1003 | (13, 15) | BEFORE | AFTER | AFTER |
+| Persistent | CNN_20130322_1003 | (12, 17) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN_20130322_1003 | (13, 17) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN_20130322_1003 | (14, 17) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN_20130322_1003 | (15, 17) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN_20130322_1003 | (30, 36) | EQUAL | AFTER | AFTER |
+| Persistent | CNN_20130322_1003 | (34, 38) | BEFORE | AFTER | AFTER |
+| Persistent | CNN_20130322_1003 | (36, 38) | BEFORE | AFTER | AFTER |
+| Persistent | CNN_20130322_1003 | (38, 40) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN_20130322_1003 | (38, 41) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN_20130322_1003 | (38, 42) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN_20130322_1003 | (40, 42) | BEFORE | AFTER | AFTER |
+| Persistent | CNN_20130322_1003 | (47, 48) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN_20130322_1243 | (7, 9) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN_20130322_248 | (3, 7) | EQUAL | BEFORE | BEFORE |
+| Persistent | CNN_20130322_314 | (4, 5) | EQUAL | BEFORE | BEFORE |
+| Persistent | CNN_20130322_314 | (1, 8) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN_20130322_314 | (2, 8) | EQUAL | BEFORE | BEFORE |
+| Persistent | CNN_20130322_314 | (4, 8) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN_20130322_314 | (18, 21) | EQUAL | AFTER | AFTER |
+| Persistent | WSJ_20130322_159 | (1, 6) | BEFORE | AFTER | AFTER |
+| Persistent | WSJ_20130322_159 | (1, 10) | BEFORE | AFTER | AFTER |
+| Persistent | WSJ_20130322_159 | (10, 11) | AFTER | BEFORE | BEFORE |
+| Persistent | WSJ_20130322_159 | (20, 26) | AFTER | BEFORE | BEFORE |
+| Persistent | WSJ_20130322_159 | (38, 40) | EQUAL | AFTER | AFTER |
+| Persistent | WSJ_20130322_804 | (1, 2002) | EQUAL | BEFORE | BEFORE |
+| Persistent | WSJ_20130322_804 | (21, 23) | AFTER | BEFORE | BEFORE |
+| Persistent | WSJ_20130322_804 | (22, 23) | AFTER | BEFORE | BEFORE |
+| Persistent | WSJ_20130322_804 | (33, 35) | EQUAL | AFTER | AFTER |
+| Persistent | bbc_20130322_1150 | (7, 8) | AFTER | BEFORE | BEFORE |
+| Persistent | bbc_20130322_1150 | (7, 10) | AFTER | BEFORE | BEFORE |
+| Persistent | bbc_20130322_1150 | (8, 11) | BEFORE | AFTER | AFTER |
+| Persistent | bbc_20130322_1150 | (10, 11) | BEFORE | AFTER | AFTER |
+| Persistent | bbc_20130322_1150 | (12, 15) | AFTER | BEFORE | BEFORE |
+| Persistent | bbc_20130322_1150 | (39, 42) | AFTER | BEFORE | BEFORE |
+| Persistent | bbc_20130322_1150 | (43, 44) | BEFORE | AFTER | AFTER |
+| Persistent | bbc_20130322_1353 | (17, 19) | BEFORE | AFTER | AFTER |
+| Persistent | bbc_20130322_1353 | (17, 20) | BEFORE | AFTER | AFTER |
+| Persistent | bbc_20130322_1353 | (17, 21) | BEFORE | AFTER | AFTER |
+| Persistent | bbc_20130322_1353 | (26, 29) | AFTER | BEFORE | BEFORE |
+| Persistent | bbc_20130322_1353 | (26, 31) | AFTER | BEFORE | BEFORE |
+| Persistent | bbc_20130322_1353 | (27, 31) | AFTER | BEFORE | BEFORE |
+| Persistent | bbc_20130322_1353 | (28, 34) | EQUAL | AFTER | AFTER |
+| Persistent | bbc_20130322_1353 | (34, 37) | BEFORE | AFTER | AFTER |
+| Persistent | bbc_20130322_1353 | (35, 36) | AFTER | BEFORE | BEFORE |
+| Persistent | bbc_20130322_1600 | (2, 5) | AFTER | BEFORE | BEFORE |
+| Persistent | bbc_20130322_1600 | (2, 7) | BEFORE | AFTER | AFTER |
+| Persistent | bbc_20130322_1600 | (5, 7) | BEFORE | AFTER | AFTER |
+| Persistent | bbc_20130322_1600 | (6, 9) | BEFORE | AFTER | AFTER |
+| Persistent | bbc_20130322_1600 | (16, 20) | BEFORE | AFTER | AFTER |
+| Persistent | bbc_20130322_1600 | (16, 21) | BEFORE | AFTER | AFTER |
+| Persistent | bbc_20130322_332 | (5, 9) | AFTER | BEFORE | BEFORE |
+| Persistent | bbc_20130322_332 | (12, 13) | EQUAL | BEFORE | BEFORE |
+| Persistent | bbc_20130322_332 | (30, 33) | AFTER | BEFORE | BEFORE |
+| Persistent | bbc_20130322_332 | (30, 34) | AFTER | BEFORE | BEFORE |
+| Persistent | bbc_20130322_332 | (30, 35) | AFTER | BEFORE | BEFORE |
+| Persistent | bbc_20130322_721 | (5, 6) | AFTER | BEFORE | BEFORE |
+| Persistent | nyt_20130321_china_pollution | (1, 2) | AFTER | BEFORE | BEFORE |
+| Persistent | nyt_20130321_china_pollution | (2, 3) | EQUAL | AFTER | AFTER |
+| Persistent | nyt_20130321_china_pollution | (2, 4) | AFTER | BEFORE | BEFORE |
+| Persistent | nyt_20130321_china_pollution | (3, 4) | AFTER | BEFORE | BEFORE |
+| Persistent | nyt_20130321_china_pollution | (7, 8) | EQUAL | BEFORE | BEFORE |
+| Persistent | nyt_20130321_china_pollution | (8, 11) | AFTER | BEFORE | BEFORE |
+| Persistent | nyt_20130321_china_pollution | (15, 23) | EQUAL | BEFORE | BEFORE |
+| Persistent | nyt_20130321_china_pollution | (27, 28) | EQUAL | AFTER | AFTER |
+| Persistent | nyt_20130321_china_pollution | (38, 39) | EQUAL | BEFORE | BEFORE |
+| Persistent | nyt_20130321_cyprus | (2, 5) | EQUAL | BEFORE | BEFORE |
+| Persistent | nyt_20130321_cyprus | (33, 36) | EQUAL | BEFORE | BEFORE |
+| Persistent | nyt_20130321_cyprus | (36, 42) | EQUAL | AFTER | AFTER |
+| Persistent | nyt_20130321_sarcozy | (1, 7) | EQUAL | AFTER | AFTER |
+| Persistent | nyt_20130321_sarcozy | (5, 7) | BEFORE | AFTER | AFTER |
+| Persistent | nyt_20130321_sarcozy | (8, 10) | AFTER | BEFORE | BEFORE |
+| Persistent | nyt_20130321_women_senate | (1000009, 2) | AFTER | BEFORE | BEFORE |
+| Persistent | nyt_20130321_women_senate | (11, 12) | EQUAL | BEFORE | BEFORE |
+| Persistent | nyt_20130321_women_senate | (16, 17) | EQUAL | AFTER | AFTER |
+| Persistent | nyt_20130321_women_senate | (16, 19) | EQUAL | AFTER | AFTER |
+| Persistent | nyt_20130321_women_senate | (26, 1000014) | AFTER | BEFORE | BEFORE |
+| Persistent | nyt_20130321_women_senate | (36, 37) | EQUAL | BEFORE | BEFORE |
+| Persistent | nyt_20130321_women_senate | (40, 42) | EQUAL | BEFORE | BEFORE |
+| Persistent | nyt_20130321_women_senate | (40, 43) | AFTER | BEFORE | BEFORE |
+| Persistent | nyt_20130321_women_senate | (41, 47) | AFTER | BEFORE | BEFORE |
+| Persistent | nyt_20130321_women_senate | (42, 43) | AFTER | BEFORE | BEFORE |
+| Persistent | nyt_20130321_women_senate | (47, 48) | EQUAL | BEFORE | BEFORE |
+| Persistent | nyt_20130321_women_senate | (47, 53) | BEFORE | AFTER | AFTER |
+| Persistent | nyt_20130321_women_senate | (48, 53) | BEFORE | AFTER | AFTER |
+| Persistent | nyt_20130322_strange_computer | (6, 8) | EQUAL | AFTER | AFTER |
+| Persistent | nyt_20130322_strange_computer | (11, 16) | EQUAL | AFTER | AFTER |
+| Persistent | nyt_20130322_strange_computer | (14, 19) | BEFORE | AFTER | AFTER |
+
+============================================================
+
+End of report

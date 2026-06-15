@@ -1,0 +1,23 @@
+doc_id,e1_id,e2_id,ground_truth,baseline_pred,encoder_pred,logic_pred,repair_type,logic_evidence
+CNN_20130322_1003,9,10,AFTER,BEFORE,AFTER,AFTER,Neural Gain (Training),N/A (Neural Correct)
+CNN_20130322_1003,17,19,BEFORE,AFTER,BEFORE,BEFORE,Neural Gain (Training),N/A (Neural Correct)
+CNN_20130322_1003,40,41,BEFORE,AFTER,BEFORE,BEFORE,Neural Gain (Training),N/A (Neural Correct)
+CNN_20130322_1003,44,45,AFTER,BEFORE,AFTER,AFTER,Neural Gain (Training),N/A (Neural Correct)
+CNN_20130322_248,2,3,AFTER,BEFORE,BEFORE,AFTER,Logical Repair (Inference),N/A
+WSJ_20130321_1145,29,31,AFTER,BEFORE,AFTER,AFTER,Neural Gain (Training),N/A (Neural Correct)
+WSJ_20130322_159,5,6,BEFORE,EQUAL,BEFORE,BEFORE,Neural Gain (Training),N/A (Neural Correct)
+WSJ_20130322_804,13,14,AFTER,BEFORE,AFTER,AFTER,Neural Gain (Training),N/A (Neural Correct)
+bbc_20130322_1150,6,8,AFTER,BEFORE,AFTER,AFTER,Neural Gain (Training),N/A (Neural Correct)
+bbc_20130322_1353,33,37,BEFORE,AFTER,BEFORE,BEFORE,Neural Gain (Training),N/A (Neural Correct)
+bbc_20130322_1600,2,9,BEFORE,AFTER,BEFORE,BEFORE,Neural Gain (Training),N/A (Neural Correct)
+bbc_20130322_1600,5,9,BEFORE,AFTER,AFTER,BEFORE,Logical Repair (Inference),N/A
+bbc_20130322_1600,9,10,AFTER,BEFORE,AFTER,AFTER,Neural Gain (Training),N/A (Neural Correct)
+bbc_20130322_1600,12,13,AFTER,BEFORE,AFTER,AFTER,Neural Gain (Training),N/A (Neural Correct)
+bbc_20130322_332,30,31,AFTER,BEFORE,AFTER,AFTER,Neural Gain (Training),N/A (Neural Correct)
+nyt_20130321_china_pollution,15,22,AFTER,BEFORE,AFTER,AFTER,Neural Gain (Training),N/A (Neural Correct)
+nyt_20130321_cyprus,22,23,AFTER,BEFORE,AFTER,AFTER,Neural Gain (Training),N/A (Neural Correct)
+nyt_20130321_cyprus,35,36,AFTER,BEFORE,AFTER,AFTER,Neural Gain (Training),N/A (Neural Correct)
+nyt_20130321_women_senate,17,20,AFTER,BEFORE,AFTER,AFTER,Neural Gain (Training),N/A (Neural Correct)
+nyt_20130321_women_senate,19,20,AFTER,BEFORE,AFTER,AFTER,Neural Gain (Training),N/A (Neural Correct)
+nyt_20130321_women_senate,36,1000015,AFTER,EQUAL,AFTER,AFTER,Neural Gain (Training),N/A (Neural Correct)
+nyt_20130321_women_senate,41,43,AFTER,BEFORE,AFTER,AFTER,Neural Gain (Training),N/A (Neural Correct)

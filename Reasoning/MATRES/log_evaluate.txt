@@ -1,0 +1,64 @@
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Using device: cuda:0
+Loading Data...
+Initializing Model...
+DEBUG REASONING: Initialized with 10 rules. First rule: R_Symm_BA
+Loading checkpoint /home/prof/ddao/daodd/phd-dao-do/TRE/notebooks/Reasoning/MATRES/checkpoint/MATRES_baseline_reasoning_model.pt...
+Running Inference...
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.10s/it]100%|██████████| 1/1 [00:05<00:00,  5.10s/it]
+
+[Predictive Performance]
+
+[Confusion Matrix - Full] (rows=true, cols=pred)
+        AFTER  BEFORE  EQUAL  VAGUE
+AFTER     204      61      0      0
+BEFORE     26     387      0      0
+EQUAL      15      16      0      0
+VAGUE      17      91      0      0
+
+[Classification Report - Full (including VAGUE)]
+              precision    recall  f1-score   support
+
+       AFTER     0.7786    0.7698    0.7742       265
+      BEFORE     0.6973    0.9370    0.7996       413
+       EQUAL     0.0000    0.0000    0.0000        31
+       VAGUE     0.0000    0.0000    0.0000       108
+
+    accuracy                         0.7234       817
+   macro avg     0.3690    0.4267    0.3934       817
+weighted avg     0.6050    0.7234    0.6553       817
+
+
+[Full (including VAGUE) Summary]
+Micro   : P=0.7234, R=0.7234, F1=0.7234
+Macro   : P=0.3690, R=0.4267, F1=0.3934
+Weighted: P=0.6050, R=0.7234, F1=0.6553
+
+[Confusion Matrix - Non-VAGUE Gold] (rows=true non-VAGUE, cols=pred)
+        AFTER  BEFORE  EQUAL  VAGUE
+AFTER     204      61      0      0
+BEFORE     26     387      0      0
+EQUAL      15      16      0      0
+VAGUE       0       0      0      0
+
+[Classification Report - Non-VAGUE Gold]
+              precision    recall  f1-score   support
+
+       AFTER     0.8327    0.7698    0.8000       265
+      BEFORE     0.8341    0.9370    0.8826       413
+       EQUAL     0.0000    0.0000    0.0000        31
+
+    accuracy                         0.8336       709
+   macro avg     0.5556    0.5690    0.5609       709
+weighted avg     0.7971    0.8336    0.8131       709
+
+
+[Non-VAGUE Gold Summary]
+Micro   : P=0.8336, R=0.8336, F1=0.8336
+Macro   : P=0.5556, R=0.5690, F1=0.5609
+Weighted: P=0.7971, R=0.8336, F1=0.8131
+
+[Consistency Analysis]
+Transitivity Violation Rate: 0.0000 (on 340 triplets)
+Symmetry Violation Rate:     0.0000 (on 0 pairs)
+Predictions saved to /home/prof/ddao/daodd/phd-dao-do/TRE/notebooks/Reasoning/MATRES/prediction.csv

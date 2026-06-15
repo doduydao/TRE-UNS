@@ -1,0 +1,205 @@
+
+======================================================================
+Neural-only Inference: MATRES
+Time: 2026-03-11 00:36:03.281108
+======================================================================
+
+[1] Loading model and data...
+    Experiment: MATRES
+    Num classes: 3
+    Cache path: /data/ddao/TRE/pretrained_models/Reasoning/MATRES/cache/
+    Checkpoint: /home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/scripts/../results/MATRES
+    Device: cuda
+
+[2] Loading datasets...
+
+======================================================================
+Neural-only Inference: MATRES
+Time: 2026-03-11 00:36:45.171764
+======================================================================
+
+[1] Loading model and data...
+    Experiment: MATRES
+    Num classes: 3
+    Cache path: /data/ddao/TRE/pretrained_models/Reasoning/MATRES/cache/
+    Checkpoint: /home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/results/MATRES
+    Device: cuda
+
+[2] Loading datasets...
+    Loading train... Done (10404 samples)
+    Loading valid... Done (1836 samples)
+    Loading test... Done (817 samples)
+
+[3] Building global entity ID map...
+    Total entities mapped: 8627
+    Ground truth test pairs: 817
+
+[4] Initializing neural model...
+    Resizing embeddings from 30522 to 30526
+    Loading checkpoint from: /home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/results/MATRES/checkpoint.pt
+    Checkpoint loaded (step=52)
+
+[5] Running neural forward pass on test set...
+Traceback (most recent call last):
+  File "/home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/scripts/neural_infer.py", line 225, in <module>
+    labels_batch = batch['labels'].cpu().numpy()
+KeyboardInterrupt
+
+======================================================================
+Neural-only Inference: MATRES
+Time: 2026-03-11 00:37:20.118315
+======================================================================
+
+[1] Loading model and data...
+    Experiment: MATRES
+    Num classes: 3
+    Cache path: /data/ddao/TRE/pretrained_models/Reasoning/MATRES/cache/
+    Checkpoint: /home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/results/MATRES
+    Device: cuda
+
+[2] Loading datasets...
+    Loading train...
+======================================================================
+Neural-only Inference: MATRES
+Time: 2026-03-11 00:37:21.564615
+======================================================================
+
+[1] Loading model and data...
+    Experiment: MATRES
+    Num classes: 3
+    Cache path: /data/ddao/TRE/pretrained_models/Reasoning/MATRES/cache/
+    Checkpoint: /home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/results/MATRES
+    Device: cuda
+
+[2] Loading datasets...
+    Loading train... Done (10404 samples)
+    Loading valid... Done (1836 samples)
+    Loading test... Done (10404 samples)
+    Loading valid... Done (817 samples)
+
+[3] Building global entity ID map...
+    Total entities mapped: 8627
+    Ground truth test pairs: 817
+
+[4] Initializing neural model...
+    Resizing embeddings from 30522 to 30526
+ Done (1836 samples)
+    Loading test... Done (817 samples)
+
+[3] Building global entity ID map...
+    Total entities mapped: 8627
+    Ground truth test pairs: 817
+
+[4] Initializing neural model...
+    Loading checkpoint from: /home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/results/MATRES/checkpoint.pt
+    Resizing embeddings from 30522 to 30526
+    Loading checkpoint from: /home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/results/MATRES/checkpoint.pt
+    Checkpoint loaded (step=52)
+
+[5] Running neural forward pass on test set...
+    Checkpoint loaded (step=52)
+
+[5] Running neural forward pass on test set...
+    Total predictions: 817
+
+[6] Evaluating predictions...
+
+======================================================================
+  NEURAL-ONLY TEST RESULTS (n=817)
+======================================================================
+  Accuracy:     0.691554
+  F1-micro:     0.691554
+  F1-weighted:  0.647182
+  F1-macro:     0.408961
+======================================================================
+
+Traceback (most recent call last):
+  File "/home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/scripts/neural_infer.py", line 273, in <module>
+    print(classification_report(all_labels, all_preds, 
+  File "/home/prof/ddao/.conda/envs/tre39/lib/python3.9/site-packages/sklearn/utils/_param_validation.py", line 213, in wrapper
+    return func(*args, **kwargs)
+  File "/home/prof/ddao/.conda/envs/tre39/lib/python3.9/site-packages/sklearn/metrics/_classification.py", line 2648, in classification_report
+    raise ValueError(
+ValueError: Number of classes, 4, does not match size of target_names, 3. Try specifying the labels parameter
+    Total predictions: 817
+
+[6] Evaluating predictions...
+
+======================================================================
+  NEURAL-ONLY TEST RESULTS (n=817)
+======================================================================
+  Accuracy:     0.691554
+  F1-micro:     0.691554
+  F1-weighted:  0.647182
+  F1-macro:     0.408961
+======================================================================
+
+Traceback (most recent call last):
+  File "/home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/scripts/neural_infer.py", line 273, in <module>
+    print(classification_report(all_labels, all_preds, 
+  File "/home/prof/ddao/.conda/envs/tre39/lib/python3.9/site-packages/sklearn/utils/_param_validation.py", line 213, in wrapper
+    return func(*args, **kwargs)
+  File "/home/prof/ddao/.conda/envs/tre39/lib/python3.9/site-packages/sklearn/metrics/_classification.py", line 2648, in classification_report
+    raise ValueError(
+ValueError: Number of classes, 4, does not match size of target_names, 3. Try specifying the labels parameter
+
+======================================================================
+Neural-only Inference: MATRES
+Time: 2026-03-11 00:38:37.644340
+======================================================================
+
+[1] Loading model and data...
+    Experiment: MATRES
+    Num classes: 3
+    Cache path: /data/ddao/TRE/pretrained_models/Reasoning/MATRES/cache/
+    Checkpoint: /home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/results/MATRES
+    Device: cuda
+
+[2] Loading datasets...
+    Loading train... Done (10404 samples)
+    Loading valid... Done (1836 samples)
+    Loading test... Done (817 samples)
+
+[3] Building global entity ID map...
+    Total entities mapped: 8627
+    Ground truth test pairs: 709
+
+[4] Initializing neural model...
+    Resizing embeddings from 30522 to 30526
+    Loading checkpoint from: /home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/results/MATRES/checkpoint.pt
+    Checkpoint loaded (step=52)
+
+[5] Running neural forward pass on test set...
+    Total predictions: 709
+
+[6] Evaluating predictions...
+
+======================================================================
+  NEURAL-ONLY TEST RESULTS (n=709)
+======================================================================
+  Accuracy:     0.796897
+  F1-micro:     0.796897
+  F1-weighted:  0.798801
+  F1-macro:     0.584807
+======================================================================
+
+              precision    recall  f1-score   support
+
+           0     0.8117    0.7321    0.7698       265
+           1     0.8495    0.8886    0.8686       413
+           2     0.1053    0.1290    0.1159        31
+
+    accuracy                         0.7969       709
+   macro avg     0.5888    0.5832    0.5848       709
+weighted avg     0.8029    0.7969    0.7988       709
+
+
+[7] Saving results...
+    Metrics saved to: /home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/results/MATRES-neural-infer/neural_evaluation_metrics.txt
+    Log saved to: /home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/results/MATRES-neural-infer/neural_infer.log
+
+======================================================================
+Neural-only inference complete!
+Results directory: /home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/results/MATRES-neural-infer
+======================================================================
+

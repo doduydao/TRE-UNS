@@ -1,0 +1,12 @@
+
+==================== 2026-03-09 22:06:03.585645 ====================
+Log file: /home/prof/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/scripts/../results/TBD-infer/neupsl_python.log
+=== DEEP PREDICATE PYTHON SERVER STARTING ===
+Loading datasets from: /data/ddao/TRE/pretrained_models/Reasoning/TBD/cache/
+Loaded 6088 samples from 3 splits.
+Max input_id: 30525
+Resizing embeddings from 30522 to 30526
+Freeze BERT: True
+Loading full checkpoint from ../../results/TBD/checkpoint.pt
+Resumed from step=15, fit_call_count=15
+Optimizer state restored.

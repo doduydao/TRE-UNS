@@ -1,0 +1,221 @@
+# Detailed Comparative Analysis Report (Tabular)
+
+## 1. Performance and Violation Metrics
+| Metric | Baseline | Logic-Aware (V2) |
+| :--- | :--- | :--- |
+| Accuracy | 0.8213 | 0.7997 |
+| Logic Violation Count (Triplets) | 3 | 1 |
+| Violation Reduction Rate | - | 66.67% |
+
+## 2. Label Transition Dynamics
+| Transition Type | Count |
+| :--- | :--- |
+| Agreement | 87.96% |
+| Total Label Changes | 95 |
+| Repairs (Logic fixes Baseline) | 31 |
+| Breaks (Logic harms Baseline) | 48 |
+
+## 3. Detailed Repair Cases
+| ID | Document | Pair (u, v) | GT | Baseline | Logic Evidence (u->k->v) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | APW19980227.0489 | (e4, e5) | BEFORE | INCLUDES | N/A (Complex/Multi-step) |
+| 2 | APW19980227.0489 | (e4, e6) | BEFORE | INCLUDES | N/A (Complex/Multi-step) |
+| 3 | APW19980227.0489 | (e4, e9) | AFTER | INCLUDES | N/A (Complex/Multi-step) |
+| 4 | APW19980227.0489 | (e14, e15) | IS_INCLUDED | AFTER | N/A (Complex/Multi-step) |
+| 5 | APW19980227.0489 | (e24, e25) | INCLUDES | BEFORE | N/A (Complex/Multi-step) |
+| 6 | APW19980227.0494 | (e10, e12) | INCLUDES | BEFORE | N/A (Complex/Multi-step) |
+| 7 | APW19980227.0494 | (e10, e15) | INCLUDES | BEFORE | N/A (Complex/Multi-step) |
+| 8 | APW19980227.0494 | (e10, e18) | INCLUDES | BEFORE | N/A (Complex/Multi-step) |
+| 9 | APW19980227.0494 | (e55, e61) | INCLUDES | BEFORE | N/A (Complex/Multi-step) |
+| 10 | APW19980227.0494 | (e61, e65) | AFTER | BEFORE | N/A (Complex/Multi-step) |
+| 11 | APW19980227.0494 | (e75, e82) | AFTER | BEFORE | N/A (Complex/Multi-step) |
+| 12 | APW19980227.0494 | (e89, e92) | AFTER | BEFORE | N/A (Complex/Multi-step) |
+| 13 | APW19980308.0201 | (e76, e14) | BEFORE | IS_INCLUDED | N/A (Complex/Multi-step) |
+| 14 | APW19980308.0201 | (e77, e14) | BEFORE | IS_INCLUDED | N/A (Complex/Multi-step) |
+| 15 | APW19980308.0201 | (e13, e14) | BEFORE | IS_INCLUDED | N/A (Complex/Multi-step) |
+| 16 | APW19980308.0201 | (e14, e18) | AFTER | INCLUDES | N/A (Complex/Multi-step) |
+| 17 | APW19980308.0201 | (e29, e31) | AFTER | IS_INCLUDED | N/A (Complex/Multi-step) |
+| 18 | APW19980308.0201 | (e29, e72) | BEFORE | IS_INCLUDED | N/A (Complex/Multi-step) |
+| 19 | APW19980418.0210 | (e7, e8) | AFTER | BEFORE | N/A (Complex/Multi-step) |
+| 20 | APW19980418.0210 | (e24, e25) | AFTER | IS_INCLUDED | N/A (Complex/Multi-step) |
+| 21 | CNN19980213.2130.0155 | (e40, e117) | INCLUDES | BEFORE | N/A (Complex/Multi-step) |
+| 22 | NYT19980402.0453 | (e2, e8) | BEFORE | INCLUDES | N/A (Complex/Multi-step) |
+| 23 | NYT19980402.0453 | (e2, e9) | BEFORE | INCLUDES | N/A (Complex/Multi-step) |
+| 24 | NYT19980402.0453 | (e8, e13) | AFTER | BEFORE | N/A (Complex/Multi-step) |
+| 25 | NYT19980402.0453 | (e2093, e27) | INCLUDES | BEFORE | N/A (Complex/Multi-step) |
+| 26 | NYT19980402.0453 | (e65, e41) | BEFORE | INCLUDES | N/A (Complex/Multi-step) |
+| 27 | PRI19980115.2000.0186 | (e5, e13) | AFTER | BEFORE | e5-(AFTER)->e11-(AFTER)->e13 |
+| 28 | PRI19980115.2000.0186 | (e11, e2003) | BEFORE | SIMULTANEOUS | N/A (Complex/Multi-step) |
+| 29 | PRI19980115.2000.0186 | (e2007, e2011) | BEFORE | SIMULTANEOUS | N/A (Complex/Multi-step) |
+| 30 | PRI19980306.2000.1675 | (e27, e14) | AFTER | INCLUDES | N/A (Complex/Multi-step) |
+| 31 | PRI19980306.2000.1675 | (e10, e36) | IS_INCLUDED | AFTER | N/A (Complex/Multi-step) |
+
+## 4. Detailed Break Cases
+| ID | Document | Pair (u, v) | GT | Baseline | Logic | Evidence (Error-inducing chain) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | APW19980227.0489 | (e5, e7) | BEFORE | BEFORE | VAGUE | N/A |
+| 2 | APW19980227.0489 | (e5, e10) | AFTER | AFTER | INCLUDES | N/A |
+| 3 | APW19980227.0489 | (e5, e11) | AFTER | AFTER | INCLUDES | N/A |
+| 4 | APW19980227.0489 | (e5, e12) | AFTER | AFTER | INCLUDES | N/A |
+| 5 | APW19980227.0489 | (e6, e11) | AFTER | AFTER | VAGUE | N/A |
+| 6 | APW19980227.0489 | (e6, e12) | AFTER | AFTER | VAGUE | N/A |
+| 7 | APW19980227.0489 | (e6, e15) | AFTER | AFTER | VAGUE | N/A |
+| 8 | APW19980227.0489 | (e10, e14) | BEFORE | BEFORE | VAGUE | N/A |
+| 9 | APW19980227.0489 | (e24, e30) | AFTER | AFTER | INCLUDES | N/A |
+| 10 | APW19980227.0489 | (e27, e29) | SIMULTANEOUS | SIMULTANEOUS | AFTER | N/A |
+| 11 | APW19980227.0489 | (e24, e34) | AFTER | AFTER | INCLUDES | N/A |
+| 12 | APW19980227.0489 | (e32, e33) | IS_INCLUDED | IS_INCLUDED | BEFORE | N/A |
+| 13 | APW19980227.0494 | (e4, e8) | BEFORE | BEFORE | AFTER | N/A |
+| 14 | APW19980227.0494 | (e4, e10) | BEFORE | BEFORE | INCLUDES | N/A |
+| 15 | APW19980227.0494 | (e4, e11) | BEFORE | BEFORE | INCLUDES | N/A |
+| 16 | APW19980227.0494 | (e29, e32) | AFTER | AFTER | BEFORE | N/A |
+| 17 | APW19980227.0494 | (e55, e58) | INCLUDES | INCLUDES | AFTER | N/A |
+| 18 | APW19980227.0494 | (e74, e75) | AFTER | AFTER | INCLUDES | N/A |
+| 19 | APW19980227.0494 | (e82, e84) | AFTER | AFTER | IS_INCLUDED | N/A |
+| 20 | APW19980227.0494 | (e93, e101) | BEFORE | BEFORE | INCLUDES | N/A |
+| 21 | APW19980227.0494 | (e98, e99) | BEFORE | BEFORE | VAGUE | N/A |
+| 22 | APW19980308.0201 | (e77, e50) | IS_INCLUDED | IS_INCLUDED | VAGUE | N/A |
+| 23 | APW19980418.0210 | (e14, e2000) | BEFORE | BEFORE | VAGUE | N/A |
+| 24 | APW19980418.0210 | (e17, e21) | AFTER | AFTER | BEFORE | N/A |
+| 25 | CNN19980126.1600.1104 | (e206, e14) | INCLUDES | INCLUDES | BEFORE | N/A |
+| 26 | CNN19980213.2130.0155 | (e7, e9) | INCLUDES | INCLUDES | BEFORE | N/A |
+| 27 | CNN19980213.2130.0155 | (e26, e31) | IS_INCLUDED | IS_INCLUDED | VAGUE | N/A |
+| 28 | CNN19980213.2130.0155 | (e52, e54) | BEFORE | BEFORE | VAGUE | N/A |
+| 29 | CNN19980213.2130.0155 | (e52, e57) | INCLUDES | INCLUDES | BEFORE | N/A |
+| 30 | CNN19980213.2130.0155 | (e63, e74) | AFTER | AFTER | BEFORE | N/A |
+| 31 | CNN19980213.2130.0155 | (e74, e137) | BEFORE | BEFORE | AFTER | N/A |
+| 32 | CNN19980213.2130.0155 | (e68, e78) | BEFORE | BEFORE | AFTER | N/A |
+| 33 | NYT19980402.0453 | (e5, e10) | BEFORE | BEFORE | INCLUDES | N/A |
+| 34 | NYT19980402.0453 | (e2093, e23) | AFTER | AFTER | INCLUDES | N/A |
+| 35 | NYT19980402.0453 | (e2093, e24) | AFTER | AFTER | INCLUDES | N/A |
+| 36 | NYT19980402.0453 | (e2093, e25) | AFTER | AFTER | INCLUDES | N/A |
+| 37 | NYT19980402.0453 | (e2093, e26) | AFTER | AFTER | INCLUDES | N/A |
+| 38 | NYT19980402.0453 | (e66, e65) | AFTER | AFTER | VAGUE | N/A |
+| 39 | NYT19980402.0453 | (e33, e36) | AFTER | AFTER | INCLUDES | N/A |
+| 40 | NYT19980402.0453 | (e2164, e36) | AFTER | AFTER | VAGUE | N/A |
+| 41 | PRI19980115.2000.0186 | (e11, e13) | SIMULTANEOUS | SIMULTANEOUS | AFTER | N/A |
+| 42 | PRI19980115.2000.0186 | (e15, e2007) | AFTER | AFTER | VAGUE | N/A |
+| 43 | PRI19980115.2000.0186 | (e2039, e2011) | BEFORE | BEFORE | VAGUE | N/A |
+| 44 | PRI19980115.2000.0186 | (e24, e2011) | BEFORE | BEFORE | VAGUE | N/A |
+| 45 | PRI19980306.2000.1675 | (e8, e25) | IS_INCLUDED | IS_INCLUDED | VAGUE | N/A |
+| 46 | PRI19980306.2000.1675 | (e24, e11) | BEFORE | BEFORE | INCLUDES | N/A |
+| 47 | PRI19980306.2000.1675 | (e7, e11) | BEFORE | BEFORE | VAGUE | N/A |
+| 48 | PRI19980306.2000.1675 | (e10, e11) | BEFORE | BEFORE | AFTER | N/A |
+
+## 5. Mutual and Persistent Errors
+| Type | Document | Pair (u, v) | GT | Baseline | Logic |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Mutual | APW19980227.0489 | (e19, e24) | IS_INCLUDED | BEFORE | VAGUE |
+| Mutual | APW19980227.0489 | (e25, e33) | IS_INCLUDED | AFTER | BEFORE |
+| Mutual | APW19980227.0494 | (e45, e61) | AFTER | BEFORE | VAGUE |
+| Mutual | APW19980227.0494 | (e83, e84) | SIMULTANEOUS | BEFORE | IS_INCLUDED |
+| Mutual | APW19980227.0494 | (e99, e105) | AFTER | BEFORE | VAGUE |
+| Mutual | APW19980308.0201 | (e47, e77) | INCLUDES | BEFORE | AFTER |
+| Mutual | APW19980308.0201 | (e76, e49) | BEFORE | IS_INCLUDED | VAGUE |
+| Mutual | CNN19980126.1600.1104 | (e206, e46) | INCLUDES | IS_INCLUDED | VAGUE |
+| Mutual | CNN19980126.1600.1104 | (e204, e52) | SIMULTANEOUS | BEFORE | VAGUE |
+| Mutual | CNN19980213.2130.0155 | (e36, e39) | SIMULTANEOUS | IS_INCLUDED | AFTER |
+| Mutual | PRI19980115.2000.0186 | (e9, e10) | SIMULTANEOUS | AFTER | VAGUE |
+| Mutual | PRI19980115.2000.0186 | (e2003, e14) | BEFORE | INCLUDES | VAGUE |
+| Mutual | PRI19980115.2000.0186 | (e2007, e19) | INCLUDES | AFTER | VAGUE |
+| Mutual | PRI19980306.2000.1675 | (e30, e37) | IS_INCLUDED | BEFORE | VAGUE |
+| Mutual | PRI19980306.2000.1675 | (e27, e37) | IS_INCLUDED | BEFORE | VAGUE |
+| Mutual | PRI19980306.2000.1675 | (e35, e16) | INCLUDES | IS_INCLUDED | VAGUE |
+| Persistent | APW19980227.0489 | (e9, e10) | SIMULTANEOUS | BEFORE | BEFORE |
+| Persistent | APW19980227.0489 | (e11, e14) | BEFORE | AFTER | AFTER |
+| Persistent | APW19980227.0489 | (e11, e15) | IS_INCLUDED | AFTER | AFTER |
+| Persistent | APW19980227.0489 | (e20, e22) | BEFORE | AFTER | AFTER |
+| Persistent | APW19980227.0489 | (e20, e30) | BEFORE | INCLUDES | INCLUDES |
+| Persistent | APW19980227.0489 | (e24, e32) | INCLUDES | BEFORE | BEFORE |
+| Persistent | APW19980227.0489 | (e25, e31) | IS_INCLUDED | BEFORE | BEFORE |
+| Persistent | APW19980227.0489 | (e31, e32) | INCLUDES | BEFORE | BEFORE |
+| Persistent | APW19980227.0494 | (e10, e11) | SIMULTANEOUS | IS_INCLUDED | IS_INCLUDED |
+| Persistent | APW19980227.0494 | (e10, e17) | INCLUDES | BEFORE | BEFORE |
+| Persistent | APW19980227.0494 | (e45, e48) | AFTER | BEFORE | BEFORE |
+| Persistent | APW19980227.0494 | (e45, e50) | AFTER | BEFORE | BEFORE |
+| Persistent | APW19980227.0494 | (e45, e55) | AFTER | BEFORE | BEFORE |
+| Persistent | APW19980227.0494 | (e45, e59) | SIMULTANEOUS | BEFORE | BEFORE |
+| Persistent | APW19980227.0494 | (e56, e65) | INCLUDES | BEFORE | BEFORE |
+| Persistent | APW19980227.0494 | (e58, e65) | AFTER | BEFORE | BEFORE |
+| Persistent | APW19980227.0494 | (e69, e156) | BEFORE | AFTER | AFTER |
+| Persistent | APW19980227.0494 | (e74, e82) | AFTER | INCLUDES | INCLUDES |
+| Persistent | APW19980227.0494 | (e74, e84) | AFTER | IS_INCLUDED | IS_INCLUDED |
+| Persistent | APW19980227.0494 | (e75, e84) | AFTER | IS_INCLUDED | IS_INCLUDED |
+| Persistent | APW19980227.0494 | (e86, e87) | IS_INCLUDED | BEFORE | BEFORE |
+| Persistent | APW19980227.0494 | (e87, e89) | INCLUDES | AFTER | AFTER |
+| Persistent | APW19980227.0494 | (e90, e93) | AFTER | IS_INCLUDED | IS_INCLUDED |
+| Persistent | APW19980227.0494 | (e93, e98) | BEFORE | INCLUDES | INCLUDES |
+| Persistent | APW19980227.0494 | (e93, e158) | BEFORE | INCLUDES | INCLUDES |
+| Persistent | APW19980227.0494 | (e93, e99) | BEFORE | INCLUDES | INCLUDES |
+| Persistent | APW19980227.0494 | (e158, e99) | BEFORE | AFTER | AFTER |
+| Persistent | APW19980227.0494 | (e98, e105) | INCLUDES | BEFORE | BEFORE |
+| Persistent | APW19980227.0494 | (e158, e105) | SIMULTANEOUS | BEFORE | BEFORE |
+| Persistent | APW19980227.0494 | (e111, e112) | AFTER | INCLUDES | INCLUDES |
+| Persistent | APW19980227.0494 | (e118, e121) | BEFORE | INCLUDES | INCLUDES |
+| Persistent | APW19980227.0494 | (e118, e123) | BEFORE | INCLUDES | INCLUDES |
+| Persistent | APW19980227.0494 | (e118, e125) | BEFORE | INCLUDES | INCLUDES |
+| Persistent | APW19980227.0494 | (e123, e125) | INCLUDES | BEFORE | BEFORE |
+| Persistent | APW19980308.0201 | (e2, e76) | INCLUDES | BEFORE | BEFORE |
+| Persistent | APW19980308.0201 | (e2, e77) | INCLUDES | BEFORE | BEFORE |
+| Persistent | APW19980308.0201 | (e47, e76) | INCLUDES | AFTER | AFTER |
+| Persistent | APW19980308.0201 | (e47, e49) | INCLUDES | BEFORE | BEFORE |
+| Persistent | APW19980308.0201 | (e14, e116) | AFTER | INCLUDES | INCLUDES |
+| Persistent | APW19980308.0201 | (e34, e36) | INCLUDES | BEFORE | BEFORE |
+| Persistent | APW19980418.0210 | (e16, e22) | AFTER | BEFORE | BEFORE |
+| Persistent | APW19980418.0210 | (e16, e23) | AFTER | BEFORE | BEFORE |
+| Persistent | APW19980418.0210 | (e22, e25) | BEFORE | AFTER | AFTER |
+| Persistent | APW19980418.0210 | (e23, e25) | BEFORE | AFTER | AFTER |
+| Persistent | CNN19980126.1600.1104 | (e4, e42) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN19980126.1600.1104 | (e7, e42) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN19980126.1600.1104 | (e48, e25) | SIMULTANEOUS | BEFORE | BEFORE |
+| Persistent | CNN19980213.2130.0155 | (e6, e17) | BEFORE | INCLUDES | INCLUDES |
+| Persistent | CNN19980213.2130.0155 | (e10, e17) | BEFORE | AFTER | AFTER |
+| Persistent | CNN19980213.2130.0155 | (e13, e17) | BEFORE | AFTER | AFTER |
+| Persistent | CNN19980213.2130.0155 | (e15, e17) | BEFORE | AFTER | AFTER |
+| Persistent | CNN19980213.2130.0155 | (e19, e29) | INCLUDES | IS_INCLUDED | IS_INCLUDED |
+| Persistent | CNN19980213.2130.0155 | (e19, e31) | SIMULTANEOUS | BEFORE | BEFORE |
+| Persistent | CNN19980213.2130.0155 | (e29, e31) | IS_INCLUDED | BEFORE | BEFORE |
+| Persistent | CNN19980213.2130.0155 | (e34, e35) | INCLUDES | AFTER | AFTER |
+| Persistent | CNN19980213.2130.0155 | (e43, e45) | BEFORE | INCLUDES | INCLUDES |
+| Persistent | CNN19980213.2130.0155 | (e54, e57) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN19980213.2130.0155 | (e60, e61) | SIMULTANEOUS | AFTER | AFTER |
+| Persistent | CNN19980213.2130.0155 | (e129, e74) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN19980213.2130.0155 | (e68, e141) | BEFORE | AFTER | AFTER |
+| Persistent | CNN19980213.2130.0155 | (e70, e78) | BEFORE | AFTER | AFTER |
+| Persistent | CNN19980213.2130.0155 | (e70, e141) | BEFORE | AFTER | AFTER |
+| Persistent | CNN19980213.2130.0155 | (e72, e78) | BEFORE | AFTER | AFTER |
+| Persistent | CNN19980213.2130.0155 | (e72, e141) | BEFORE | AFTER | AFTER |
+| Persistent | CNN19980213.2130.0155 | (e74, e78) | BEFORE | AFTER | AFTER |
+| Persistent | CNN19980213.2130.0155 | (e137, e78) | SIMULTANEOUS | AFTER | AFTER |
+| Persistent | CNN19980213.2130.0155 | (e78, e80) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN19980213.2130.0155 | (e78, e144) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN19980213.2130.0155 | (e141, e80) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN19980213.2130.0155 | (e141, e144) | AFTER | BEFORE | BEFORE |
+| Persistent | CNN19980213.2130.0155 | (e80, e144) | AFTER | IS_INCLUDED | IS_INCLUDED |
+| Persistent | NYT19980402.0453 | (e2, e50) | SIMULTANEOUS | AFTER | AFTER |
+| Persistent | NYT19980402.0453 | (e2025, e14) | SIMULTANEOUS | AFTER | AFTER |
+| Persistent | NYT19980402.0453 | (e59, e2065) | SIMULTANEOUS | AFTER | AFTER |
+| Persistent | NYT19980402.0453 | (e21, e2093) | IS_INCLUDED | AFTER | AFTER |
+| Persistent | NYT19980402.0453 | (e2072, e23) | INCLUDES | BEFORE | BEFORE |
+| Persistent | NYT19980402.0453 | (e2072, e24) | INCLUDES | BEFORE | BEFORE |
+| Persistent | NYT19980402.0453 | (e2072, e25) | INCLUDES | BEFORE | BEFORE |
+| Persistent | NYT19980402.0453 | (e2072, e26) | INCLUDES | BEFORE | BEFORE |
+| Persistent | NYT19980402.0453 | (e36, e41) | BEFORE | AFTER | AFTER |
+| Persistent | PRI19980115.2000.0186 | (e7, e8) | IS_INCLUDED | BEFORE | BEFORE |
+| Persistent | PRI19980115.2000.0186 | (e17, e2039) | SIMULTANEOUS | BEFORE | BEFORE |
+| Persistent | PRI19980306.2000.1675 | (e3, e24) | IS_INCLUDED | BEFORE | BEFORE |
+| Persistent | PRI19980306.2000.1675 | (e3, e7) | IS_INCLUDED | BEFORE | BEFORE |
+| Persistent | PRI19980306.2000.1675 | (e5, e8) | INCLUDES | BEFORE | BEFORE |
+| Persistent | PRI19980306.2000.1675 | (e8, e30) | IS_INCLUDED | AFTER | AFTER |
+| Persistent | PRI19980306.2000.1675 | (e8, e27) | IS_INCLUDED | AFTER | AFTER |
+| Persistent | PRI19980306.2000.1675 | (e25, e30) | SIMULTANEOUS | AFTER | AFTER |
+| Persistent | PRI19980306.2000.1675 | (e25, e11) | BEFORE | AFTER | AFTER |
+| Persistent | PRI19980306.2000.1675 | (e25, e27) | SIMULTANEOUS | AFTER | AFTER |
+| Persistent | PRI19980306.2000.1675 | (e30, e11) | BEFORE | INCLUDES | INCLUDES |
+| Persistent | PRI19980306.2000.1675 | (e30, e27) | SIMULTANEOUS | AFTER | AFTER |
+| Persistent | PRI19980306.2000.1675 | (e30, e36) | IS_INCLUDED | INCLUDES | INCLUDES |
+| Persistent | PRI19980306.2000.1675 | (e27, e36) | IS_INCLUDED | BEFORE | BEFORE |
+
+============================================================
+
+End of report

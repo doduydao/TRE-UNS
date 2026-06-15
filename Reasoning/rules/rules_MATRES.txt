@@ -1,0 +1,27 @@
+# 1.1 Before <-> After
+R_Symm_BA: Before(E1, E2) => After(E2, E1)
+R_Symm_AB: After(E1, E2) => Before(E2, E1)
+
+# 1.2 Equal <-> Equal
+R_Symm_EE: Equal(E1, E2) => Equal(E2, E1)
+
+# 2.1 Before + Before -> Before
+R_Trans_BB: Before(E1, E2) & Before(E2, E3) => Before(E1, E3)
+
+# 2.2 Before + Equal -> Before
+R_Trans_BE: Before(E1, E2) & Equal(E2, E3) => Before(E1, E3)
+
+# 2.3 Equal + Before -> Before
+R_Trans_EB: Equal(E1, E2) & Before(E2, E3) => Before(E1, E3)
+
+# 2.4 Equal + Equal -> Equal
+R_Trans_EE: Equal(E1, E2) & Equal(E2, E3) => Equal(E1, E3)
+
+# 2.5 After + After -> After
+R_Trans_AA: After(E1, E2) & After(E2, E3) => After(E1, E3)
+
+# 2.6 After + Equal -> After
+R_Trans_AE: After(E1, E2) & Equal(E2, E3) => After(E1, E3)
+
+# 2.7 Equal + After -> After
+R_Trans_EA: Equal(E1, E2) & After(E2, E3) => After(E1, E3)

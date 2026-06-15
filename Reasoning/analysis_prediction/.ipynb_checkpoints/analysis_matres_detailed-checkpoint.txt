@@ -1,0 +1,86 @@
+Comparing matres_predictions_baseline.csv vs matres_predictions_baseline_plus_logic.csv
+
+--- Baseline Performance (Excluding VAGUE) ---
+              precision    recall  f1-score   support
+
+       AFTER     0.7833    0.7094    0.7446       265
+      BEFORE     0.8070    0.8910    0.8470       413
+       EQUAL     0.0769    0.0323    0.0455        31
+
+    accuracy                         0.7856       709
+   macro avg     0.5558    0.5442    0.5457       709
+weighted avg     0.7662    0.7856    0.7736       709
+
+--- Baseline+Logic Performance (Excluding VAGUE) ---
+              precision    recall  f1-score   support
+
+       AFTER     0.8304    0.5358    0.6514       265
+      BEFORE     0.7276    0.9443    0.8219       413
+       EQUAL     0.0000    0.0000    0.0000        31
+
+    accuracy                         0.7504       709
+   macro avg     0.5193    0.4934    0.4911       709
+weighted avg     0.7342    0.7504    0.7222       709
+
+
+--- Consistency Analysis (Transitivity) ---
+Baseline TVR: 0.0538 (Violations: 22)
+Logic TVR:    0.0449 (Violations: 21)
+
+--- Prediction Shifts (Baseline -> Logic) ---
+Total Shifts: 94
+
+Top Shifts:
+  ground_truth_base prediction_base prediction_logic  count
+0             AFTER           AFTER           BEFORE     46
+2            BEFORE           AFTER           BEFORE     18
+6             VAGUE           AFTER           BEFORE     13
+1             AFTER           EQUAL           BEFORE      6
+4             EQUAL           AFTER           BEFORE      5
+3            BEFORE           EQUAL           BEFORE      4
+5             EQUAL           EQUAL           BEFORE      1
+7             VAGUE           EQUAL           BEFORE      1
+
+Fixed Violations: 19
+New Violations:   18
+
+[New Violations in Logic] (Full List)
+{'doc_id': 'CNN_20130322_1003', 'u': 6, 'v': 11, 'w': 1000, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'CNN_20130322_1003', 'u': 7, 'v': 11, 'w': 1000, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'CNN_20130322_1003', 'u': 9, 'v': 10, 'w': 13, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'CNN_20130322_1003', 'u': 11, 'v': 1000, 'w': 14, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'CNN_20130322_314', 'u': 9, 'v': 10, 'w': 12, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'EQUAL', 'expected': 'BEFORE'}
+{'doc_id': 'WSJ_20130321_1145', 'u': 30, 'v': 31, 'w': 32, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'WSJ_20130322_159', 'u': 1, 'v': 6, 'w': 10, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'WSJ_20130322_159', 'u': 42, 'v': 44, 'w': 47, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'WSJ_20130322_159', 'u': 42, 'v': 44, 'w': 49, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'bbc_20130322_1150', 'u': 7, 'v': 8, 'w': 11, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'bbc_20130322_1150', 'u': 7, 'v': 10, 'w': 11, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'bbc_20130322_332', 'u': 12, 'v': 13, 'w': 18, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'nyt_20130321_china_pollution', 'u': 10, 'v': 13, 'w': 15, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'nyt_20130321_women_senate', 'u': 17, 'v': 20, 'w': 21, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'nyt_20130321_women_senate', 'u': 37, 'v': 41, 'w': 42, 'r1': 'EQUAL', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'nyt_20130321_women_senate', 'u': 41, 'v': 42, 'w': 43, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'nyt_20130322_strange_computer', 'u': 14, 'v': 19, 'w': 23, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'nyt_20130322_strange_computer', 'u': 14, 'v': 22, 'w': 23, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+
+[Fixed Violations] (Full List)
+{'doc_id': 'CNN_20130322_1003', 'u': 12, 'v': 13, 'w': 19, 'r1': 'EQUAL', 'r2': 'AFTER', 'r3_pred': 'BEFORE', 'expected': 'AFTER'}
+{'doc_id': 'CNN_20130322_1003', 'u': 13, 'v': 17, 'w': 19, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'CNN_20130322_248', 'u': 2, 'v': 3, 'w': 4, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'WSJ_20130318_731', 'u': 11, 'v': 13, 'w': 14, 'r1': 'AFTER', 'r2': 'EQUAL', 'r3_pred': 'EQUAL', 'expected': 'AFTER'}
+{'doc_id': 'WSJ_20130322_159', 'u': 34, 'v': 37, 'w': 40, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'EQUAL', 'expected': 'BEFORE'}
+{'doc_id': 'WSJ_20130322_159', 'u': 34, 'v': 38, 'w': 40, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'EQUAL', 'expected': 'BEFORE'}
+{'doc_id': 'WSJ_20130322_159', 'u': 38, 'v': 40, 'w': 44, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'bbc_20130322_1150', 'u': 7, 'v': 8, 'w': 10, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'bbc_20130322_1600', 'u': 2, 'v': 5, 'w': 9, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'bbc_20130322_1600', 'u': 6, 'v': 9, 'w': 10, 'r1': 'AFTER', 'r2': 'EQUAL', 'r3_pred': 'BEFORE', 'expected': 'AFTER'}
+{'doc_id': 'bbc_20130322_1600', 'u': 11, 'v': 12, 'w': 13, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'nyt_20130321_china_pollution', 'u': 2, 'v': 5, 'w': 7, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'nyt_20130321_china_pollution', 'u': 10, 'v': 11, 'w': 13, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'nyt_20130321_china_pollution', 'u': 21, 'v': 22, 'w': 25, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'nyt_20130321_women_senate', 'u': 25, 'v': 26, 'w': 1000014, 'r1': 'AFTER', 'r2': 'AFTER', 'r3_pred': 'BEFORE', 'expected': 'AFTER'}
+{'doc_id': 'nyt_20130321_women_senate', 'u': 26, 'v': 27, 'w': 1000014, 'r1': 'BEFORE', 'r2': 'EQUAL', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}
+{'doc_id': 'nyt_20130321_women_senate', 'u': 26, 'v': 27, 'w': 29, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'EQUAL', 'expected': 'BEFORE'}
+{'doc_id': 'nyt_20130321_women_senate', 'u': 47, 'v': 48, 'w': 53, 'r1': 'EQUAL', 'r2': 'AFTER', 'r3_pred': 'BEFORE', 'expected': 'AFTER'}
+{'doc_id': 'nyt_20130322_strange_computer', 'u': 14, 'v': 19, 'w': 22, 'r1': 'BEFORE', 'r2': 'BEFORE', 'r3_pred': 'AFTER', 'expected': 'BEFORE'}

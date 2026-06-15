@@ -1,0 +1,61 @@
+# ==========================================================
+# TBD (TimeBank-Dense) Rules
+# Labels used for reasoning: AFTER, BEFORE, INCLUDES, IS_INCLUDED, SIMULTANEOUS
+# ==========================================================
+
+# 1) Symmetry / Inverse
+R_Symm_BA: BEFORE(E1, E2) => AFTER(E2, E1)
+R_Symm_AB: AFTER(E1, E2) => BEFORE(E2, E1)
+R_Symm_SS: SIMULTANEOUS(E1, E2) => SIMULTANEOUS(E2, E1)
+R_Symm_I_II: INCLUDES(E1, E2) => IS_INCLUDED(E2, E1)
+R_Symm_II_I: IS_INCLUDED(E1, E2) => INCLUDES(E2, E1)
+
+# 2) Exclusivity (single-label consistency)
+R_Excl_BA: BEFORE(E1, E2) => !AFTER(E1, E2)
+R_Excl_BS: BEFORE(E1, E2) => !SIMULTANEOUS(E1, E2)
+R_Excl_BI: BEFORE(E1, E2) => !INCLUDES(E1, E2)
+R_Excl_BII: BEFORE(E1, E2) => !IS_INCLUDED(E1, E2)
+
+R_Excl_AS: AFTER(E1, E2) => !SIMULTANEOUS(E1, E2)
+R_Excl_AI: AFTER(E1, E2) => !INCLUDES(E1, E2)
+R_Excl_AII: AFTER(E1, E2) => !IS_INCLUDED(E1, E2)
+
+R_Excl_SI: SIMULTANEOUS(E1, E2) => !INCLUDES(E1, E2)
+R_Excl_SII: SIMULTANEOUS(E1, E2) => !IS_INCLUDED(E1, E2)
+
+R_Excl_III: INCLUDES(E1, E2) => !IS_INCLUDED(E1, E2)
+
+# 2.5) Anti-VAGUE constraints
+R_Excl_BV: BEFORE(E1, E2) => !VAGUE(E1, E2)
+R_Excl_AV: AFTER(E1, E2) => !VAGUE(E1, E2)
+R_Excl_SV: SIMULTANEOUS(E1, E2) => !VAGUE(E1, E2)
+R_Excl_IV: INCLUDES(E1, E2) => !VAGUE(E1, E2)
+R_Excl_IIV: IS_INCLUDED(E1, E2) => !VAGUE(E1, E2)
+
+# 3) Transitivity (safe chains)
+R_Trans_BB: (BEFORE(E1, E2) & BEFORE(E2, E3)) => BEFORE(E1, E3)
+R_Trans_AA: (AFTER(E1, E2) & AFTER(E2, E3)) => AFTER(E1, E3)
+R_Trans_SS: (SIMULTANEOUS(E1, E2) & SIMULTANEOUS(E2, E3)) => SIMULTANEOUS(E1, E3)
+R_Trans_II: (INCLUDES(E1, E2) & INCLUDES(E2, E3)) => INCLUDES(E1, E3)
+R_Trans_IIII: (IS_INCLUDED(E1, E2) & IS_INCLUDED(E2, E3)) => IS_INCLUDED(E1, E3)
+
+# 3.5) Anti-VAGUE transitivity guards
+R_Trans_BB_NoV: (BEFORE(E1, E2) & BEFORE(E2, E3)) => !VAGUE(E1, E3)
+R_Trans_AA_NoV: (AFTER(E1, E2) & AFTER(E2, E3)) => !VAGUE(E1, E3)
+R_Trans_SS_NoV: (SIMULTANEOUS(E1, E2) & SIMULTANEOUS(E2, E3)) => !VAGUE(E1, E3)
+R_Trans_II_NoV: (INCLUDES(E1, E2) & INCLUDES(E2, E3)) => !VAGUE(E1, E3)
+R_Trans_IIII_NoV: (IS_INCLUDED(E1, E2) & IS_INCLUDED(E2, E3)) => !VAGUE(E1, E3)
+
+# 4) SIMULTANEOUS as identity-like bridge
+R_Trans_SB: (SIMULTANEOUS(E1, E2) & BEFORE(E2, E3)) => BEFORE(E1, E3)
+R_Trans_BS: (BEFORE(E1, E2) & SIMULTANEOUS(E2, E3)) => BEFORE(E1, E3)
+R_Trans_SA: (SIMULTANEOUS(E1, E2) & AFTER(E2, E3)) => AFTER(E1, E3)
+R_Trans_AS: (AFTER(E1, E2) & SIMULTANEOUS(E2, E3)) => AFTER(E1, E3)
+R_Trans_SB_NoV: (SIMULTANEOUS(E1, E2) & BEFORE(E2, E3)) => !VAGUE(E1, E3)
+R_Trans_BS_NoV: (BEFORE(E1, E2) & SIMULTANEOUS(E2, E3)) => !VAGUE(E1, E3)
+R_Trans_SA_NoV: (SIMULTANEOUS(E1, E2) & AFTER(E2, E3)) => !VAGUE(E1, E3)
+R_Trans_AS_NoV: (AFTER(E1, E2) & SIMULTANEOUS(E2, E3)) => !VAGUE(E1, E3)
+# R_Trans_SI: (SIMULTANEOUS(E1, E2) & INCLUDES(E2, E3)) => INCLUDES(E1, E3)
+# R_Trans_IS: (INCLUDES(E1, E2) & SIMULTANEOUS(E2, E3)) => INCLUDES(E1, E3)
+# R_Trans_SII: (SIMULTANEOUS(E1, E2) & IS_INCLUDED(E2, E3)) => IS_INCLUDED(E1, E3)
+# R_Trans_IIS: (IS_INCLUDED(E1, E2) & SIMULTANEOUS(E2, E3)) => IS_INCLUDED(E1, E3)

@@ -1,0 +1,39 @@
+Loading /home/prof/ddao/daodd/phd-dao-do/TRE/notebooks/Reasoning/i2b2_prediction_neupsl_freezeBERT.csv...
+Loading /home/prof/ddao/daodd/phd-dao-do/TRE/notebooks/Reasoning/i2b2_predictions_reasoning_freezeBERT.csv...
+Merging...
+Total rows matched: 27534
+WARNING: Ground Truth differs in 2 rows!
+
+Micro-F1 (NeuPSL): 0.8252
+Micro-F1 (Reasoning): 0.8325
+Agreement Rate: 0.8740 (24065/27534)
+
+Differences: 3469 rows
+
+Top Differences (NeuPSL -> Reasoning):
+  Prediction_neupsl Prediction_reasoning  count
+3            BEFORE              OVERLAP    941
+5           OVERLAP               BEFORE    875
+4           OVERLAP                AFTER    644
+2            BEFORE                AFTER    531
+1             AFTER              OVERLAP    368
+0             AFTER               BEFORE    110
+
+Sample Differences:
+     doc_id E1_id E2_id Ground-Truth_neupsl Prediction_neupsl Prediction_reasoning
+15      101  E131    T6             OVERLAP           OVERLAP                AFTER
+46      101  E152  E151              BEFORE            BEFORE              OVERLAP
+54      101   E58   E59              BEFORE            BEFORE                AFTER
+56      101   E61   E60             OVERLAP           OVERLAP               BEFORE
+77      101   E78   E76              BEFORE            BEFORE                AFTER
+89      101   E84   E83             OVERLAP           OVERLAP                AFTER
+93      101  E169   E88             OVERLAP            BEFORE              OVERLAP
+96      101   E89   E90              BEFORE           OVERLAP               BEFORE
+103     101   E93   E92              BEFORE           OVERLAP                AFTER
+104     101   E94   E92              BEFORE            BEFORE              OVERLAP
+
+Confusion Matrix (Rows=NeuPSL, Cols=Reasoning):
+         AFTER  BEFORE  OVERLAP
+AFTER     1086     110      368
+BEFORE     531   12936      941
+OVERLAP    644     875    10043

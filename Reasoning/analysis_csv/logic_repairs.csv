@@ -1,0 +1,24 @@
+doc_id,e1_id,e2_id,ground_truth,baseline_pred,logic_pred,logic_evidence
+AP_20130322,6,8,AFTER,EQUAL,AFTER,N/A (Global Optimization / Complex Chain)
+CNN_20130322_1003,9,10,AFTER,EQUAL,AFTER,N/A (Global Optimization / Complex Chain)
+CNN_20130322_1003,47,48,AFTER,BEFORE,AFTER,N/A (Global Optimization / Complex Chain)
+CNN_20130322_314,5,9,BEFORE,AFTER,BEFORE,N/A (Global Optimization / Complex Chain)
+CNN_20130322_314,9,10,AFTER,BEFORE,AFTER,N/A (Global Optimization / Complex Chain)
+WSJ_20130322_159,5,6,BEFORE,EQUAL,BEFORE,N/A (Global Optimization / Complex Chain)
+WSJ_20130322_159,12,14,AFTER,BEFORE,AFTER,N/A (Global Optimization / Complex Chain)
+bbc_20130322_1150,20,24,BEFORE,AFTER,BEFORE,N/A (Global Optimization / Complex Chain)
+bbc_20130322_1150,21,24,AFTER,EQUAL,AFTER,N/A (Global Optimization / Complex Chain)
+bbc_20130322_1150,40,43,BEFORE,AFTER,BEFORE,Tr2h: 40--(BEFORE)-->41--(BEFORE)-->43
+bbc_20130322_332,5,9,AFTER,BEFORE,AFTER,N/A (Global Optimization / Complex Chain)
+bbc_20130322_721,13,16,AFTER,BEFORE,AFTER,N/A (Global Optimization / Complex Chain)
+nyt_20130321_china_pollution,2,7,BEFORE,AFTER,BEFORE,Tr2h: 2--(BEFORE)-->4--(BEFORE)-->7 | Tr2h: 2--(BEFORE)-->5--(BEFORE)-->7
+nyt_20130321_china_pollution,21,25,AFTER,BEFORE,AFTER,N/A (Global Optimization / Complex Chain)
+nyt_20130321_cyprus,7,2009,AFTER,BEFORE,AFTER,N/A (Global Optimization / Complex Chain)
+nyt_20130321_women_senate,2,5,AFTER,EQUAL,AFTER,N/A (Global Optimization / Complex Chain)
+nyt_20130321_women_senate,12,1000012,BEFORE,EQUAL,BEFORE,N/A (Global Optimization / Complex Chain)
+nyt_20130321_women_senate,19,20,AFTER,BEFORE,AFTER,N/A (Global Optimization / Complex Chain)
+nyt_20130321_women_senate,24,25,AFTER,EQUAL,AFTER,N/A (Global Optimization / Complex Chain)
+nyt_20130321_women_senate,1000015,41,BEFORE,AFTER,BEFORE,N/A (Global Optimization / Complex Chain)
+nyt_20130321_women_senate,40,43,AFTER,BEFORE,AFTER,N/A (Global Optimization / Complex Chain)
+nyt_20130321_women_senate,41,47,AFTER,BEFORE,AFTER,Tr2h: 41--(AFTER)-->42--(AFTER)-->47 | Tr2h: 41--(AFTER)-->43--(AFTER)-->47
+nyt_20130321_women_senate,42,43,AFTER,BEFORE,AFTER,N/A (Global Optimization / Complex Chain)

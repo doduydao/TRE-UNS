@@ -1,0 +1,38 @@
+# ==========================================================
+# MATRES Rules V2 - Stricter Temporal Logic
+# Format: PredTimeRel(E1, E2, Relation)
+# Relations: Before, After, Equal, Vague
+# ==========================================================
+
+# 1. Symmetry Rules (Bidirectional)
+# If A is before B, then B MUST be after A, and vice-versa.
+R_Symm_BA: PredTimeRel(E1, E2, Before) <=> PredTimeRel(E2, E1, After)
+R_Symm_EE: PredTimeRel(E1, E2, Equal) <=> PredTimeRel(E2, E1, Equal)
+R_Symm_VV: PredTimeRel(E1, E2, Vague) <=> PredTimeRel(E2, E1, Vague)
+
+# 2. Exclusivity Rules (Mutual Exclusion)
+# An event pair cannot have multiple labels.
+R_Excl_BA: PredTimeRel(E1, E2, Before) => !PredTimeRel(E1, E2, After)
+R_Excl_BE: PredTimeRel(E1, E2, Before) => !PredTimeRel(E1, E2, Equal)
+R_Excl_BV: PredTimeRel(E1, E2, Before) => !PredTimeRel(E1, E2, Vague)
+R_Excl_AE: PredTimeRel(E1, E2, After) => !PredTimeRel(E1, E2, Equal)
+R_Excl_AV: PredTimeRel(E1, E2, After) => !PredTimeRel(E1, E2, Vague)
+R_Excl_EV: PredTimeRel(E1, E2, Equal) => !PredTimeRel(E1, E2, Vague)
+R_Excl_EB: PredTimeRel(E1, E2, Equal) => !PredTimeRel(E1, E2, Before)
+R_Excl_EA: PredTimeRel(E1, E2, Equal) => !PredTimeRel(E1, E2, After)
+
+# 3. Transitivity Rules (Temporal Chains)
+# 3.1 Basic Chains
+R_Trans_BB: (PredTimeRel(E1, E2, Before) & PredTimeRel(E2, E3, Before)) => PredTimeRel(E1, E3, Before)
+R_Trans_AA: (PredTimeRel(E1, E2, After) & PredTimeRel(E2, E3, After)) => PredTimeRel(E1, E3, After)
+R_Trans_EE: (PredTimeRel(E1, E2, Equal) & PredTimeRel(E2, E3, Equal)) => PredTimeRel(E1, E3, Equal)
+
+# 3.2 Mixed Chains with Equal
+R_Trans_BE: (PredTimeRel(E1, E2, Before) & PredTimeRel(E2, E3, Equal)) => PredTimeRel(E1, E3, Before)
+R_Trans_EB: (PredTimeRel(E1, E2, Equal) & PredTimeRel(E2, E3, Before)) => PredTimeRel(E1, E3, Before)
+R_Trans_AE: (PredTimeRel(E1, E2, After) & PredTimeRel(E2, E3, Equal)) => PredTimeRel(E1, E3, After)
+R_Trans_EA: (PredTimeRel(E1, E2, Equal) & PredTimeRel(E2, E3, After)) => PredTimeRel(E1, E3, After)
+
+# 4. Negative Consistency (Stricter Constraints)
+# If A is before B and B is before C, then A CANNOT be after C
+R_Neg_Trans_BB: (PredTimeRel(E1, E2, Before) & PredTimeRel(E2, E3, Before)) => !PredTimeRel(E1, E3, After)

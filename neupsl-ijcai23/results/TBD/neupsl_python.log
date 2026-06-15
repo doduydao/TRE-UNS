@@ -1,0 +1,385 @@
+
+==================== 2026-03-03 21:01:43.765690 ====================
+Log file: /home/prof/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/scripts/../results/TBD/neupsl_python.log
+=== DEEP PREDICATE PYTHON SERVER STARTING ===
+Loading datasets from: /data/ddao/TRE/pretrained_models/Reasoning/TBD/cache/
+Loaded 6088 samples from 3 splits.
+Max input_id: 30525
+Resizing embeddings from 30522 to 30526
+Freeze BERT: False
+
+>>> [STEP 1]
+  [TRAIN] CE Loss: 1.689851 | PSL Grad: 0.026434
+  [VALID] Acc= 0.434667, F1-weighted= 0.328772 *** BEST
+  [SAVE] Best model saved (F1=0.328772) → ../../results/TBD/checkpoint.pt
+  [TIME] 110s (python)
+<<< [STEP 1]
+
+
+>>> [STEP 2]
+  [TRAIN] CE Loss: 1.327836 | PSL Grad: 0.018563
+  [VALID] Acc= 0.466667, F1-weighted= 0.307055
+  [TIME] 89s (python) | 68s (total)
+<<< [STEP 2]
+
+
+>>> [STEP 3]
+  [TRAIN] CE Loss: 1.300081 | PSL Grad: 0.016079
+  [VALID] Acc= 0.416000, F1-weighted= 0.244429
+  [TIME] 88s (python) | 71s (total)
+<<< [STEP 3]
+
+
+>>> [STEP 4]
+  [TRAIN] CE Loss: 1.259593 | PSL Grad: 0.014541
+  [VALID] Acc= 0.525333, F1-weighted= 0.443149 *** BEST
+  [SAVE] Best model saved (F1=0.443149) → ../../results/TBD/checkpoint.pt
+  [TIME] 110s (python) | 70s (total)
+<<< [STEP 4]
+
+
+>>> [STEP 5]
+  [TRAIN] CE Loss: 1.199923 | PSL Grad: 0.013305
+  [VALID] Acc= 0.642667, F1-weighted= 0.599705 *** BEST
+  [SAVE] Best model saved (F1=0.599705) → ../../results/TBD/checkpoint.pt
+  [TIME] 107s (python) | 70s (total)
+<<< [STEP 5]
+
+
+>>> [STEP 6]
+  [TRAIN] CE Loss: 1.131049 | PSL Grad: 0.012105
+  [VALID] Acc= 0.666667, F1-weighted= 0.622049 *** BEST
+  [SAVE] Best model saved (F1=0.622049) → ../../results/TBD/checkpoint.pt
+  [TIME] 112s (python) | 72s (total)
+<<< [STEP 6]
+
+
+>>> [STEP 7]
+  [TRAIN] CE Loss: 1.038295 | PSL Grad: 0.010762
+  [VALID] Acc= 0.656000, F1-weighted= 0.610494
+  [TIME] 89s (python) | 70s (total)
+<<< [STEP 7]
+
+
+>>> [STEP 8]
+  [TRAIN] CE Loss: 0.946857 | PSL Grad: 0.009449
+  [VALID] Acc= 0.664000, F1-weighted= 0.619945
+  [TIME] 88s (python) | 71s (total)
+<<< [STEP 8]
+
+
+>>> [STEP 9]
+  [TRAIN] CE Loss: 0.840178 | PSL Grad: 0.008237
+  [VALID] Acc= 0.688000, F1-weighted= 0.656794 *** BEST
+  [SAVE] Best model saved (F1=0.656794) → ../../results/TBD/checkpoint.pt
+  [TIME] 110s (python) | 71s (total)
+<<< [STEP 9]
+
+
+>>> [STEP 10]
+  [TRAIN] CE Loss: 0.756892 | PSL Grad: 0.007262
+  [VALID] Acc= 0.701333, F1-weighted= 0.678918 *** BEST
+  [SAVE] Best model saved (F1=0.678918) → ../../results/TBD/checkpoint.pt
+  [TIME] 112s (python) | 68s (total)
+<<< [STEP 10]
+
+
+>>> [STEP 11]
+  [TRAIN] CE Loss: 0.672453 | PSL Grad: 0.006306
+  [VALID] Acc= 0.706667, F1-weighted= 0.682715 *** BEST
+  [SAVE] Best model saved (F1=0.682715) → ../../results/TBD/checkpoint.pt
+  [TIME] 111s (python) | 68s (total)
+<<< [STEP 11]
+
+
+>>> [STEP 12]
+  [TRAIN] CE Loss: 0.577530 | PSL Grad: 0.005343
+  [VALID] Acc= 0.712000, F1-weighted= 0.688728 *** BEST
+  [SAVE] Best model saved (F1=0.688728) → ../../results/TBD/checkpoint.pt
+  [TIME] 113s (python) | 70s (total)
+<<< [STEP 12]
+
+
+>>> [STEP 13]
+  [TRAIN] CE Loss: 0.508763 | PSL Grad: 0.004578
+  [VALID] Acc= 0.722667, F1-weighted= 0.710195 *** BEST
+  [SAVE] Best model saved (F1=0.710195) → ../../results/TBD/checkpoint.pt
+  [TIME] 114s (python) | 69s (total)
+<<< [STEP 13]
+
+
+>>> [STEP 14]
+  [TRAIN] CE Loss: 0.444846 | PSL Grad: 0.003936
+  [VALID] Acc= 0.722667, F1-weighted= 0.713478 *** BEST
+  [SAVE] Best model saved (F1=0.713478) → ../../results/TBD/checkpoint.pt
+  [TIME] 112s (python) | 69s (total)
+<<< [STEP 14]
+
+
+>>> [STEP 15]
+  [TRAIN] CE Loss: 0.386071 | PSL Grad: 0.003345
+  [VALID] Acc= 0.728000, F1-weighted= 0.718707 *** BEST
+  [SAVE] Best model saved (F1=0.718707) → ../../results/TBD/checkpoint.pt
+  [TIME] 111s (python) | 69s (total)
+<<< [STEP 15]
+
+
+>>> [STEP 16]
+  [TRAIN] CE Loss: 0.335383 | PSL Grad: 0.002896
+  [VALID] Acc= 0.717333, F1-weighted= 0.710370
+  [TIME] 89s (python) | 69s (total)
+<<< [STEP 16]
+
+
+>>> [STEP 17]
+  [TRAIN] CE Loss: 0.298115 | PSL Grad: 0.002543
+  [VALID] Acc= 0.717333, F1-weighted= 0.712617
+  [TIME] 88s (python) | 71s (total)
+<<< [STEP 17]
+
+
+>>> [STEP 18]
+  [TRAIN] CE Loss: 0.269634 | PSL Grad: 0.002242
+  [VALID] Acc= 0.701333, F1-weighted= 0.702630
+  [TIME] 88s (python) | 73s (total)
+<<< [STEP 18]
+
+
+>>> [STEP 19]
+  [TRAIN] CE Loss: 0.241432 | PSL Grad: 0.001981
+  [VALID] Acc= 0.696000, F1-weighted= 0.701902
+  [TIME] 89s (python) | 72s (total)
+<<< [STEP 19]
+
+
+>>> [STEP 20]
+  [TRAIN] CE Loss: 0.220492 | PSL Grad: 0.001762
+  [VALID] Acc= 0.696000, F1-weighted= 0.706745
+  [TIME] 89s (python) | 69s (total)
+<<< [STEP 20]
+
+
+>>> [STEP 21]
+  [TRAIN] CE Loss: 0.202569 | PSL Grad: 0.001565
+  [VALID] Acc= 0.693333, F1-weighted= 0.703864
+  [TIME] 88s (python) | 73s (total)
+<<< [STEP 21]
+
+
+>>> [STEP 22]
+  [TRAIN] CE Loss: 0.185356 | PSL Grad: 0.001401
+  [VALID] Acc= 0.690667, F1-weighted= 0.702785
+  [TIME] 87s (python) | 72s (total)
+<<< [STEP 22]
+
+
+>>> [STEP 23]
+  [TRAIN] CE Loss: 0.168104 | PSL Grad: 0.001269
+  [VALID] Acc= 0.674667, F1-weighted= 0.696830
+  [TIME] 89s (python) | 72s (total)
+<<< [STEP 23]
+
+
+>>> [STEP 24]
+  [TRAIN] CE Loss: 0.159210 | PSL Grad: 0.001156
+  [VALID] Acc= 0.664000, F1-weighted= 0.689618
+  [TIME] 87s (python) | 71s (total)
+<<< [STEP 24]
+
+
+>>> [STEP 25]
+  [TRAIN] CE Loss: 0.149838 | PSL Grad: 0.001060
+  [VALID] Acc= 0.664000, F1-weighted= 0.688705
+  [TIME] 88s (python) | 70s (total)
+<<< [STEP 25]
+
+
+>>> [STEP 26]
+  [TRAIN] CE Loss: 0.144050 | PSL Grad: 0.000976
+  [VALID] Acc= 0.666667, F1-weighted= 0.689366
+  [TIME] 90s (python) | 72s (total)
+<<< [STEP 26]
+
+
+>>> [STEP 27]
+  [TRAIN] CE Loss: 0.132108 | PSL Grad: 0.000910
+  [VALID] Acc= 0.669333, F1-weighted= 0.692444
+  [TIME] 88s (python) | 71s (total)
+<<< [STEP 27]
+
+
+>>> [STEP 28]
+  [TRAIN] CE Loss: 0.121370 | PSL Grad: 0.000859
+  [VALID] Acc= 0.658667, F1-weighted= 0.684223
+  [TIME] 90s (python) | 69s (total)
+<<< [STEP 28]
+
+
+>>> [STEP 29]
+  [TRAIN] CE Loss: 0.114459 | PSL Grad: 0.000821
+  [VALID] Acc= 0.650667, F1-weighted= 0.677621
+  [TIME] 88s (python) | 73s (total)
+<<< [STEP 29]
+
+
+>>> [STEP 30]
+  [TRAIN] CE Loss: 0.109885 | PSL Grad: 0.000798
+  [VALID] Acc= 0.645333, F1-weighted= 0.674601
+  [TIME] 88s (python) | 71s (total)
+<<< [STEP 30]
+
+
+>>> [STEP 31]
+  [TRAIN] CE Loss: 0.102656 | PSL Grad: 0.000790
+  [VALID] Acc= 0.642667, F1-weighted= 0.675326
+  [TIME] 88s (python) | 70s (total)
+<<< [STEP 31]
+
+
+>>> [STEP 32]
+  [TRAIN] CE Loss: 0.100194 | PSL Grad: 0.000793
+  [VALID] Acc= 0.645333, F1-weighted= 0.678976
+  [TIME] 89s (python) | 71s (total)
+<<< [STEP 32]
+
+
+>>> [STEP 33]
+  [TRAIN] CE Loss: 0.091987 | PSL Grad: 0.000799
+  [VALID] Acc= 0.650667, F1-weighted= 0.684818
+  [TIME] 90s (python) | 72s (total)
+<<< [STEP 33]
+
+
+>>> [STEP 34]
+  [TRAIN] CE Loss: 0.090542 | PSL Grad: 0.000791
+  [VALID] Acc= 0.648000, F1-weighted= 0.684044
+  [TIME] 89s (python) | 71s (total)
+<<< [STEP 34]
+
+
+>>> [STEP 35]
+  [TRAIN] CE Loss: 0.083021 | PSL Grad: 0.000756
+  [VALID] Acc= 0.653333, F1-weighted= 0.688102
+  [TIME] 90s (python) | 72s (total)
+<<< [STEP 35]
+
+
+>>> [STEP 36]
+  [TRAIN] CE Loss: 0.077615 | PSL Grad: 0.000705
+  [VALID] Acc= 0.645333, F1-weighted= 0.680300
+  [TIME] 90s (python) | 71s (total)
+<<< [STEP 36]
+
+
+>>> [STEP 37]
+  [TRAIN] CE Loss: 0.072129 | PSL Grad: 0.000651
+  [VALID] Acc= 0.642667, F1-weighted= 0.676713
+  [TIME] 89s (python) | 70s (total)
+<<< [STEP 37]
+
+
+>>> [STEP 38]
+  [TRAIN] CE Loss: 0.067895 | PSL Grad: 0.000604
+  [VALID] Acc= 0.632000, F1-weighted= 0.665345
+  [TIME] 87s (python) | 72s (total)
+<<< [STEP 38]
+
+
+>>> [STEP 39]
+  [TRAIN] CE Loss: 0.065007 | PSL Grad: 0.000562
+  [VALID] Acc= 0.632000, F1-weighted= 0.664946
+  [TIME] 90s (python) | 74s (total)
+<<< [STEP 39]
+
+
+>>> [STEP 40]
+  [TRAIN] CE Loss: 0.060684 | PSL Grad: 0.000525
+  [VALID] Acc= 0.629333, F1-weighted= 0.663441
+  [TIME] 88s (python) | 70s (total)
+<<< [STEP 40]
+
+
+>>> [STEP 41]
+  [TRAIN] CE Loss: 0.059620 | PSL Grad: 0.000494
+  [VALID] Acc= 0.626667, F1-weighted= 0.664874
+  [TIME] 89s (python) | 70s (total)
+<<< [STEP 41]
+
+
+>>> [STEP 42]
+  [TRAIN] CE Loss: 0.057091 | PSL Grad: 0.000463
+  [VALID] Acc= 0.621333, F1-weighted= 0.661402
+  [TIME] 89s (python) | 71s (total)
+<<< [STEP 42]
+
+
+>>> [STEP 43]
+  [TRAIN] CE Loss: 0.053154 | PSL Grad: 0.000435
+  [VALID] Acc= 0.621333, F1-weighted= 0.659593
+  [TIME] 88s (python) | 69s (total)
+<<< [STEP 43]
+
+
+>>> [STEP 44]
+  [TRAIN] CE Loss: 0.050501 | PSL Grad: 0.000410
+  [VALID] Acc= 0.618667, F1-weighted= 0.657760
+  [TIME] 90s (python) | 71s (total)
+<<< [STEP 44]
+
+
+>>> [STEP 45]
+  [TRAIN] CE Loss: 0.049559 | PSL Grad: 0.000389
+  [VALID] Acc= 0.624000, F1-weighted= 0.662156
+  [TIME] 87s (python) | 73s (total)
+<<< [STEP 45]
+
+
+>>> [STEP 46]
+  [TRAIN] CE Loss: 0.046818 | PSL Grad: 0.000370
+  [VALID] Acc= 0.626667, F1-weighted= 0.662285
+  [TIME] 88s (python) | 70s (total)
+<<< [STEP 46]
+
+
+>>> [STEP 47]
+  [TRAIN] CE Loss: 0.044228 | PSL Grad: 0.000351
+  [VALID] Acc= 0.632000, F1-weighted= 0.665318
+  [TIME] 88s (python) | 70s (total)
+<<< [STEP 47]
+
+
+>>> [STEP 48]
+  [TRAIN] CE Loss: 0.043162 | PSL Grad: 0.000333
+  [VALID] Acc= 0.632000, F1-weighted= 0.665318
+  [TIME] 90s (python) | 70s (total)
+<<< [STEP 48]
+
+
+>>> [STEP 49]
+  [TRAIN] CE Loss: 0.040853 | PSL Grad: 0.000315
+  [VALID] Acc= 0.634667, F1-weighted= 0.667655
+  [TIME] 89s (python) | 71s (total)
+<<< [STEP 49]
+
+
+>>> [STEP 50]
+  [TRAIN] CE Loss: 0.038599 | PSL Grad: 0.000298
+  [VALID] Acc= 0.634667, F1-weighted= 0.667655
+  [TIME] 90s (python) | 69s (total)
+<<< [STEP 50]
+
+
+>>> [STEP 51]
+  [TRAIN] CE Loss: 0.037198 | PSL Grad: 0.000283
+  [VALID] Acc= 0.637333, F1-weighted= 0.669693
+  [TIME] 88s (python) | 70s (total)
+<<< [STEP 51]
+
+
+>>> [STEP 52]
+  [TRAIN] CE Loss: 0.036008 | PSL Grad: 0.000271
+  [VALID] Acc= 0.637333, F1-weighted= 0.669693
+  [TIME] 87s (python) | 70s (total)
+<<< [STEP 52]
+
+Saved last checkpoint to ../../results/TBD/last_checkpoint.pt (step=52)

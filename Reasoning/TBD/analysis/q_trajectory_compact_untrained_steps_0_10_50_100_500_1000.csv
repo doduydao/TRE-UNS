@@ -1,0 +1,7 @@
+Step,"(e4,e8)","(e8,e10)","(e4,e10)",Violation
+0,Simultaneous: 0.20,After: 0.25,After: 0.22,cao
+10,Simultaneous: 0.20,After: 0.25,After: 0.22,cao
+50,Simultaneous: 0.20,After: 0.25,After: 0.22,cao
+100,Simultaneous: 0.20,After: 0.25,After: 0.22,cao
+500,Simultaneous: 0.20,After: 0.25,After: 0.22,cao
+1000,Simultaneous: 0.20,After: 0.25,After: 0.22,cao

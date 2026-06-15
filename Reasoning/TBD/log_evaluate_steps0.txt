@@ -1,0 +1,47 @@
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Using device: cuda:0
+Loading Data...
+Initializing Model...
+DEBUG REASONING: Initialized with 24 rules. First rule: R_Symm_BA
+Loading checkpoint TBD_old/checkpoint/TBD_baseline_reasoning_model.pt...
+Running Inference...
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:08<00:00,  8.19s/it]100%|██████████| 1/1 [00:08<00:00,  8.19s/it]
+
+[Predictive Performance]
+
+[Confusion Matrix - Full] (rows=true, cols=pred)
+              AFTER  BEFORE  INCLUDES  IS_INCLUDED  SIMULTANEOUS  VAGUE
+AFTER           236      14         3            3             0     18
+BEFORE           19     334         4            3             0     24
+INCLUDES          5       9        17            2             0     23
+IS_INCLUDED       8       7         1           27             0     10
+SIMULTANEOUS     11       4         0            1             1      5
+VAGUE           173     234        45           49             1    136
+
+[Confusion Matrix - Non-VAGUE Gold] (rows=true non-VAGUE, cols=pred)
+              AFTER  BEFORE  INCLUDES  IS_INCLUDED  SIMULTANEOUS  VAGUE
+AFTER           236      14         3            3             0     18
+BEFORE           19     334         4            3             0     24
+INCLUDES          5       9        17            2             0     23
+IS_INCLUDED       8       7         1           27             0     10
+SIMULTANEOUS     11       4         0            1             1      5
+VAGUE             0       0         0            0             0      0
+              precision    recall  f1-score   support
+
+       AFTER     0.8459    0.8613    0.8535       274
+      BEFORE     0.9076    0.8698    0.8883       384
+    INCLUDES     0.6800    0.3036    0.4198        56
+ IS_INCLUDED     0.7500    0.5094    0.6067        53
+SIMULTANEOUS     1.0000    0.0455    0.0870        22
+
+   micro avg     0.8674    0.7795    0.8211       789
+   macro avg     0.8367    0.5179    0.5711       789
+weighted avg     0.8620    0.7795    0.8017       789
+
+[Micro Avg] P=0.7795, R=0.7795, F1=0.7795
+
+[Consistency Analysis]
+Warning: Consistency logic not defined for TBD. Skipping specifics.
+Transitivity Violation Rate: 0.0000 (on 0 triplets)
+Symmetry Violation Rate:     0.0000 (on 0 pairs)
+Predictions saved to TBD_old/prediction_steps0.csv

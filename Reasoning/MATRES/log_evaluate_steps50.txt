@@ -1,0 +1,26 @@
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Using device: cuda:0
+Loading Data...
+Initializing Model...
+DEBUG REASONING: Initialized with 10 rules. First rule: R_Symm_BA
+Loading checkpoint MATRES/checkpoint/MATRES_baseline_reasoning_model.pt...
+Running Inference...
+  0%|          | 0/7 [00:00<?, ?it/s] 14%|█▍        | 1/7 [00:02<00:17,  2.96s/it] 29%|██▊       | 2/7 [00:04<00:10,  2.04s/it] 43%|████▎     | 3/7 [00:06<00:08,  2.18s/it] 57%|█████▋    | 4/7 [00:07<00:05,  1.80s/it] 71%|███████▏  | 5/7 [00:09<00:03,  1.64s/it] 86%|████████▌ | 6/7 [00:11<00:01,  1.94s/it]100%|██████████| 7/7 [00:12<00:00,  1.61s/it]100%|██████████| 7/7 [00:12<00:00,  1.82s/it]
+
+[Predictive Performance]
+              precision    recall  f1-score   support
+
+       AFTER     0.8327    0.7698    0.8000       265
+      BEFORE     0.8341    0.9370    0.8826       413
+       EQUAL     0.0000    0.0000    0.0000        31
+
+    accuracy                         0.8336       709
+   macro avg     0.5556    0.5690    0.5609       709
+weighted avg     0.7971    0.8336    0.8131       709
+
+[Micro Avg] P=0.8336, R=0.8336, F1=0.8336
+
+[Consistency Analysis]
+Transitivity Violation Rate: 0.0000 (on 340 triplets)
+Symmetry Violation Rate:     0.0000 (on 0 pairs)
+Predictions saved to MATRES/prediction_steps50.csv

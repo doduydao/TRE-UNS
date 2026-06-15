@@ -1,0 +1,179 @@
+Loading /home/prof/ddao/daodd/phd-dao-do/TRE/notebooks/Reasoning/i2b2_prediction_neupsl_freezeBERT.csv (NeuPSL)...
+Loading /home/prof/ddao/daodd/phd-dao-do/TRE/notebooks/Reasoning/i2b2_predictions_reasoning_freezeBERT.csv (Reasoning)...
+------------------------------
+1. Confusion Matrices vs Ground Truth
+------------------------------
+
+[NeuPSL] Confusion Matrix (Rows=GT, Cols=Pred):
+         AFTER  BEFORE  OVERLAP
+AFTER     1037     697      993
+BEFORE     202   12915     1801
+OVERLAP    325     796     8768
+Micro-F1: 0.8252
+
+[Reasoning] Confusion Matrix (Rows=GT, Cols=Pred):
+         AFTER  BEFORE  OVERLAP
+AFTER     1338     494      895
+BEFORE     456   12794     1668
+OVERLAP    467     633     8789
+Micro-F1: 0.8325
+------------------------------
+2. Transitivity Analysis (Inconsistent Triplets)
+Checking basic transitivity: R(a,b) & R(b,c) -> R(a,c) for R in {BEFORE, AFTER}
+------------------------------
+Checking NeuPSL Transitivity...
+NeuPSL Inconsistencies: 19
+ALL NeuPSL Violations:
+{'doc_id': 101, 'triplet': '(E135,E153,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 101, 'triplet': '(E27,E104,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 113, 'triplet': '(E135,E26,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 243, 'triplet': '(E45,E48,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 262, 'triplet': '(E49,E31,T10)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 263, 'triplet': '(E70,E74,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 288, 'triplet': '(E30,E31,T2)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 333, 'triplet': '(E59,E58,T2)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 383, 'triplet': '(E145,E82,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 402, 'triplet': '(E101,E102,T0)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 542, 'triplet': '(E44,E45,T0)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'OVERLAP', 'Expected': 'AFTER'}
+{'doc_id': 581, 'triplet': '(E79,E78,T1)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+{'doc_id': 667, 'triplet': '(E5,E7,T0)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 667, 'triplet': '(E6,E7,T0)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 767, 'triplet': '(E6,E7,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 767, 'triplet': '(E30,E31,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 812, 'triplet': '(E41,E171,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 812, 'triplet': '(E151,E143,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 812, 'triplet': '(E19,E27,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+
+Checking Reasoning Transitivity...
+Reasoning Inconsistencies: 41
+ALL Reasoning Violations:
+{'doc_id': 32, 'triplet': '(E40,E39,T0)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 46, 'triplet': '(E21,T0,T3)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 108, 'triplet': '(E133,E134,T1)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+{'doc_id': 113, 'triplet': '(E23,E79,T1)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+{'doc_id': 113, 'triplet': '(E26,E79,T1)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+{'doc_id': 202, 'triplet': '(E259,E251,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+{'doc_id': 202, 'triplet': '(E262,E251,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+{'doc_id': 202, 'triplet': '(E264,E251,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+{'doc_id': 202, 'triplet': '(E265,E251,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+{'doc_id': 202, 'triplet': '(E269,E251,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+{'doc_id': 202, 'triplet': '(E270,E251,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+{'doc_id': 202, 'triplet': '(E278,E251,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+{'doc_id': 258, 'triplet': '(E20,E25,T0)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 282, 'triplet': '(E152,E151,T0)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+{'doc_id': 312, 'triplet': '(E163,E160,T3)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'AFTER', 'Expected': 'BEFORE'}
+{'doc_id': 358, 'triplet': '(E26,E75,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+{'doc_id': 358, 'triplet': '(E23,E75,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+{'doc_id': 358, 'triplet': '(E24,E75,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+{'doc_id': 358, 'triplet': '(E25,E75,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+{'doc_id': 361, 'triplet': '(E189,E187,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'AFTER', 'Expected': 'BEFORE'}
+{'doc_id': 361, 'triplet': '(E59,E58,T0)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 361, 'triplet': '(E60,E58,T0)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 378, 'triplet': '(E92,E91,T2)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 397, 'triplet': '(E101,E64,T2)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'AFTER', 'Expected': 'BEFORE'}
+{'doc_id': 412, 'triplet': '(E107,E106,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+{'doc_id': 412, 'triplet': '(E75,E69,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 466, 'triplet': '(E88,E87,T0)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+{'doc_id': 527, 'triplet': '(E45,E209,E38)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'OVERLAP', 'Expected': 'AFTER'}
+{'doc_id': 592, 'triplet': '(T20,E81,E80)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+{'doc_id': 601, 'triplet': '(E2,E0,T0)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+{'doc_id': 617, 'triplet': '(E15,E92,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 617, 'triplet': '(E73,E89,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 617, 'triplet': '(E98,E97,T1)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+{'doc_id': 617, 'triplet': '(E99,E97,T1)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+{'doc_id': 627, 'triplet': '(E110,E109,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 652, 'triplet': '(E17,E25,T0)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 657, 'triplet': '(E39,E38,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+{'doc_id': 667, 'triplet': '(E6,E7,T0)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 767, 'triplet': '(E6,E7,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 792, 'triplet': '(E41,E62,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+{'doc_id': 812, 'triplet': '(E162,E143,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'AFTER', 'Expected': 'BEFORE'}
+------------------------------
+3. Comparing Model Triplets
+------------------------------
+Triplets Inconsistent in NeuPSL but FIXED in Reasoning: 17
+Triplets Consistent in NeuPSL but BROKEN in Reasoning: 39
+
+ALL Fixed Triplets (NeuPSL -> Reasoning):
+Fixed: {'doc_id': 101, 'triplet': '(E135,E153,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Fixed: {'doc_id': 101, 'triplet': '(E27,E104,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Fixed: {'doc_id': 113, 'triplet': '(E135,E26,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Fixed: {'doc_id': 243, 'triplet': '(E45,E48,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Fixed: {'doc_id': 262, 'triplet': '(E49,E31,T10)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Fixed: {'doc_id': 263, 'triplet': '(E70,E74,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Fixed: {'doc_id': 288, 'triplet': '(E30,E31,T2)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Fixed: {'doc_id': 333, 'triplet': '(E59,E58,T2)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Fixed: {'doc_id': 383, 'triplet': '(E145,E82,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Fixed: {'doc_id': 402, 'triplet': '(E101,E102,T0)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Fixed: {'doc_id': 542, 'triplet': '(E44,E45,T0)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'OVERLAP', 'Expected': 'AFTER'}
+Fixed: {'doc_id': 581, 'triplet': '(E79,E78,T1)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+Fixed: {'doc_id': 667, 'triplet': '(E5,E7,T0)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Fixed: {'doc_id': 767, 'triplet': '(E30,E31,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Fixed: {'doc_id': 812, 'triplet': '(E41,E171,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Fixed: {'doc_id': 812, 'triplet': '(E151,E143,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Fixed: {'doc_id': 812, 'triplet': '(E19,E27,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+
+ALL Broken Triplets (NeuPSL -> Reasoning):
+Broken: {'doc_id': 32, 'triplet': '(E40,E39,T0)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Broken: {'doc_id': 46, 'triplet': '(E21,T0,T3)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Broken: {'doc_id': 108, 'triplet': '(E133,E134,T1)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+Broken: {'doc_id': 113, 'triplet': '(E23,E79,T1)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+Broken: {'doc_id': 113, 'triplet': '(E26,E79,T1)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+Broken: {'doc_id': 202, 'triplet': '(E259,E251,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+Broken: {'doc_id': 202, 'triplet': '(E262,E251,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+Broken: {'doc_id': 202, 'triplet': '(E264,E251,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+Broken: {'doc_id': 202, 'triplet': '(E265,E251,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+Broken: {'doc_id': 202, 'triplet': '(E269,E251,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+Broken: {'doc_id': 202, 'triplet': '(E270,E251,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+Broken: {'doc_id': 202, 'triplet': '(E278,E251,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+Broken: {'doc_id': 258, 'triplet': '(E20,E25,T0)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Broken: {'doc_id': 282, 'triplet': '(E152,E151,T0)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+Broken: {'doc_id': 312, 'triplet': '(E163,E160,T3)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'AFTER', 'Expected': 'BEFORE'}
+Broken: {'doc_id': 358, 'triplet': '(E26,E75,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+Broken: {'doc_id': 358, 'triplet': '(E23,E75,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+Broken: {'doc_id': 358, 'triplet': '(E24,E75,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+Broken: {'doc_id': 358, 'triplet': '(E25,E75,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+Broken: {'doc_id': 361, 'triplet': '(E189,E187,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'AFTER', 'Expected': 'BEFORE'}
+Broken: {'doc_id': 361, 'triplet': '(E59,E58,T0)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Broken: {'doc_id': 361, 'triplet': '(E60,E58,T0)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Broken: {'doc_id': 378, 'triplet': '(E92,E91,T2)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Broken: {'doc_id': 397, 'triplet': '(E101,E64,T2)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'AFTER', 'Expected': 'BEFORE'}
+Broken: {'doc_id': 412, 'triplet': '(E107,E106,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+Broken: {'doc_id': 412, 'triplet': '(E75,E69,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Broken: {'doc_id': 466, 'triplet': '(E88,E87,T0)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+Broken: {'doc_id': 527, 'triplet': '(E45,E209,E38)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'OVERLAP', 'Expected': 'AFTER'}
+Broken: {'doc_id': 592, 'triplet': '(T20,E81,E80)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+Broken: {'doc_id': 601, 'triplet': '(E2,E0,T0)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+Broken: {'doc_id': 617, 'triplet': '(E15,E92,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Broken: {'doc_id': 617, 'triplet': '(E73,E89,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Broken: {'doc_id': 617, 'triplet': '(E98,E97,T1)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+Broken: {'doc_id': 617, 'triplet': '(E99,E97,T1)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+Broken: {'doc_id': 627, 'triplet': '(E110,E109,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Broken: {'doc_id': 652, 'triplet': '(E17,E25,T0)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Broken: {'doc_id': 657, 'triplet': '(E39,E38,T2)', 'R1': 'AFTER', 'R2': 'AFTER', 'R3_Pred': 'BEFORE', 'Expected': 'AFTER'}
+Broken: {'doc_id': 792, 'triplet': '(E41,E62,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'OVERLAP', 'Expected': 'BEFORE'}
+Broken: {'doc_id': 812, 'triplet': '(E162,E143,T1)', 'R1': 'BEFORE', 'R2': 'BEFORE', 'R3_Pred': 'AFTER', 'Expected': 'BEFORE'}
+------------------------------
+4. Top Confusion Shifts (Cases where Models Differ)
+------------------------------
+Format: GT | NeuPSL -> Reasoning | Count
+ALL Shifts (Count >= 1):
+   Ground-Truth_neupsl Prediction_neupsl Prediction_reasoning  count
+11              BEFORE           OVERLAP               BEFORE    591
+9               BEFORE            BEFORE              OVERLAP    525
+15             OVERLAP            BEFORE              OVERLAP    337
+16             OVERLAP           OVERLAP                AFTER    279
+4                AFTER           OVERLAP                AFTER    252
+8               BEFORE            BEFORE                AFTER    241
+2                AFTER            BEFORE                AFTER    240
+17             OVERLAP           OVERLAP               BEFORE    212
+13             OVERLAP             AFTER              OVERLAP    175
+1                AFTER             AFTER              OVERLAP    147
+10              BEFORE           OVERLAP                AFTER    113
+3                AFTER            BEFORE              OVERLAP     79
+5                AFTER           OVERLAP               BEFORE     72
+6               BEFORE             AFTER               BEFORE     54
+14             OVERLAP            BEFORE                AFTER     50
+7               BEFORE             AFTER              OVERLAP     46
+0                AFTER             AFTER               BEFORE     44
+12             OVERLAP             AFTER               BEFORE     12

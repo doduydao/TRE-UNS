@@ -1,0 +1,40 @@
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Using device: cuda:0
+Loading Data...
+Initializing Model...
+DEBUG REASONING: Initialized with 10 rules. First rule: R_Symm_BA
+Loading checkpoint MATRES/checkpoint/MATRES_baseline_reasoning_model.pt...
+Running Inference...
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.49s/it]100%|██████████| 1/1 [00:05<00:00,  5.49s/it]
+
+[Predictive Performance]
+
+[Confusion Matrix - Full] (rows=true, cols=pred)
+        AFTER  BEFORE  EQUAL  VAGUE
+AFTER     205      60      0      0
+BEFORE     27     386      0      0
+EQUAL      14      17      0      0
+VAGUE      18      90      0      0
+
+[Confusion Matrix - Non-VAGUE Gold] (rows=true non-VAGUE, cols=pred)
+        AFTER  BEFORE  EQUAL  VAGUE
+AFTER     205      60      0      0
+BEFORE     27     386      0      0
+EQUAL      14      17      0      0
+VAGUE       0       0      0      0
+              precision    recall  f1-score   support
+
+       AFTER     0.8333    0.7736    0.8023       265
+      BEFORE     0.8337    0.9346    0.8813       413
+       EQUAL     0.0000    0.0000    0.0000        31
+
+    accuracy                         0.8336       709
+   macro avg     0.5557    0.5694    0.5612       709
+weighted avg     0.7971    0.8336    0.8132       709
+
+[Micro Avg] P=0.8336, R=0.8336, F1=0.8336
+
+[Consistency Analysis]
+Transitivity Violation Rate: 0.0116 (on 345 triplets)
+Symmetry Violation Rate:     0.0000 (on 0 pairs)
+Predictions saved to MATRES/prediction_steps0.csv

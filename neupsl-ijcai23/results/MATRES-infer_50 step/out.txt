@@ -1,0 +1,143 @@
+520  [main] DEBUG org.linqs.psl.config.Config  - No value found for option runtime.help. Returning default of false.
+521  [main] DEBUG org.linqs.psl.config.Config  - No value found for option runtime.version. Returning default of false.
+521  [main] DEBUG org.linqs.psl.config.Config  - Found value 2.4.0 for option project.version.
+522  [main] DEBUG org.linqs.psl.config.Config  - Found value aad67da for option git.commit.id.abbrev.
+522  [main] DEBUG org.linqs.psl.config.Config  - Found value false for option git.dirty.
+522  [main] INFO  org.linqs.psl.runtime.Runtime  - PSL Runtime Version 2.4.0-aad67da
+524  [main] DEBUG org.linqs.psl.config.Config  - Found value true for option runtime.db.intids.
+526  [main] DEBUG org.linqs.psl.config.Config  - No value found for option categoricalevaluator.representative. Returning default of ACCURACY.
+526  [main] DEBUG org.linqs.psl.config.Config  - No value found for option categoricalevaluator.categoryindexes. Returning default of -1.
+527  [main] DEBUG org.linqs.psl.config.Config  - No value found for option eval.includeobs. Returning default of false.
+528  [main] DEBUG org.linqs.psl.config.Config  - No value found for option eval.closetruth. Returning default of false.
+528  [main] DEBUG org.linqs.psl.evaluation.statistics.CategoricalEvaluator  - Virtual category indexes: [-1].
+528  [main] DEBUG org.linqs.psl.config.Config  - Found value Rel for option categoricalevaluator.defaultpredicate.
+528  [main] DEBUG org.linqs.psl.config.Config  - Found value true for option runtime.db.intids.
+530  [main] DEBUG org.linqs.psl.config.Config  - Found value 12346 for option predicate.deep.python.port.
+530  [main] DEBUG org.linqs.psl.config.Config  - No value found for option predicate.deep.python.module. Returning default of pslpython.deeppsl.server.
+531  [main] DEBUG org.linqs.psl.config.Config  - No value found for option predicate.deep.sharedmemory.path. Returning default of /tmp/deep_shared_memory.bin_ddao@mirev45.
+601  [main] DEBUG org.linqs.psl.config.Config  - Found value true for option runtime.inference.
+601  [main] DEBUG org.linqs.psl.config.Config  - Found value false for option runtime.learn.
+601  [main] DEBUG org.linqs.psl.config.Config  - Found value true for option runtime.inference.
+602  [main] DEBUG org.linqs.psl.config.Config  - No value found for option runtime.inference.clearrules. Returning default of false.
+608  [main] DEBUG org.linqs.psl.runtime.Runtime  - Model:
+608  [main] DEBUG org.linqs.psl.runtime.Runtime  -    1.0: 1.0 * NEURAL(E1, E2, Label) + -1.0 * REL(E1, E2, Label) = 0.0 ^2
+609  [main] DEBUG org.linqs.psl.runtime.Runtime  -    1.0 * REL(E1, E2, +Label) = 1.0 .
+609  [main] DEBUG org.linqs.psl.runtime.Runtime  -    1.0: REL(A, B, '0') >> REL(B, A, '1') ^2
+609  [main] DEBUG org.linqs.psl.runtime.Runtime  -    1.0: REL(A, B, '1') >> REL(B, A, '0') ^2
+609  [main] DEBUG org.linqs.psl.runtime.Runtime  -    1.0: REL(A, B, '2') >> REL(B, A, '2') ^2
+609  [main] DEBUG org.linqs.psl.runtime.Runtime  -    1.0: ( REL(A, B, '0') & REL(B, C, '0') ) >> REL(A, C, '0') ^2
+609  [main] DEBUG org.linqs.psl.runtime.Runtime  -    1.0: ( REL(A, B, '0') & REL(B, C, '2') ) >> REL(A, C, '0') ^2
+610  [main] DEBUG org.linqs.psl.runtime.Runtime  -    1.0: ( REL(B, C, '0') & REL(A, B, '2') ) >> REL(A, C, '0') ^2
+610  [main] DEBUG org.linqs.psl.runtime.Runtime  -    1.0: ( REL(B, C, '2') & REL(A, B, '2') ) >> REL(A, C, '2') ^2
+610  [main] DEBUG org.linqs.psl.runtime.Runtime  -    1.0: ( REL(B, C, '1') & REL(A, B, '1') ) >> REL(A, C, '1') ^2
+610  [main] DEBUG org.linqs.psl.runtime.Runtime  -    1.0: ( REL(B, C, '2') & REL(A, B, '1') ) >> REL(A, C, '1') ^2
+610  [main] DEBUG org.linqs.psl.runtime.Runtime  -    1.0: ( REL(B, C, '1') & REL(A, B, '2') ) >> REL(A, C, '1') ^2
+610  [main] DEBUG org.linqs.psl.config.Config  - No value found for option runtime.db.type. Returning default of SQLite.
+611  [main] DEBUG org.linqs.psl.config.Config  - No value found for option runtime.db.sqlite.path. Returning default of /tmp/psl_sqlite_ddao@mirev45.
+611  [main] DEBUG org.linqs.psl.config.Config  - No value found for option runtime.db.sqlite.inmemory. Returning default of true.
+618  [main] DEBUG org.linqs.psl.database.rdbms.driver.DatabaseDriver  - Connecting to database using driver: org.sqlite.JDBC
+621  [main] DEBUG org.linqs.psl.config.Config  - No value found for option parallel.numthreads. Returning default of 96.
+773  [main] DEBUG org.linqs.psl.database.rdbms.driver.SQLiteDriver  - Connected to SQLite database.
+774  [main] DEBUG org.linqs.psl.database.rdbms.driver.SQLiteDriver  - Using in-memory database.
+797  [main] DEBUG org.linqs.psl.runtime.Runtime  - Data loading start
+799  [main] DEBUG org.linqs.psl.runtime.Runtime  - Loading data for REL(UniqueIntID, UniqueIntID, UniqueIntID) (targets partition) from /home/prof/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/MATRES/cli/../data/category-target-test.txt
+830  [main] DEBUG org.linqs.psl.runtime.Runtime  - Loading data for REL(UniqueIntID, UniqueIntID, UniqueIntID) (truth partition) from /home/prof/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/MATRES/cli/../data/category-truth-test.txt
+835  [main] DEBUG org.linqs.psl.runtime.Runtime  - Loading data for NEURAL(UniqueIntID, UniqueIntID, UniqueIntID) (targets partition) from /home/prof/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/MATRES/cli/../data/category-target-test.txt
+850  [main] DEBUG org.linqs.psl.runtime.Runtime  - Data loading complete
+851  [main] DEBUG org.linqs.psl.database.rdbms.RDBMSDataStore  - Indexing predicates.
+890  [main] DEBUG org.linqs.psl.database.rdbms.RDBMSDataStore  - Predicate indexing complete.
+891  [main] DEBUG org.linqs.psl.config.Config  - No value found for option rdbmsdatabase.fetchsize. Returning default of 500.
+891  [main] DEBUG org.linqs.psl.config.Config  - No value found for option rdbmsdatabase.fetchsize. Returning default of 500.
+891  [main] DEBUG org.linqs.psl.config.Config  - No value found for option categoricalevaluator.representative. Returning default of ACCURACY.
+892  [main] DEBUG org.linqs.psl.config.Config  - Found value 2 for option categoricalevaluator.categoryindexes.
+892  [main] DEBUG org.linqs.psl.config.Config  - No value found for option eval.includeobs. Returning default of false.
+892  [main] DEBUG org.linqs.psl.config.Config  - No value found for option eval.closetruth. Returning default of false.
+892  [main] DEBUG org.linqs.psl.evaluation.statistics.CategoricalEvaluator  - Virtual category indexes: [2].
+892  [main] DEBUG org.linqs.psl.config.Config  - Found value Rel for option categoricalevaluator.defaultpredicate.
+893  [main] DEBUG org.linqs.psl.config.Config  - No value found for option runtime.inference.output.groundrules. Returning default of false.
+893  [main] DEBUG org.linqs.psl.config.Config  - No value found for option runtime.inference.method. Returning default of org.linqs.psl.application.inference.mpe.ADMMInference.
+894  [main] DEBUG org.linqs.psl.config.Config  - No value found for option inference.relax. Returning default of false.
+894  [main] DEBUG org.linqs.psl.config.Config  - No value found for option inference.initialvalue. Returning default of RANDOM.
+895  [main] DEBUG org.linqs.psl.config.Config  - No value found for option inference.skip. Returning default of false.
+895  [main] DEBUG org.linqs.psl.config.Config  - No value found for option inference.normalize. Returning default of true.
+895  [main] DEBUG org.linqs.psl.config.Config  - No value found for option inference.relax.multiplier. Returning default of 100.0.
+896  [main] DEBUG org.linqs.psl.config.Config  - No value found for option inference.relax.squared. Returning default of true.
+896  [main] DEBUG org.linqs.psl.database.AtomStore  - Initializing AtomStore.
+899  [main] DEBUG org.linqs.psl.config.Config  - No value found for option atomstore.overallocation. Returning default of 0.2.
+899  [main] DEBUG org.linqs.psl.config.Config  - Found value true for option atomstore.storeallatoms.
+924  [main] DEBUG org.linqs.psl.database.AtomStore  - AtomStore Initialized.
+926  [main] DEBUG org.linqs.psl.config.Config  - No value found for option random.seed. Returning default of 29453046.
+926  [main] INFO  org.linqs.psl.util.RandUtils  - Using random seed: 29453046
+930  [main] DEBUG org.linqs.psl.application.inference.InferenceApplication  - Normalizing rule weight (old weight: 1.0, new weight: 1.0): 1.0: 1.0 * NEURAL(E1, E2, Label) + -1.0 * REL(E1, E2, Label) = 0.0 ^2
+930  [main] DEBUG org.linqs.psl.application.inference.InferenceApplication  - Normalizing rule weight (old weight: 1.0, new weight: 1.0): 1.0: REL(A, B, '0') >> REL(B, A, '1') ^2
+931  [main] DEBUG org.linqs.psl.application.inference.InferenceApplication  - Normalizing rule weight (old weight: 1.0, new weight: 1.0): 1.0: REL(A, B, '1') >> REL(B, A, '0') ^2
+931  [main] DEBUG org.linqs.psl.application.inference.InferenceApplication  - Normalizing rule weight (old weight: 1.0, new weight: 1.0): 1.0: REL(A, B, '2') >> REL(B, A, '2') ^2
+931  [main] DEBUG org.linqs.psl.application.inference.InferenceApplication  - Normalizing rule weight (old weight: 1.0, new weight: 1.0): 1.0: ( REL(A, B, '0') & REL(B, C, '0') ) >> REL(A, C, '0') ^2
+931  [main] DEBUG org.linqs.psl.application.inference.InferenceApplication  - Normalizing rule weight (old weight: 1.0, new weight: 1.0): 1.0: ( REL(A, B, '0') & REL(B, C, '2') ) >> REL(A, C, '0') ^2
+931  [main] DEBUG org.linqs.psl.application.inference.InferenceApplication  - Normalizing rule weight (old weight: 1.0, new weight: 1.0): 1.0: ( REL(B, C, '0') & REL(A, B, '2') ) >> REL(A, C, '0') ^2
+931  [main] DEBUG org.linqs.psl.application.inference.InferenceApplication  - Normalizing rule weight (old weight: 1.0, new weight: 1.0): 1.0: ( REL(B, C, '2') & REL(A, B, '2') ) >> REL(A, C, '2') ^2
+931  [main] DEBUG org.linqs.psl.application.inference.InferenceApplication  - Normalizing rule weight (old weight: 1.0, new weight: 1.0): 1.0: ( REL(B, C, '1') & REL(A, B, '1') ) >> REL(A, C, '1') ^2
+932  [main] DEBUG org.linqs.psl.application.inference.InferenceApplication  - Normalizing rule weight (old weight: 1.0, new weight: 1.0): 1.0: ( REL(B, C, '2') & REL(A, B, '1') ) >> REL(A, C, '1') ^2
+932  [main] DEBUG org.linqs.psl.application.inference.InferenceApplication  - Normalizing rule weight (old weight: 1.0, new weight: 1.0): 1.0: ( REL(B, C, '1') & REL(A, B, '2') ) >> REL(A, C, '1') ^2
+933  [main] DEBUG org.linqs.psl.config.Config  - No value found for option reasoner.evaluate. Returning default of false.
+933  [main] DEBUG org.linqs.psl.config.Config  - No value found for option reasoner.runfulliterations. Returning default of false.
+933  [main] DEBUG org.linqs.psl.config.Config  - No value found for option reasoner.objectivebreak. Returning default of false.
+933  [main] DEBUG org.linqs.psl.config.Config  - No value found for option reasoner.objectivetolerance. Returning default of 1.0E-5.
+933  [main] DEBUG org.linqs.psl.config.Config  - No value found for option reasoner.variablemovementbreak. Returning default of false.
+934  [main] DEBUG org.linqs.psl.config.Config  - No value found for option reasoner.variablemovementtolerance. Returning default of 1.0E-4.
+934  [main] DEBUG org.linqs.psl.config.Config  - No value found for option reasoner.variablemovementnorm. Returning default of Infinity.
+934  [main] DEBUG org.linqs.psl.config.Config  - Found value 50 for option admmreasoner.maxiterations.
+934  [main] DEBUG org.linqs.psl.config.Config  - No value found for option admmreasoner.primaldualbreak. Returning default of true.
+934  [main] DEBUG org.linqs.psl.config.Config  - Found value 1.0 for option admmreasoner.stepsize.
+934  [main] DEBUG org.linqs.psl.config.Config  - Found value 100 for option admmreasoner.computeperiod.
+935  [main] DEBUG org.linqs.psl.config.Config  - Found value 1.0e-6 for option admmreasoner.epsilonabs.
+935  [main] DEBUG org.linqs.psl.config.Config  - Found value 1.0e-4 for option admmreasoner.epsilonrel.
+936  [main] INFO  org.linqs.psl.application.inference.InferenceApplication  - Grounding out model.
+937  [main] DEBUG org.linqs.psl.config.Config  - No value found for option grounding.collective. Returning default of false.
+972  [main] DEBUG org.linqs.psl.model.rule.arithmetic.AbstractArithmeticRule  - Grounded 10566 terms from rule 1.0: 1.0 * NEURAL(E1, E2, Label) + -1.0 * REL(E1, E2, Label) = 0.0 ^2
+985  [main] DEBUG org.linqs.psl.model.rule.arithmetic.AbstractArithmeticRule  - Grounded 1761 terms from rule 1.0 * REL(E1, E2, +Label) = 1.0 .
+987  [pool-2-thread-3] DEBUG org.linqs.psl.config.Config  - Found value false for option pam.throw.
+987  [pool-2-thread-3] WARN  org.linqs.psl.database.PersistedAtomManagementException  - Found non-persisted RVAs ([REL('8245', '8244', '1')]). If you do not understand the implications of this warning, check your configuration and set 'pam.throw' to true. This warning will only be logged once.
+1011 [main] DEBUG org.linqs.psl.model.rule.logical.AbstractLogicalRule  - Grounded 944 terms from rule 1.0: REL(A, B, '0') >> REL(B, A, '1') ^2
+1024 [main] DEBUG org.linqs.psl.model.rule.logical.AbstractLogicalRule  - Grounded 944 terms from rule 1.0: REL(A, B, '1') >> REL(B, A, '0') ^2
+1036 [main] DEBUG org.linqs.psl.model.rule.logical.AbstractLogicalRule  - Grounded 944 terms from rule 1.0: REL(A, B, '2') >> REL(B, A, '2') ^2
+1078 [main] DEBUG org.linqs.psl.model.rule.logical.AbstractLogicalRule  - Grounded 3823 terms from rule 1.0: ( REL(A, B, '0') & REL(B, C, '0') ) >> REL(A, C, '0') ^2
+1106 [main] DEBUG org.linqs.psl.model.rule.logical.AbstractLogicalRule  - Grounded 3823 terms from rule 1.0: ( REL(A, B, '0') & REL(B, C, '2') ) >> REL(A, C, '0') ^2
+1130 [main] DEBUG org.linqs.psl.model.rule.logical.AbstractLogicalRule  - Grounded 3823 terms from rule 1.0: ( REL(B, C, '0') & REL(A, B, '2') ) >> REL(A, C, '0') ^2
+1152 [main] DEBUG org.linqs.psl.model.rule.logical.AbstractLogicalRule  - Grounded 3823 terms from rule 1.0: ( REL(B, C, '2') & REL(A, B, '2') ) >> REL(A, C, '2') ^2
+1170 [main] DEBUG org.linqs.psl.model.rule.logical.AbstractLogicalRule  - Grounded 3823 terms from rule 1.0: ( REL(B, C, '1') & REL(A, B, '1') ) >> REL(A, C, '1') ^2
+1197 [main] DEBUG org.linqs.psl.model.rule.logical.AbstractLogicalRule  - Grounded 3823 terms from rule 1.0: ( REL(B, C, '2') & REL(A, B, '1') ) >> REL(A, C, '1') ^2
+1217 [main] DEBUG org.linqs.psl.model.rule.logical.AbstractLogicalRule  - Grounded 3823 terms from rule 1.0: ( REL(B, C, '1') & REL(A, B, '2') ) >> REL(A, C, '1') ^2
+1217 [main] INFO  org.linqs.psl.application.inference.InferenceApplication  - Grounding complete.
+1217 [main] DEBUG org.linqs.psl.application.inference.InferenceApplication  - Generated 41920 terms.
+1218 [main] INFO  org.linqs.psl.application.inference.InferenceApplication  - Loading deep predicates.
+1218 [main] DEBUG org.linqs.psl.model.deep.DeepModel  - Init deep model org.linqs.psl.model.deep.DeepModelPredicate@24d09c1.
+1218 [main] DEBUG org.linqs.psl.config.Config  - Found value /home/prof/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/MATRES/cli for option runtime.relativebasepath.
+1218 [main] DEBUG org.linqs.psl.model.deep.DeepModelPredicate  - Initializing deep model predicate: NEURAL
+1268 [main] DEBUG org.linqs.psl.model.deep.DeepModel  - DeepModel server not found for org.linqs.psl.model.deep.DeepModelPredicate@24d09c1. Starting server.
+1788 [main] DEBUG org.linqs.psl.model.deep.DeepModel  - Sending init message to deep model server for org.linqs.psl.model.deep.DeepModelPredicate@24d09c1.
+1789 [main] DEBUG org.linqs.psl.model.deep.DeepModel  - Message: {"task":"init","application":"inference","deep_model":"DeepModelPredicate","shared_memory_path":"/tmp/deep_shared_memory.bin_ddao@mirev45","options":{"batch-size":"128","simple-learning-rate":"1.0e-4","entity-argument-indexes":"0,1","class-size":"3","smoothed-learning-rate":"1.0e-4","cache-path":"/data/ddao/TRE/pretrained_models/Reasoning/MATRES/cache/","relative-dir":"/home/prof/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/MATRES/cli","entity-data-map-path":"../data/entity-data-map.txt","load-path":"../../results/MATRES","model-path":"../scripts/neupsl-model.py::TREModel","freeze-bert":"true"}}
+16625 [main] DEBUG org.linqs.psl.model.deep.DeepModel  - Init deep model results for org.linqs.psl.model.deep.DeepModelPredicate@24d09c1 : {}
+16625 [main] DEBUG org.linqs.psl.model.deep.DeepModel  - Predict deep model org.linqs.psl.model.deep.DeepModelPredicate@24d09c1.
+16625 [main] DEBUG org.linqs.psl.model.deep.DeepModelPredicate  - Writing predict data for deep model predicate: NEURAL
+21782 [main] DEBUG org.linqs.psl.model.deep.DeepModelPredicate  - Reading predict data for deep model predicate: NEURAL
+21784 [main] DEBUG org.linqs.psl.model.deep.DeepModel  - Predict deep model result for org.linqs.psl.model.deep.DeepModelPredicate@24d09c1 : <No Result Provided>
+21784 [main] DEBUG org.linqs.psl.config.Config  - No value found for option runtime.inference.commit. Returning default of true.
+21786 [main] DEBUG org.linqs.psl.database.AtomStore  - Initializing AtomStore.
+21787 [main] DEBUG org.linqs.psl.config.Config  - No value found for option atomstore.overallocation. Returning default of 0.2.
+21787 [main] DEBUG org.linqs.psl.config.Config  - Found value true for option atomstore.storeallatoms.
+21790 [main] DEBUG org.linqs.psl.database.AtomStore  - AtomStore Initialized.
+21797 [main] INFO  org.linqs.psl.application.inference.InferenceApplication  - Beginning inference.
+21799 [main] DEBUG org.linqs.psl.reasoner.Reasoner  - Performing optimization with 16629 unobserved and 0 observed variables and 41920 terms.
+22390 [main] INFO  org.linqs.psl.reasoner.Reasoner  - Final Objective: 23.998175, Violated Constraints: 1175, Total Optimization Time: 568, Total Number of Iterations: 51
+22390 [main] DEBUG org.linqs.psl.reasoner.Reasoner  - Movement of variables from initial state: 30.185684
+22390 [main] INFO  org.linqs.psl.application.inference.InferenceApplication  - Inference complete.
+22390 [main] INFO  org.linqs.psl.application.inference.InferenceApplication  - Writing results to Database.
+22588 [main] INFO  org.linqs.psl.application.inference.InferenceApplication  - Results committed to database.
+22588 [main] DEBUG org.linqs.psl.config.Config  - No value found for option runtime.inference.output.results. Returning default of true.
+22588 [main] DEBUG org.linqs.psl.config.Config  - Found value inferred-predicates for option runtime.inference.output.results.dir.
+22588 [main] INFO  org.linqs.psl.runtime.Runtime  - Writing inferred predicates to directory: inferred-predicates
+22632 [main] INFO  org.linqs.psl.runtime.Runtime  - Evaluation results: Evaluator: CategoricalEvaluator, Predicate: REL, Results -- Categorical Accuracy: 0,798307
+22642 [main] DEBUG org.linqs.psl.model.deep.DeepModel  - Close deep model org.linqs.psl.model.deep.DeepModelPredicate@24d09c1.
+22644 [main] DEBUG org.linqs.psl.model.deep.DeepModel  - Close deep model result for org.linqs.psl.model.deep.DeepModelPredicate@24d09c1 : <No Result Provided>
+23154 [Thread-2] DEBUG org.linqs.psl.model.deep.DeepModel  - Close deep model org.linqs.psl.model.deep.DeepModelPredicate@24d09c1.

@@ -1,0 +1,2 @@
+batch_size,max_steps,total_time,throughput,avg_batch_latency_ms,neural_time,reasoning_time,avg_actual_steps,max_memory_mb
+128,100,26.65721659362316,76.82722585860351,555.3586790338159,8.18,0.726,101,2379.75

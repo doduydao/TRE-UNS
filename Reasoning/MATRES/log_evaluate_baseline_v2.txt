@@ -1,0 +1,39 @@
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Using device: cuda:0
+Loading Data...
+Initializing Model...
+Loading checkpoint MATRES/checkpoint/MATRES_baseline_model.pt...
+Running Inference...
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:05<00:00,  5.79s/it]100%|██████████| 1/1 [00:05<00:00,  5.79s/it]
+
+[Predictive Performance]
+
+[Confusion Matrix - Full] (rows=true, cols=pred)
+        AFTER  BEFORE  EQUAL  VAGUE
+AFTER     197      66      2      0
+BEFORE     28     384      1      0
+EQUAL      15      16      0      0
+VAGUE      24      83      1      0
+
+[Confusion Matrix - Non-VAGUE Gold] (rows=true non-VAGUE, cols=pred)
+        AFTER  BEFORE  EQUAL  VAGUE
+AFTER     197      66      2      0
+BEFORE     28     384      1      0
+EQUAL      15      16      0      0
+VAGUE       0       0      0      0
+              precision    recall  f1-score   support
+
+       AFTER     0.8208    0.7434    0.7802       265
+      BEFORE     0.8240    0.9298    0.8737       413
+       EQUAL     0.0000    0.0000    0.0000        31
+
+    accuracy                         0.8195       709
+   macro avg     0.5483    0.5577    0.5513       709
+weighted avg     0.7868    0.8195    0.8006       709
+
+[Micro Avg] P=0.8195, R=0.8195, F1=0.8195
+
+[Consistency Analysis]
+Transitivity Violation Rate: 0.0334 (on 329 triplets)
+Symmetry Violation Rate:     0.0000 (on 0 pairs)
+Predictions saved to MATRES/prediction_basline_v2.csv

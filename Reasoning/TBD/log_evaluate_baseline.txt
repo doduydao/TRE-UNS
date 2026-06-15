@@ -1,0 +1,41 @@
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Using device: cuda:0
+Loading Data...
+Initializing Model...
+Loading checkpoint TBD/checkpoint/TBD_baseline_model.pt...
+Running Inference...
+  0%|          | 0/12 [00:00<?, ?it/s]  8%|▊         | 1/12 [00:01<00:13,  1.20s/it] 17%|█▋        | 2/12 [00:01<00:07,  1.26it/s] 25%|██▌       | 3/12 [00:02<00:05,  1.52it/s] 33%|███▎      | 4/12 [00:02<00:04,  1.68it/s] 42%|████▏     | 5/12 [00:03<00:03,  1.80it/s] 50%|█████     | 6/12 [00:03<00:03,  1.87it/s] 58%|█████▊    | 7/12 [00:04<00:02,  1.92it/s] 67%|██████▋   | 8/12 [00:04<00:02,  1.94it/s] 75%|███████▌  | 9/12 [00:05<00:01,  1.96it/s] 83%|████████▎ | 10/12 [00:05<00:01,  1.98it/s] 92%|█████████▏| 11/12 [00:06<00:00,  1.99it/s]100%|██████████| 12/12 [00:06<00:00,  1.92it/s]
+
+[Predictive Performance]
+
+[Confusion Matrix - Full] (rows=true, cols=pred)
+              AFTER  BEFORE  INCLUDES  IS_INCLUDED  SIMULTANEOUS  VAGUE
+AFTER           154       5         2            5             2    106
+BEFORE            3     243         1            0             2    135
+INCLUDES          3      11         5            0             1     36
+IS_INCLUDED       3       5         0           20             0     25
+SIMULTANEOUS      2       4         0            0             2     14
+VAGUE            40     110         5           12             3    468
+
+[Confusion Matrix - Non-VAGUE Gold] (rows=true non-VAGUE, cols=pred)
+              AFTER  BEFORE  INCLUDES  IS_INCLUDED  SIMULTANEOUS  VAGUE
+AFTER           154       5         2            5             2    106
+BEFORE            3     243         1            0             2    135
+INCLUDES          3      11         5            0             1     36
+IS_INCLUDED       3       5         0           20             0     25
+SIMULTANEOUS      2       4         0            0             2     14
+VAGUE             0       0         0            0             0      0
+              precision    recall  f1-score   support
+
+       AFTER     0.9333    0.5620    0.7016       274
+      BEFORE     0.9067    0.6328    0.7454       384
+    INCLUDES     0.6250    0.0893    0.1562        56
+ IS_INCLUDED     0.8000    0.3774    0.5128        53
+SIMULTANEOUS     0.2857    0.0909    0.1379        22
+
+   micro avg     0.8964    0.5374    0.6719       789
+   macro avg     0.7102    0.3505    0.4508       789
+weighted avg     0.8715    0.5374    0.6558       789
+
+[Micro Avg] P=0.5374, R=0.5374, F1=0.5374
+Predictions saved to TBD/prediction_baseline.csv

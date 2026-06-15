@@ -1,0 +1,7 @@
+Step,"(e4,e8)","(e8,e10)","(e4,e10)",Violation
+0,Before: 0.56,Before: 0.57,Before: 0.46,giảm
+10,Before: 0.53,Before: 0.54,Before: 0.44,cao
+50,Before: 0.53,Before: 0.54,Before: 0.44,cao
+100,Before: 0.53,Before: 0.54,Before: 0.44,cao
+500,Before: 0.53,Before: 0.54,Before: 0.44,cao
+1000,Before: 0.53,Before: 0.54,Before: 0.44,cao

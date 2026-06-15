@@ -1,0 +1,43 @@
+# ==========================================================
+# TDDMan Rules
+# Label mapping:
+#   A = After, B = Before, S = Simultaneous, I = Includes, II = Is_included
+# ==========================================================
+
+# 1) Symmetry / Inverse
+R_Symm_BA: B(E1, E2) => A(E2, E1)
+R_Symm_AB: A(E1, E2) => B(E2, E1)
+R_Symm_SS: S(E1, E2) => S(E2, E1)
+R_Symm_I_II: I(E1, E2) => II(E2, E1)
+R_Symm_II_I: II(E1, E2) => I(E2, E1)
+
+# 2) Exclusivity (single-label consistency)
+R_Excl_BA: B(E1, E2) => !A(E1, E2)
+R_Excl_BS: B(E1, E2) => !S(E1, E2)
+R_Excl_BI: B(E1, E2) => !I(E1, E2)
+R_Excl_BII: B(E1, E2) => !II(E1, E2)
+
+R_Excl_AS: A(E1, E2) => !S(E1, E2)
+R_Excl_AI: A(E1, E2) => !I(E1, E2)
+R_Excl_AII: A(E1, E2) => !II(E1, E2)
+
+R_Excl_SI: S(E1, E2) => !I(E1, E2)
+R_Excl_SII: S(E1, E2) => !II(E1, E2)
+R_Excl_III: I(E1, E2) => !II(E1, E2)
+
+# 3) Transitivity (safe chains)
+R_Trans_BB: (B(E1, E2) & B(E2, E3)) => B(E1, E3)
+R_Trans_AA: (A(E1, E2) & A(E2, E3)) => A(E1, E3)
+R_Trans_SS: (S(E1, E2) & S(E2, E3)) => S(E1, E3)
+R_Trans_II: (I(E1, E2) & I(E2, E3)) => I(E1, E3)
+R_Trans_IIII: (II(E1, E2) & II(E2, E3)) => II(E1, E3)
+
+# 4) Simultaneous as identity-like bridge
+R_Trans_SB: (S(E1, E2) & B(E2, E3)) => B(E1, E3)
+R_Trans_BS: (B(E1, E2) & S(E2, E3)) => B(E1, E3)
+R_Trans_SA: (S(E1, E2) & A(E2, E3)) => A(E1, E3)
+R_Trans_AS: (A(E1, E2) & S(E2, E3)) => A(E1, E3)
+R_Trans_SI: (S(E1, E2) & I(E2, E3)) => I(E1, E3)
+R_Trans_IS: (I(E1, E2) & S(E2, E3)) => I(E1, E3)
+R_Trans_SII: (S(E1, E2) & II(E2, E3)) => II(E1, E3)
+R_Trans_IIS: (II(E1, E2) & S(E2, E3)) => II(E1, E3)

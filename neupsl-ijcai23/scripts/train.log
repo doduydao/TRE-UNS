@@ -1,0 +1,7 @@
+nohup: les entrées sont ignorées
+=== PSL Data already exists for TDDMan, skipping. Use --force to regenerate. ===
+Running '/home/prof/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/scripts/../results/TDDMan'.
+
+real	134m10,730s
+user	6675m51,225s
+sys	7m13,466s

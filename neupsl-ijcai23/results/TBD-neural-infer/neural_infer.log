@@ -1,0 +1,97 @@
+
+======================================================================
+Neural-only Inference: TBD
+Time: 2026-03-11 00:50:58.057673
+======================================================================
+
+[1] Loading model and data...
+    Experiment: TBD
+    Num classes: 5
+    Cache path: /data/ddao/TRE/pretrained_models/Reasoning/TBD/cache/
+    Checkpoint: /home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/results/TBD
+    Device: cuda
+
+[2] Loading datasets...
+    Loading train... Done (4032 samples)
+    Loading valid... Done (629 samples)
+    Loading test... Done (1427 samples)
+
+[3] Building global entity ID map...
+    Total entities mapped: 1494
+    Ground truth test pairs: 1427
+
+[4] Initializing neural model...
+    Resizing embeddings from 30522 to 30526
+    Loading checkpoint from: /home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/results/TBD/checkpoint.pt
+    Checkpoint loaded (step=15)
+
+[5] Running neural forward pass on test set...
+Traceback (most recent call last):
+  File "/home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/scripts/neural_infer.py", line 205, in <module>
+    e1_ids = [int(x.item() if hasattr(x, 'item') else x) for x in batch['e1_ids']]
+  File "/home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/scripts/neural_infer.py", line 205, in <listcomp>
+    e1_ids = [int(x.item() if hasattr(x, 'item') else x) for x in batch['e1_ids']]
+ValueError: invalid literal for int() with base 10: 'e2'
+
+======================================================================
+Neural-only Inference: TBD
+Time: 2026-03-11 00:54:10.840889
+======================================================================
+
+[1] Loading model and data...
+    Experiment: TBD
+    Num classes: 5
+    Cache path: /data/ddao/TRE/pretrained_models/Reasoning/TBD/cache/
+    Checkpoint: /home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/results/TBD
+    Device: cuda
+
+[2] Loading datasets...
+    Loading train... Done (4032 samples)
+    Loading valid... Done (629 samples)
+    Loading test... Done (1427 samples)
+
+[3] Building global entity ID map...
+    Total entities mapped: 1494
+    Ground truth test pairs: 789
+
+[4] Initializing neural model...
+    Resizing embeddings from 30522 to 30526
+    Loading checkpoint from: /home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/results/TBD/checkpoint.pt
+    Checkpoint loaded (step=15)
+
+[5] Running neural forward pass on test set...
+    Total predictions: 789
+
+[6] Evaluating predictions...
+
+======================================================================
+  NEURAL-ONLY TEST RESULTS (n=789)
+======================================================================
+  Accuracy:     0.769328
+  F1-micro:     0.769328
+  F1-weighted:  0.765709
+  F1-macro:     0.537703
+======================================================================
+
+              precision    recall  f1-score   support
+
+       AFTER     0.8392    0.7810    0.8091       274
+      BEFORE     0.8512    0.8490    0.8501       384
+    INCLUDES     0.4429    0.5536    0.4921        56
+ IS_INCLUDED     0.4444    0.6792    0.5373        53
+SIMULTANEOUS     0.0000    0.0000    0.0000        22
+
+    accuracy                         0.7693       789
+   macro avg     0.5155    0.5726    0.5377       789
+weighted avg     0.7670    0.7693    0.7657       789
+
+
+[7] Saving results...
+    Metrics saved to: /home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/results/TBD-neural-infer/neural_evaluation_metrics.txt
+    Log saved to: /home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/results/TBD-neural-infer/neural_infer.log
+
+======================================================================
+Neural-only inference complete!
+Results directory: /home/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/results/TBD-neural-infer
+======================================================================
+

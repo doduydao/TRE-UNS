@@ -1,0 +1,5 @@
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+mars 09, 2026 10:17:55 PM com.github.fommil.netlib.LAPACK <clinit>
+AVERTISSEMENT: Failed to load implementation from: com.github.fommil.netlib.NativeSystemLAPACK
+mars 09, 2026 10:17:55 PM com.github.fommil.netlib.LAPACK <clinit>
+AVERTISSEMENT: Failed to load implementation from: com.github.fommil.netlib.NativeRefLAPACK

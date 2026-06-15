@@ -1,0 +1,403 @@
+
+==================== 2026-03-01 02:48:39.545695 ====================
+Log file: /home/prof/ddao/daodd/phd-dao-do/TRE/notebooks/neupsl-ijcai23/scripts/../results/MATRES/neupsl_python.log
+=== DEEP PREDICATE PYTHON SERVER STARTING ===
+Loading datasets from: /data/ddao/TRE/pretrained_models/Reasoning/MATRES/cache/
+Loaded 13057 samples from 3 splits.
+Max input_id: 30525
+Resizing embeddings from 30522 to 30526
+Freeze BERT: False
+
+>>> [STEP 1]
+  [TRAIN] CE Loss: 1.079106 | PSL Grad: 0.070275
+  [VALID] Acc= 0.571343, F1-weighted= 0.422358 *** BEST
+  [SAVE] Best model saved (F1=0.422358) → ../../results/MATRES/checkpoint.pt
+  [TIME] 159s (python)
+<<< [STEP 1]
+
+
+>>> [STEP 2]
+  [TRAIN] CE Loss: 0.783614 | PSL Grad: 0.041839
+  [VALID] Acc= 0.561151, F1-weighted= 0.517284 *** BEST
+  [SAVE] Best model saved (F1=0.517284) → ../../results/MATRES/checkpoint.pt
+  [TIME] 159s (python) | 114s (total)
+<<< [STEP 2]
+
+
+>>> [STEP 3]
+  [TRAIN] CE Loss: 0.783120 | PSL Grad: 0.037242
+  [VALID] Acc= 0.718225, F1-weighted= 0.688238 *** BEST
+  [SAVE] Best model saved (F1=0.688238) → ../../results/MATRES/checkpoint.pt
+  [TIME] 159s (python) | 112s (total)
+<<< [STEP 3]
+
+
+>>> [STEP 4]
+  [TRAIN] CE Loss: 0.658020 | PSL Grad: 0.028845
+  [VALID] Acc= 0.718825, F1-weighted= 0.687125
+  [TIME] 138s (python) | 112s (total)
+<<< [STEP 4]
+
+
+>>> [STEP 5]
+  [TRAIN] CE Loss: 0.636847 | PSL Grad: 0.024834
+  [VALID] Acc= 0.748201, F1-weighted= 0.725648 *** BEST
+  [SAVE] Best model saved (F1=0.725648) → ../../results/MATRES/checkpoint.pt
+  [TIME] 158s (python) | 108s (total)
+<<< [STEP 5]
+
+
+>>> [STEP 6]
+  [TRAIN] CE Loss: 0.594589 | PSL Grad: 0.021983
+  [VALID] Acc= 0.778177, F1-weighted= 0.763198 *** BEST
+  [SAVE] Best model saved (F1=0.763198) → ../../results/MATRES/checkpoint.pt
+  [TIME] 159s (python) | 108s (total)
+<<< [STEP 6]
+
+
+>>> [STEP 7]
+  [TRAIN] CE Loss: 0.573200 | PSL Grad: 0.020167
+  [VALID] Acc= 0.794964, F1-weighted= 0.781465 *** BEST
+  [SAVE] Best model saved (F1=0.781465) → ../../results/MATRES/checkpoint.pt
+  [TIME] 159s (python) | 111s (total)
+<<< [STEP 7]
+
+
+>>> [STEP 8]
+  [TRAIN] CE Loss: 0.550720 | PSL Grad: 0.018314
+  [VALID] Acc= 0.802158, F1-weighted= 0.788024 *** BEST
+  [SAVE] Best model saved (F1=0.788024) → ../../results/MATRES/checkpoint.pt
+  [TIME] 152s (python) | 108s (total)
+<<< [STEP 8]
+
+
+>>> [STEP 9]
+  [TRAIN] CE Loss: 0.506565 | PSL Grad: 0.016027
+  [VALID] Acc= 0.813549, F1-weighted= 0.797258 *** BEST
+  [SAVE] Best model saved (F1=0.797258) → ../../results/MATRES/checkpoint.pt
+  [TIME] 158s (python) | 108s (total)
+<<< [STEP 9]
+
+
+>>> [STEP 10]
+  [TRAIN] CE Loss: 0.471981 | PSL Grad: 0.014090
+  [VALID] Acc= 0.809353, F1-weighted= 0.791033
+  [TIME] 140s (python) | 112s (total)
+<<< [STEP 10]
+
+
+>>> [STEP 11]
+  [TRAIN] CE Loss: 0.465747 | PSL Grad: 0.012999
+  [VALID] Acc= 0.831535, F1-weighted= 0.815202 *** BEST
+  [SAVE] Best model saved (F1=0.815202) → ../../results/MATRES/checkpoint.pt
+  [TIME] 160s (python) | 111s (total)
+<<< [STEP 11]
+
+
+>>> [STEP 12]
+  [TRAIN] CE Loss: 0.427689 | PSL Grad: 0.011697
+  [VALID] Acc= 0.835132, F1-weighted= 0.820146 *** BEST
+  [SAVE] Best model saved (F1=0.820146) → ../../results/MATRES/checkpoint.pt
+  [TIME] 159s (python) | 110s (total)
+<<< [STEP 12]
+
+
+>>> [STEP 13]
+  [TRAIN] CE Loss: 0.411725 | PSL Grad: 0.011041
+  [VALID] Acc= 0.842326, F1-weighted= 0.827417 *** BEST
+  [SAVE] Best model saved (F1=0.827417) → ../../results/MATRES/checkpoint.pt
+  [TIME] 159s (python) | 111s (total)
+<<< [STEP 13]
+
+
+>>> [STEP 14]
+  [TRAIN] CE Loss: 0.394149 | PSL Grad: 0.010232
+  [VALID] Acc= 0.847122, F1-weighted= 0.831608 *** BEST
+  [SAVE] Best model saved (F1=0.831608) → ../../results/MATRES/checkpoint.pt
+  [TIME] 158s (python) | 107s (total)
+<<< [STEP 14]
+
+
+>>> [STEP 15]
+  [TRAIN] CE Loss: 0.370222 | PSL Grad: 0.009175
+  [VALID] Acc= 0.855516, F1-weighted= 0.839199 *** BEST
+  [SAVE] Best model saved (F1=0.839199) → ../../results/MATRES/checkpoint.pt
+  [TIME] 158s (python) | 110s (total)
+<<< [STEP 15]
+
+
+>>> [STEP 16]
+  [TRAIN] CE Loss: 0.354520 | PSL Grad: 0.008467
+  [VALID] Acc= 0.859712, F1-weighted= 0.843365 *** BEST
+  [SAVE] Best model saved (F1=0.843365) → ../../results/MATRES/checkpoint.pt
+  [TIME] 158s (python) | 111s (total)
+<<< [STEP 16]
+
+
+>>> [STEP 17]
+  [TRAIN] CE Loss: 0.344418 | PSL Grad: 0.007912
+  [VALID] Acc= 0.859113, F1-weighted= 0.843157
+  [TIME] 138s (python) | 108s (total)
+<<< [STEP 17]
+
+
+>>> [STEP 18]
+  [TRAIN] CE Loss: 0.322207 | PSL Grad: 0.007248
+  [VALID] Acc= 0.860911, F1-weighted= 0.845351 *** BEST
+  [SAVE] Best model saved (F1=0.845351) → ../../results/MATRES/checkpoint.pt
+  [TIME] 158s (python) | 111s (total)
+<<< [STEP 18]
+
+
+>>> [STEP 19]
+  [TRAIN] CE Loss: 0.300923 | PSL Grad: 0.006639
+  [VALID] Acc= 0.864508, F1-weighted= 0.849054 *** BEST
+  [SAVE] Best model saved (F1=0.849054) → ../../results/MATRES/checkpoint.pt
+  [TIME] 160s (python) | 111s (total)
+<<< [STEP 19]
+
+
+>>> [STEP 20]
+  [TRAIN] CE Loss: 0.287340 | PSL Grad: 0.006096
+  [VALID] Acc= 0.867506, F1-weighted= 0.851855 *** BEST
+  [SAVE] Best model saved (F1=0.851855) → ../../results/MATRES/checkpoint.pt
+  [TIME] 158s (python) | 108s (total)
+<<< [STEP 20]
+
+
+>>> [STEP 21]
+  [TRAIN] CE Loss: 0.272931 | PSL Grad: 0.005594
+  [VALID] Acc= 0.869904, F1-weighted= 0.854012 *** BEST
+  [SAVE] Best model saved (F1=0.854012) → ../../results/MATRES/checkpoint.pt
+  [TIME] 158s (python) | 110s (total)
+<<< [STEP 21]
+
+
+>>> [STEP 22]
+  [TRAIN] CE Loss: 0.264496 | PSL Grad: 0.005199
+  [VALID] Acc= 0.868705, F1-weighted= 0.852648
+  [TIME] 138s (python) | 109s (total)
+<<< [STEP 22]
+
+
+>>> [STEP 23]
+  [TRAIN] CE Loss: 0.256267 | PSL Grad: 0.004895
+  [VALID] Acc= 0.874700, F1-weighted= 0.858649 *** BEST
+  [SAVE] Best model saved (F1=0.858649) → ../../results/MATRES/checkpoint.pt
+  [TIME] 158s (python) | 110s (total)
+<<< [STEP 23]
+
+
+>>> [STEP 24]
+  [TRAIN] CE Loss: 0.243266 | PSL Grad: 0.004654
+  [VALID] Acc= 0.877698, F1-weighted= 0.861770 *** BEST
+  [SAVE] Best model saved (F1=0.861770) → ../../results/MATRES/checkpoint.pt
+  [TIME] 158s (python) | 106s (total)
+<<< [STEP 24]
+
+
+>>> [STEP 25]
+  [TRAIN] CE Loss: 0.234240 | PSL Grad: 0.004464
+  [VALID] Acc= 0.881894, F1-weighted= 0.866066 *** BEST
+  [SAVE] Best model saved (F1=0.866066) → ../../results/MATRES/checkpoint.pt
+  [TIME] 158s (python) | 107s (total)
+<<< [STEP 25]
+
+
+>>> [STEP 26]
+  [TRAIN] CE Loss: 0.226585 | PSL Grad: 0.004329
+  [VALID] Acc= 0.883693, F1-weighted= 0.867850 *** BEST
+  [SAVE] Best model saved (F1=0.867850) → ../../results/MATRES/checkpoint.pt
+  [TIME] 158s (python) | 109s (total)
+<<< [STEP 26]
+
+
+>>> [STEP 27]
+  [TRAIN] CE Loss: 0.217014 | PSL Grad: 0.004195
+  [VALID] Acc= 0.881894, F1-weighted= 0.866075
+  [TIME] 138s (python) | 107s (total)
+<<< [STEP 27]
+
+
+>>> [STEP 28]
+  [TRAIN] CE Loss: 0.208613 | PSL Grad: 0.004055
+  [VALID] Acc= 0.884892, F1-weighted= 0.868911 *** BEST
+  [SAVE] Best model saved (F1=0.868911) → ../../results/MATRES/checkpoint.pt
+  [TIME] 158s (python) | 107s (total)
+<<< [STEP 28]
+
+
+>>> [STEP 29]
+  [TRAIN] CE Loss: 0.204122 | PSL Grad: 0.003921
+  [VALID] Acc= 0.885492, F1-weighted= 0.869420 *** BEST
+  [SAVE] Best model saved (F1=0.869420) → ../../results/MATRES/checkpoint.pt
+  [TIME] 158s (python) | 106s (total)
+<<< [STEP 29]
+
+
+>>> [STEP 30]
+  [TRAIN] CE Loss: 0.199868 | PSL Grad: 0.003814
+  [VALID] Acc= 0.887290, F1-weighted= 0.871200 *** BEST
+  [SAVE] Best model saved (F1=0.871200) → ../../results/MATRES/checkpoint.pt
+  [TIME] 158s (python) | 107s (total)
+<<< [STEP 30]
+
+
+>>> [STEP 31]
+  [TRAIN] CE Loss: 0.193990 | PSL Grad: 0.003727
+  [VALID] Acc= 0.888489, F1-weighted= 0.872455 *** BEST
+  [SAVE] Best model saved (F1=0.872455) → ../../results/MATRES/checkpoint.pt
+  [TIME] 159s (python) | 106s (total)
+<<< [STEP 31]
+
+
+>>> [STEP 32]
+  [TRAIN] CE Loss: 0.187332 | PSL Grad: 0.003666
+  [VALID] Acc= 0.889089, F1-weighted= 0.873128 *** BEST
+  [SAVE] Best model saved (F1=0.873128) → ../../results/MATRES/checkpoint.pt
+  [TIME] 158s (python) | 106s (total)
+<<< [STEP 32]
+
+
+>>> [STEP 33]
+  [TRAIN] CE Loss: 0.182823 | PSL Grad: 0.003629
+  [VALID] Acc= 0.888489, F1-weighted= 0.872834
+  [TIME] 138s (python) | 106s (total)
+<<< [STEP 33]
+
+
+>>> [STEP 34]
+  [TRAIN] CE Loss: 0.180767 | PSL Grad: 0.003606
+  [VALID] Acc= 0.887290, F1-weighted= 0.872182
+  [TIME] 138s (python) | 107s (total)
+<<< [STEP 34]
+
+
+>>> [STEP 35]
+  [TRAIN] CE Loss: 0.174989 | PSL Grad: 0.003545
+  [VALID] Acc= 0.886691, F1-weighted= 0.872365
+  [TIME] 138s (python) | 106s (total)
+<<< [STEP 35]
+
+
+>>> [STEP 36]
+  [TRAIN] CE Loss: 0.170084 | PSL Grad: 0.003436
+  [VALID] Acc= 0.886691, F1-weighted= 0.872846
+  [TIME] 138s (python) | 107s (total)
+<<< [STEP 36]
+
+
+>>> [STEP 37]
+  [TRAIN] CE Loss: 0.166179 | PSL Grad: 0.003322
+  [VALID] Acc= 0.885492, F1-weighted= 0.872761
+  [TIME] 139s (python) | 106s (total)
+<<< [STEP 37]
+
+
+>>> [STEP 38]
+  [TRAIN] CE Loss: 0.162788 | PSL Grad: 0.003214
+  [VALID] Acc= 0.884892, F1-weighted= 0.873155 *** BEST
+  [SAVE] Best model saved (F1=0.873155) → ../../results/MATRES/checkpoint.pt
+  [TIME] 159s (python) | 104s (total)
+<<< [STEP 38]
+
+
+>>> [STEP 39]
+  [TRAIN] CE Loss: 0.156849 | PSL Grad: 0.003114
+  [VALID] Acc= 0.884293, F1-weighted= 0.875024 *** BEST
+  [SAVE] Best model saved (F1=0.875024) → ../../results/MATRES/checkpoint.pt
+  [TIME] 158s (python) | 105s (total)
+<<< [STEP 39]
+
+
+>>> [STEP 40]
+  [TRAIN] CE Loss: 0.154765 | PSL Grad: 0.003033
+  [VALID] Acc= 0.880096, F1-weighted= 0.872079
+  [TIME] 138s (python) | 107s (total)
+<<< [STEP 40]
+
+
+>>> [STEP 41]
+  [TRAIN] CE Loss: 0.150681 | PSL Grad: 0.002913
+  [VALID] Acc= 0.879496, F1-weighted= 0.872645
+  [TIME] 139s (python) | 105s (total)
+<<< [STEP 41]
+
+
+>>> [STEP 42]
+  [TRAIN] CE Loss: 0.146882 | PSL Grad: 0.002786
+  [VALID] Acc= 0.879496, F1-weighted= 0.874575
+  [TIME] 138s (python) | 108s (total)
+<<< [STEP 42]
+
+
+>>> [STEP 43]
+  [TRAIN] CE Loss: 0.141332 | PSL Grad: 0.002674
+  [VALID] Acc= 0.877698, F1-weighted= 0.874269
+  [TIME] 139s (python) | 108s (total)
+<<< [STEP 43]
+
+
+>>> [STEP 44]
+  [TRAIN] CE Loss: 0.137015 | PSL Grad: 0.002565
+  [VALID] Acc= 0.874101, F1-weighted= 0.872763
+  [TIME] 139s (python) | 107s (total)
+<<< [STEP 44]
+
+
+>>> [STEP 45]
+  [TRAIN] CE Loss: 0.133026 | PSL Grad: 0.002454
+  [VALID] Acc= 0.872902, F1-weighted= 0.873016
+  [TIME] 138s (python) | 107s (total)
+<<< [STEP 45]
+
+
+>>> [STEP 46]
+  [TRAIN] CE Loss: 0.130362 | PSL Grad: 0.002357
+  [VALID] Acc= 0.870504, F1-weighted= 0.871766
+  [TIME] 138s (python) | 108s (total)
+<<< [STEP 46]
+
+
+>>> [STEP 47]
+  [TRAIN] CE Loss: 0.129633 | PSL Grad: 0.002259
+  [VALID] Acc= 0.868106, F1-weighted= 0.871480
+  [TIME] 139s (python) | 108s (total)
+<<< [STEP 47]
+
+
+>>> [STEP 48]
+  [TRAIN] CE Loss: 0.124905 | PSL Grad: 0.002146
+  [VALID] Acc= 0.865108, F1-weighted= 0.868715
+  [TIME] 138s (python) | 106s (total)
+<<< [STEP 48]
+
+
+>>> [STEP 49]
+  [TRAIN] CE Loss: 0.120376 | PSL Grad: 0.002027
+  [VALID] Acc= 0.862110, F1-weighted= 0.867444
+  [TIME] 139s (python) | 106s (total)
+<<< [STEP 49]
+
+
+>>> [STEP 50]
+  [TRAIN] CE Loss: 0.117370 | PSL Grad: 0.001921
+  [VALID] Acc= 0.860911, F1-weighted= 0.867717
+  [TIME] 139s (python) | 105s (total)
+<<< [STEP 50]
+
+
+>>> [STEP 51]
+  [TRAIN] CE Loss: 0.112174 | PSL Grad: 0.001829
+  [VALID] Acc= 0.859113, F1-weighted= 0.865953
+  [TIME] 138s (python) | 105s (total)
+<<< [STEP 51]
+
+
+>>> [STEP 52]
+  [TRAIN] CE Loss: 0.108511 | PSL Grad: 0.001751
+  [VALID] Acc= 0.854317, F1-weighted= 0.864091
+  [TIME] 139s (python) | 106s (total)
+<<< [STEP 52]
+
+Saved checkpoint to ../../results/MATRES/checkpoint.pt (step=52, fit_call_count=52)

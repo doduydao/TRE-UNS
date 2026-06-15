@@ -1,0 +1,87 @@
+{
+    "options": {
+        "runtime.db.intids": true,
+        "predicate.deep.python.port": 12348,
+        "runtime.log.level": "DEBUG",
+        "runtime.learn.method": "Energy",
+        "categoricalevaluator.defaultpredicate": "Rel",
+        "runtime.validation.validatetargets": true,
+        "admmreasoner.computeperiod": 100,
+        "admmreasoner.epsilonabs": 1.0e-6,
+        "admmreasoner.epsilonrel": 1.0e-4,
+        "admmreasoner.maxiterations": 1000,
+        "admmreasoner.stepsize": 1.0,
+        "gradientdescent.numsteps": 50,
+        "gradientdescent.runfulliterations": true,
+        "gradientdescent.stepsize": 1.0e-2,
+        "atomstore.storeallatoms": true,
+        "pam.throw": false
+    },
+    "rules": [
+        "1.0: Neural(E1, E2, Label) = Rel(E1, E2, Label) ^2",
+        "Rel(E1, E2, +Label) = 1 .",
+        "1.0: Rel(A, B, '0') -> Rel(B, A, '1') ^2",
+        "1.0: Rel(A, B, '1') -> Rel(B, A, '0') ^2",
+        "1.0: Rel(A, B, '4') -> Rel(B, A, '4') ^2",
+        "1.0: Rel(A, B, '2') -> Rel(B, A, '3') ^2",
+        "1.0: Rel(A, B, '3') -> Rel(B, A, '2') ^2",
+        "1.0: Rel(A, B, '0') & Rel(B, C, '0') -> Rel(A, C, '0') ^2",
+        "1.0: Rel(A, B, '1') & Rel(B, C, '1') -> Rel(A, C, '1') ^2",
+        "1.0: Rel(A, B, '0') & Rel(B, C, '4') -> Rel(A, C, '0') ^2",
+        "1.0: Rel(A, B, '4') & Rel(B, C, '0') -> Rel(A, C, '0') ^2",
+        "1.0: Rel(A, B, '1') & Rel(B, C, '4') -> Rel(A, C, '1') ^2",
+        "1.0: Rel(A, B, '4') & Rel(B, C, '1') -> Rel(A, C, '1') ^2",
+        "1.0: Rel(A, B, '4') & Rel(B, C, '4') -> Rel(A, C, '4') ^2"
+    ],
+    "predicates": {
+        "Neural/3": {
+            "type": "DeepPredicate",
+            "options": {
+                "model-path": "../scripts/neupsl-model.py::TREModel",
+                "class-size": 5,
+                "batch-size": 128,
+                "entity-data-map-path": "../data/entity-data-map.txt",
+                "entity-argument-indexes": "0,1",
+                "save-path": "../../results/TBD",
+                "cache-path": "/data/ddao/TRE/pretrained_models/Reasoning/TBD/cache/",
+                "freeze-bert": "false",
+                "simple-learning-rate": 1.0e-4,
+                "smoothed-learning-rate": 1.0e-4
+            },
+            "targets": {
+                "learn": [
+                    "../data/category-target-train.txt"
+                ],
+                "validation": [
+                    "../data/category-target-valid.txt"
+                ]
+            }
+        },
+        "Rel/3": {
+            "evaluations": [
+                {
+                    "evaluator": "CategoricalEvaluator",
+                    "options": {
+                        "categoricalevaluator.categoryindexes": 2
+                    }
+                }
+            ],
+            "targets": {
+                "learn": [
+                    "../data/category-target-train.txt"
+                ],
+                "validation": [
+                    "../data/category-target-valid.txt"
+                ]
+            },
+            "truth": {
+                "learn": [
+                    "../data/category-truth-train.txt"
+                ],
+                "validation": [
+                    "../data/category-truth-valid.txt"
+                ]
+            }
+        }
+    }
+}

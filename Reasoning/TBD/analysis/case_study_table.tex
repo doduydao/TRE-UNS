@@ -1,0 +1,49 @@
+% Requires in preamble:
+% \usepackage{graphicx}
+% \usepackage{subcaption}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{TBD_old/analysis/case_study_triplet_panel.png}
+\caption{Probability trajectories across reasoning steps for all three relations in triplet $(e6,e14,e15)$ (document \texttt{APW19980227.0489}). Each line is one label probability over steps $t=0,1,5,10,50,100,1000$. GT labels: $(e6,e14){=}\mathrm{AFTER}$, $(e14,e15){=}\mathrm{IS\_INCLUDED}$, $(e6,e15){=}\mathrm{AFTER}$.}
+\label{fig:case-study-panel}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\begin{subfigure}{0.32\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{TBD_old/analysis/case_study_triplet_e6_e14.png}
+	\caption{$(e6,e14)$}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.32\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{TBD_old/analysis/case_study_triplet_e14_e15.png}
+	\caption{$(e14,e15)$}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.32\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{TBD_old/analysis/case_study_triplet_e6_e15.png}
+	\caption{$(e6,e15)$ conclusion pair}
+\end{subfigure}
+\caption{Per-pair distribution shifts. Pred trajectory of conclusion pair $(e6,e15)$: VAGUE at $t=0,1,5,10$ (incorrect), AFTER at $t=50,100$ (correct), then VAGUE at $t=1000$.}
+\label{fig:case-study-triplet}
+\end{figure*}
+
+\begin{table*}[t]
+\centering
+\small
+\caption{GT vs Pred summary for case-study triplet $(e6,e14,e15)$ in \texttt{APW19980227.0489}.}
+\label{tab:gt-pred-case-study}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Pair} & \textbf{GT} & \textbf{Pred (top-1 over steps $t=0,1,5,10,50,100,1000$)} \\
+\midrule
+$(e6,e14)$ & AFTER & AFTER, AFTER, AFTER, AFTER, AFTER, AFTER, AFTER \\
+$(e14,e15)$ & IS\_INCLUDED & AFTER, AFTER, AFTER, AFTER, AFTER, VAGUE, VAGUE \\
+$(e6,e15)$ (conclusion) & AFTER & VAGUE, VAGUE, VAGUE, VAGUE, AFTER, AFTER, VAGUE \\
+\bottomrule
+\end{tabular}
+\end{table*}
