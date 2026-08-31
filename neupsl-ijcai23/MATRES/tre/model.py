@@ -4,11 +4,11 @@ from transformers import AutoModel, AutoConfig
 
 # ===================== Pooling helpers =====================
 def pool_entity_emb(X, marks):
-    """Pool entity embedding trên token-level: X=[B,L,H], marks=[B,L] or [B,1,L]."""
+    """Pool entity embeddings at the token level: X=[B,L,H], marks=[B,L] or [B,1,L]."""
     if marks.dim() == 2:
         marks = marks.unsqueeze(1)
     elif marks.dim() == 3 and marks.size(1) != 1:
-        raise ValueError(f"marks phải [B,L] hoặc [B,1,L], hiện tại={marks.shape}")
+        raise ValueError(f"marks must be [B,L] or [B,1,L], current={marks.shape}")
 
     marks = marks.float()                    # [B,1,L]
     mask_sum = marks.sum(dim=2, keepdim=True).clamp(min=1e-6)

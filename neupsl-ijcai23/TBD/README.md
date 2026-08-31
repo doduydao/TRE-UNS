@@ -1,13 +1,13 @@
-# MATRES - NeuPSL
+# TBD - NeuPSL
 
-This folder contains the configuration and data for the MATRES experiment in the NeuPSL suite.
+This folder contains the configuration and data for the TBD experiment in the NeuPSL suite.
 
 ## Structure
 
 ```text
-MATRES/
+TBD/
 ├── cli/        # PSL entrypoint and config
-├── data/       # MATRES splits and mappings
+├── data/       # TBD splits and mappings
 ├── scripts/    # Train / evaluate / generate scripts
 └── tre/        # Neural source, data loader, and model
 ```
@@ -28,7 +28,7 @@ python -m pip install -r requirements.txt
 Run from the experiment directory:
 
 ```bash
-cd MATRES/cli
+cd TBD/cli
 ./run.sh
 ```
 
@@ -36,13 +36,13 @@ Or use the wrapper at the root:
 
 ```bash
 cd ..
-./scripts/run.sh MATRES
+./scripts/run.sh TBD
 ```
 
-Results are written to `results/MATRES/`.
+Results are written to `results/TBD/`.
 
 ## Notes
 
-- `tre/model.py` defines the neural module.
-- `tre/data.py` and `tre/doc_utils.py` handle input and document-level features.
-- `scripts/generate_psl_data_v2.py` generates data for PSL.
+- `tre/model.py` is the neural model for TBD.
+- `scripts/generate_psl_data_v2.py` and `scripts/evaluate_test.py` support the PSL pipeline.
+- `scripts/setup_symlinks.sh` helps create local symlinks when needed.

@@ -151,7 +151,7 @@ def evaluate_tempeval3(gold_relations, pred_relations, use_fast=True):
     n_pred_closure = len(pred_closure)
     n_gold_closure = len(gold_closure)
 
-    # intersection logic per Sun et al. (2013a)
+    # Intersection logic following Sun et al. (2013a)
     pred_verify = set(pred_relations) & gold_closure
     gold_verify = set(gold_relations) & pred_closure
 

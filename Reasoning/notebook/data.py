@@ -17,19 +17,19 @@ warnings.filterwarnings("ignore", category=UndefinedMetricWarning)
 
 os.environ["TOKENIZERS_PARALLELISM"] = "true"
 # ==============================
-# 1. Helper: tìm token spaCy theo char
+# 1. Helper: find the spaCy token for a character offset
 # ==============================
 
 def get_token_for_char(tokens, char_idx):
     """
-    tokens: spaCy Doc (hoặc list token có thuộc tính .idx)
-    char_idx: vị trí ký tự trong text gốc
+    tokens: spaCy Doc (or a token list with an .idx attribute)
+    char_idx: character offset in the original text
 
-    Trả về:
-        (token_index, token) sao cho:
-        - nếu char nằm đúng tại token.idx -> token đó
-        - nếu char nằm giữa 2 token -> token phía trước
-        - nếu vượt cuối -> token cuối cùng
+    Returns:
+        (token_index, token) such that:
+        - if the character lands exactly on token.idx -> that token
+        - if the character falls between two tokens -> the previous token
+        - if it is past the end -> the last token
     """
     for i, token in enumerate(tokens):
         if char_idx > token.idx:
@@ -42,17 +42,17 @@ def get_token_for_char(tokens, char_idx):
 
 
 # ==============================
-# 2. Cắt window context theo token
+# 2. Slice a token-based context window
 # ==============================
 
 def get_context_by_window(text, doc, e1_start, e1_end, e2_start, e2_end, ws=None):
     """
-    text: văn bản gốc (string)
-    doc : spaCy Doc (đã tokenize)
-    e1_start, e1_end, e2_start, e2_end: char offset của E1, E2 trên text gốc
-    ws  : window size theo SỐ TOKEN (spaCy). Nếu None -> giữ nguyên (không cắt).
+    text: original text (string)
+    doc : spaCy Doc (already tokenized)
+    e1_start, e1_end, e2_start, e2_end: character offsets of E1 and E2 in the original text
+    ws  : window size in TOKEN count (spaCy). If None -> keep the full text (no trimming).
 
-    Trả về:
+    Returns:
         context_text,
         (e1_start_ctx, e1_end_ctx, e2_start_ctx, e2_end_ctx) theo context_text
     """
@@ -62,22 +62,22 @@ def get_context_by_window(text, doc, e1_start, e1_end, e2_start, e2_end, ws=None
     if ws is None:
         ws = num_tokens
 
-    # khoảng bao trùm entity theo char
+    # character span covering the entities
     start = min(e1_start, e2_start)
     end = max(e1_end, e2_end)
 
     start_token, _ = get_token_for_char(tokens, start)
     end_token, _ = get_token_for_char(tokens, end)
 
-    # Nếu 2 entity cách nhau quá xa theo số token
+    # If the two entities are too far apart in token count
     if end_token - start_token > ws:
-        window = ws // 4  # mỗi bên lấy ws/4 quanh entity
+        window = ws // 4  # take ws/4 around each entity
 
-        # Window cho E1 (thực ra là entity đứng trước)
+        # Window for E1 (the earlier entity)
         start_1_token = max(0, start_token - window)
         end_1_token = min(start_token + window, num_tokens - 1)
 
-        # Window cho E2 (entity đứng sau)
+        # Window for E2 (the later entity)
         start_2_token = max(0, end_token - window)
         end_2_token = min(end_token + window, num_tokens - 1)
 
@@ -90,30 +90,30 @@ def get_context_by_window(text, doc, e1_start, e1_end, e2_start, e2_end, ws=None
         text_1 = text[start_1:end_1]
         text_2 = text[start_2:end_2]
 
-        # phần giữa bị bỏ (chỉ còn làm tham chiếu để chỉnh offset)
+        # the middle segment is dropped (kept only as a reference for offset adjustment)
         mid = text[end_1:start_2]
 
-        # context ghép 2 đoạn với newline
+        # context joins the two spans with a newline
         context = "\n".join([text_1, text_2])
 
-        # Điều chỉnh offset E1/E2 sang context
-        # Case 1: (e1 nằm trong [start_1, end_1]) & (e2 trong [start_2, end_2])
+        # Adjust E1/E2 offsets into the context
+        # Case 1: (e1 is inside [start_1, end_1]) and (e2 is inside [start_2, end_2])
         if start_1 <= e1_start and e1_end <= end_1:
-            # E1 trong đoạn 1
+            # E1 is in segment 1
             e1_start_ctx = e1_start - start_1
             e1_end_ctx = e1_end - start_1
 
-            # E2 trong đoạn 2
+            # E2 is in segment 2
             # context = text_1 + "\n" + text_2
-            # độ dài phần nối giữa start_1 và start_2 trong text gốc: mid
-            # nhưng trong context, đoạn 2 bắt đầu tại len(text_1) + 1
-            # ta giữ cách tính gần với code gốc:
-            shift_2 = (end_1 - start_1) + 1  # len(text_1) + 1 cho "\n"
+            # length of the gap between start_1 and start_2 in the original text: mid
+            # but in the context, segment 2 starts at len(text_1) + 1
+            # keep the computation close to the original code:
+            shift_2 = (end_1 - start_1) + 1  # len(text_1) + 1 for "\n"
             e2_start_ctx = shift_2 + (e2_start - start_2)
             e2_end_ctx = shift_2 + (e2_end - start_2)
         else:
-            # Case 2: E1 ở đoạn 2, E2 ở đoạn 1
-            # Hoán đổi logic (giữ đúng thứ tự index)
+            # Case 2: E1 is in segment 2, E2 is in segment 1
+            # Swap the logic while preserving index order
             e2_start_ctx = e2_start - start_1
             e2_end_ctx = e2_end - start_1
 
@@ -124,8 +124,8 @@ def get_context_by_window(text, doc, e1_start, e1_end, e2_start, e2_end, ws=None
         return context, (e1_start_ctx, e1_end_ctx, e2_start_ctx, e2_end_ctx)
 
     else:
-        # 2 entity đủ gần, cắt 1 window bao chung
-        # đảm bảo window không nhỏ hơn khoảng entity
+        # The two entities are close enough, so slice one shared window
+        # ensure the window is not smaller than the entity span
         window = max(0, (ws - (end_token - start_token)) // 2)
 
         start_token_ctx = max(0, start_token - window)
@@ -145,20 +145,20 @@ def get_context_by_window(text, doc, e1_start, e1_end, e2_start, e2_end, ws=None
 
 
 # ==============================
-# 3. Chèn tag [E1], [E2]
+# 3. Insert the [E1], [E2] tags
 # ==============================
 
 def add_event_tokens(text, span):
     """
-    text: context đã cắt
-    span: (event1_start, event1_end, event2_start, event2_end) theo context
+    text: trimmed context
+    span: (event1_start, event1_end, event2_start, event2_end) in the context
     """
     event1_start, event1_end, event2_start, event2_end = span
 
     tag_start1, tag_start2 = " [E1] ", " [E2] "
     tag_end1, tag_end2 = " [/E1] ", " [/E2] "
 
-    # Đảm bảo event1 là entity đứng trước trong context
+    # Ensure event1 is the earlier entity in the context
     if event1_start > event2_start and event1_end > event2_start:
         event1_start, event1_end, event2_start, event2_end = (
             event2_start, event2_end, event1_start, event1_end
@@ -166,7 +166,7 @@ def add_event_tokens(text, span):
         tag_start1, tag_start2 = tag_start2, tag_start1
         tag_end1, tag_end2 = tag_end2, tag_end1
 
-    # Chèn từ phải sang trái để không làm lệch offset phía trước
+    # Insert from right to left so earlier offsets are not shifted
     text = text[:event2_end] + tag_end2 + text[event2_end:]
     text = text[:event2_start] + tag_start2 + text[event2_start:]
     text = text[:event1_end] + tag_end1 + text[event1_end:]
@@ -176,7 +176,7 @@ def add_event_tokens(text, span):
 
 
 # ==============================
-# 4. Tạo marked_text cho từng sample
+# 4. Build marked_text for each sample
 # ==============================
 
 def create_marked_text_from_doc(
@@ -184,8 +184,8 @@ def create_marked_text_from_doc(
     e1_text, e2_text, document_id, ws
 ):
     """
-    Tạo context window quanh 2 entity, chèn [E1]/[E2],
-    và kiểm tra lại bằng string để đảm bảo entity đúng.
+    Build a context window around the two entities, insert [E1]/[E2],
+    and verify with string matching that the entities are correct.
     """
     context, span = get_context_by_window(
         text, doc, e1_start, e1_end, e2_start, e2_end, ws
@@ -205,16 +205,16 @@ def create_marked_text_from_doc(
 
 
 # ==============================
-# 5. Chuyển input_ids -> word_pieces
+# 5. Convert input_ids -> word_pieces
 # ==============================
 
 def group_words_fast(enc, tokenizer):
     """
-    enc: output từ tokenizer (batch)
+    enc: tokenizer output (batch)
     tokenizer: HuggingFace tokenizer
 
-    Trả về:
-        word_pieces_all: list[B] mỗi phần tử là list token string
+    Returns:
+        word_pieces_all: list[B], each element is a list of token strings
     """
     input_ids = enc["input_ids"]
     B, L = input_ids.shape
@@ -232,7 +232,7 @@ def group_words_fast(enc, tokenizer):
             if wp in ("[PAD]", "<pad>"):
                 break
             if is_roberta:
-                # Xử lý prefix roberta/phobert
+                # Handle the roberta/phobert prefix
                 wp = (
                     wp.replace("Ġ", " ")
                       .replace("Ċ", "\n")
@@ -248,14 +248,14 @@ def group_words_fast(enc, tokenizer):
 
 
 # ==============================
-# 6. spaCy trên marked_text để lấy từ + vị trí marker
+# 6. Run spaCy on marked_text to extract words and marker positions
 # ==============================
 
 def process_docs_spacy_all(docs_spacy_all):
     """
-    docs_spacy_all: list spaCy Doc, mỗi doc là 1 marked_text (đã có [E1]/[E2])
+    docs_spacy_all: list of spaCy Docs, each one is a marked_text (already containing [E1]/[E2])
 
-    Trả về:
+    Returns:
         words_spacy_all: [B][num_words] dict token info
         words_text_all : [B][num_words] string token
         e1s_ids_all    : [B] index token "[E1]"
@@ -273,7 +273,7 @@ def process_docs_spacy_all(docs_spacy_all):
     for doc_spacy in docs_spacy_all:
         doc_clean = []
         for tok in doc_spacy:
-            # bỏ token space rỗng
+            # drop empty space tokens
             if tok.text.strip() == "":
                 continue
             doc_clean.append({
@@ -317,7 +317,7 @@ def process_docs_spacy_all(docs_spacy_all):
 
 
 # ==============================
-# 7. Tạo word_marks, e1_marks, e2_marks (dùng spacy_alignments)
+# 7. Build word_marks, e1_marks, e2_marks (using spacy_alignments)
 # ==============================
 
 def mark(
@@ -328,8 +328,8 @@ def mark(
     e2s_ids_all,
     e2e_ids_all,
     B,  # batch size
-    M,  # max số word (spaCy)
-    L,  # max số wordpiece
+    M,  # max number of words (spaCy)
+    L,  # max number of wordpieces
 ):
     """
     word_pieces_all: [B][T_subword]
@@ -351,12 +351,12 @@ def mark(
             e2e_ids_all,
         )
     ):
-        # ALIGN BERT subword ↔ spaCy word bằng spacy_alignments
+        # Align BERT subwords ↔ spaCy words using spacy_alignments
         # a2b[sub_idx] = list[word_idx]
         # b2a[word_idx] = list[sub_idx]
         a2b, b2a = tokenizations.get_alignments(wp, wt)
 
-        # word_marks: đánh cho dữ liệu word-level (trừ marker)
+        # word_marks: mark the word-level data (excluding markers)
         for w_idx, sub_ids in enumerate(b2a):
             if w_idx >= M:
                 break
@@ -366,12 +366,12 @@ def mark(
                 continue
             word_marks[i, w_idx, sub_ids] = 1
 
-        # e1_marks: union subword của từ nằm giữa [E1] và [/E1]
+        # e1_marks: union of subwords for words inside [E1] and [/E1]
         e1_ids = [idx for ids in b2a[e1s + 1 : e1e] for idx in ids]
         if e1_ids:
             e1_marks[i, 0, e1_ids] = 1
 
-        # e2_marks: union subword của từ nằm giữa [E2] và [/E2]
+        # e2_marks: union of subwords for words inside [E2] and [/E2]
         e2_ids = [idx for ids in b2a[e2s + 1 : e2e] for idx in ids]
         if e2_ids:
             e2_marks[i, 0, e2_ids] = 1
@@ -380,7 +380,7 @@ def mark(
 
 
 # ==============================
-# 8. Hàm build cache: spaCy + token + mark
+# 8. Cache builder: spaCy + token + marks
 # ==============================
 
 def build_spacy_and_token_cache(
@@ -395,13 +395,13 @@ def build_spacy_and_token_cache(
     n_process=1,
 ):
     """
-    df: DataFrame có các cột:
+    df: DataFrame with the following columns:
         - text
         - label_encoded
         - entity1_start, entity1_end, entity2_start, entity2_end
         - entity1_text, entity2_text
         - entity1_id, entity2_id, document_id
-        - entity1_type, entity2_type   <-- MỚI
+        - entity1_type, entity2_type   <-- NEW
     """
     TYPE2ID = {
         'UNKNOWN': 0, 'OCCURRENCE': 1, 'TREATMENT': 2, 'TEST': 3, 'DURATION': 4,
@@ -409,19 +409,19 @@ def build_spacy_and_token_cache(
     }
     t0 = time.time()
 
-    # Cố định uid
+    # Fix the uid
     df = df.reset_index(drop=False).rename(columns={"index": "uid"})
 
     uids = df["uid"].tolist()
     texts = df["text"].tolist()
     labels_all = torch.tensor(df["label_encoded"].tolist(), dtype=torch.long)
 
-    # 1) spaCy trên raw text (để lấy char offset chính xác)
+    # 1) Run spaCy on the raw text (to obtain exact character offsets)
     print("spaCy processing raw texts...")
     docs_raw = list(spacy_nlp.pipe(texts, batch_size=batch_size, n_process=n_process))
     print("Done spaCy on raw texts.")
 
-    # 2) Tạo marked_texts + filter sample lỗi
+    # 2) Build marked_texts + filter out invalid samples
     print("Creating marked texts...")
     kept_uids = []
     kept_labels = []
@@ -429,8 +429,8 @@ def build_spacy_and_token_cache(
     kept_e1_ids = []
     kept_e2_ids = []
     kept_doc_ids = []
-    kept_e1_type_ids = []   # id đã mapping
-    kept_e2_type_ids = []   # id đã mapping
+    kept_e1_type_ids = []   # mapped ids
+    kept_e2_type_ids = []   # mapped ids
 
     for (
         uid,
@@ -479,7 +479,7 @@ def build_spacy_and_token_cache(
         )
 
         if marked == "Error":
-            # bỏ sample này, tránh phá align
+            # drop this sample to avoid breaking alignment
             continue
 
         kept_uids.append(int(uid))
@@ -489,7 +489,7 @@ def build_spacy_and_token_cache(
         kept_e2_ids.append(ent2_id)
         kept_doc_ids.append(docid)
 
-        # --- mapping type string -> id trước khi lưu ---
+        # --- map type strings to ids before saving ---
         t1 = str(ent1_type_str) if ent1_type_str is not None else "UNKNOWN"
         t2 = str(ent2_type_str) if ent2_type_str is not None else "UNKNOWN"
         kept_e1_type_ids.append(TYPE2ID.get(t1, TYPE2ID["UNKNOWN"]))
@@ -515,10 +515,10 @@ def build_spacy_and_token_cache(
         return_attention_mask=True,
     )
 
-    # 4) Chuyển input_ids -> word_pieces
+    # 4) Convert input_ids -> word_pieces
     word_pieces_all = group_words_fast(enc, tokenizer)
 
-    # 5) spaCy trên marked_text (lần 2)
+    # 5) Run spaCy on marked_text (second pass)
     print("spaCy processing marked texts...")
     docs_spacy_all = list(
         spacy_nlp.pipe(
@@ -536,7 +536,7 @@ def build_spacy_and_token_cache(
         e2e_ids_all,
     ) = process_docs_spacy_all(docs_spacy_all)
 
-    # 6) Tạo word_marks, e1_marks, e2_marks
+    # 6) Build word_marks, e1_marks, e2_marks
     B, L = enc["input_ids"].shape
     M = max(len(ws) for ws in words_spacy_all)
 
@@ -552,7 +552,7 @@ def build_spacy_and_token_cache(
         L,
     )
 
-    # 7) Ghi jsonl metadata (lưu thêm type string cho dễ debug, optional)
+    # 7) Write jsonl metadata (store type strings as an optional debug aid)
     with open(jsonl_path, "wb") as f:
         for uid, e1_id, e2_id, doc_id, marked_text, words_by_spacy, e1_type_id, e2_type_id in zip(
             kept_uids,
@@ -584,7 +584,7 @@ def build_spacy_and_token_cache(
         "window_size": window_size,
         "num_samples": len(kept_uids),
         "spacy_pipeline": [p for p, _ in spacy_nlp.pipeline],
-        "type2id": TYPE2ID,   # lưu lại mapping để reference
+        "type2id": TYPE2ID,   # keep the mapping for reference
     }
 
     torch.save(
@@ -610,11 +610,11 @@ def build_spacy_and_token_cache(
 
 def load_cached_dataset(token_pt_path, jsonl_path):
     """
-    Load cache sinh bởi build_spacy_and_token_cache.
+    Load the cache generated by build_spacy_and_token_cache.
 
-    ĐẢM BẢO:
-      1) Thứ tự ban đầu được khôi phục theo uid_order (index trong .pt)
-      2) Sau đó SẮP XẾP global theo doc_ids (sorted by doc_id)
+    ENSURE:
+      1) The original order is restored via uid_order (the index in the .pt file)
+      2) Then globally sort by doc_ids (sorted by doc_id)
     """
 
     def _jsonl_iter(path):
@@ -624,19 +624,19 @@ def load_cached_dataset(token_pt_path, jsonl_path):
                 if line:
                     yield json.loads(line)
 
-    # ===================== 1. Load từ .pt =====================
+    # ===================== 1. Load from .pt =====================
     data = torch.load(token_pt_path, map_location="cpu", weights_only=False)
 
     input_ids      = data["input_ids"]              # [N,L]
     attention_mask = data["attention_mask"]         # [N,L]
-    e1_marks       = data["e1_marks"]               # [N,1,L] hoặc [N,L]
-    e2_marks       = data["e2_marks"]               # [N,1,L] hoặc [N,L]
+    e1_marks       = data["e1_marks"]               # [N,1,L] or [N,L]
+    e2_marks       = data["e2_marks"]               # [N,1,L] or [N,L]
     word_marks     = data.get("word_marks", None)   # [N,Wmax,L]
     labels         = data.get("labels", None)       # [N]
     indices        = data.get("index", None)        # [N]
     metadata       = data.get("metadata", {})
-    e1_type_ids       = data.get("e1_type_ids", None)     # [N] hoặc None (nếu cache cũ)
-    e2_type_ids       = data.get("e2_type_ids", None)     # [N] hoặc None
+    e1_type_ids       = data.get("e1_type_ids", None)     # [N] or None (if using an older cache)
+    e2_type_ids       = data.get("e2_type_ids", None)     # [N] or None
 
     N = input_ids.size(0)
 
@@ -645,7 +645,7 @@ def load_cached_dataset(token_pt_path, jsonl_path):
     for obj in _jsonl_iter(jsonl_path):
         uid2rec[int(obj["uid"])] = obj
 
-    # ===================== 3. Lấy thứ tự uid theo .pt =====================
+    # ===================== 3. Recover uid order from the .pt file =====================
     if indices is not None:
         if torch.is_tensor(indices):
             uid_order = indices.tolist()
@@ -697,8 +697,8 @@ def load_cached_dataset(token_pt_path, jsonl_path):
         "e2_marks":       e2_marks,
         "word_marks":     word_marks,
         "labels":         labels,
-        "e1_type_ids":       e1_type_ids,   # [N] hoặc None
-        "e2_type_ids":       e2_type_ids,   # [N] hoặc None
+        "e1_type_ids":       e1_type_ids,   # [N] or None
+        "e2_type_ids":       e2_type_ids,   # [N] or None
         "e1_ids":         e1_ids,
         "e2_ids":         e2_ids,
         "doc_ids":        doc_ids,
@@ -710,9 +710,9 @@ def load_cached_dataset(token_pt_path, jsonl_path):
 
 class TRECachedDataset(Dataset):
     """
-    Dataset đọc từ cache .pt và JSONL.
+    Dataset loaded from .pt and JSONL caches.
 
-    - Thứ tự global của mẫu đã được sort theo doc_id trong load_cached_dataset.
+    - The global sample order has already been sorted by doc_id in load_cached_dataset.
     """
 
     def __init__(self, token_cache_path, spacy_jsonl_path):
@@ -720,11 +720,11 @@ class TRECachedDataset(Dataset):
 
         self.input_ids   = cached["input_ids"]          # [N,L]
         self.attn_mask   = cached["attention_mask"]     # [N,L]
-        self.e1_marks    = cached["e1_marks"]           # [N,1,L] hoặc [N,L]
-        self.e2_marks    = cached["e2_marks"]           # [N,1,L] hoặc [N,L]
+        self.e1_marks    = cached["e1_marks"]           # [N,1,L] or [N,L]
+        self.e2_marks    = cached["e2_marks"]           # [N,1,L] or [N,L]
         self.word_marks  = cached["word_marks"]         # [N,Wmax,L]
-        self.labels      = cached["labels"]             # [N] (có thể None)
-        self.e1_type_ids    = cached["e1_type_ids"]           # [N] (id), có thể None nếu cache cũ
+        self.labels      = cached["labels"]             # [N] (may be None)
+        self.e1_type_ids    = cached["e1_type_ids"]           # [N] (id), may be None if using an older cache
         self.e2_type_ids    = cached["e2_type_ids"]           # [N]
         self.e1_ids      = cached["e1_ids"]             # list length N
         self.e2_ids      = cached["e2_ids"]             # list length N
@@ -756,10 +756,10 @@ class TRECachedDataset(Dataset):
 def tre_collate_cached(batch):
     """
     Collate function:
-      - Sort lại các sample trong batch theo doc_ids.
-      - Sau đó stack tensor.
+      - Re-sort the samples in the batch by doc_ids.
+      - Then stack the tensors.
     """
-    # sort batch theo doc_ids trong batch
+    # Sort the batch by doc_ids.
     batch_sorted = sorted(batch, key=lambda b: str(b["doc_ids"]))
 
     return {
@@ -787,17 +787,17 @@ def create_dataloader(token_cache_path,
                       num_workers=0,
                       pin_memory=False):
     """
-    Tạo DataLoader:
+    Create the DataLoader:
 
-    - Dataset đã sort global theo doc_id.
-    - Mỗi batch khi collate sẽ sort lại theo doc_id trong batch.
+    - The dataset is globally sorted by doc_id.
+    - Each batch is re-sorted by doc_id during collation.
     """
     ds = TRECachedDataset(token_cache_path, spacy_jsonl_path)
 
     return DataLoader(
         ds,
         batch_size=batch_size,
-        shuffle=shuffle,          # nếu muốn random doc thì bật True
+        shuffle=shuffle,          # set True to randomize docs
         num_workers=num_workers,
         collate_fn=tre_collate_cached,
         pin_memory=pin_memory
@@ -813,10 +813,10 @@ def loadi2b2():
     train_df = pd.read_csv(data_train_path)
     test_df = pd.read_csv(data_test_path)
     
-    # Mã hóa nhãn
+    # Encode labels
     label_encoder = LabelEncoder()
     train_df['label_encoded'] = label_encoder.fit_transform(train_df['label'])
-    test_df['label_encoded'] = label_encoder.transform(test_df['label'])  # Ánh xạ giống tập huấn luyện
+    test_df['label_encoded'] = label_encoder.transform(test_df['label'])  # Use the same mapping as the training set
 
     num_classes = len(label_encoder.classes_)
     label_mapping = dict(zip(label_encoder.classes_, label_encoder.transform(label_encoder.classes_)))
@@ -849,10 +849,10 @@ def loadMATRES():
     test_df['entity1_type'] = 'UNKNOWN'
     test_df['entity2_type'] = 'UNKNOWN'
     
-    # Mã hóa nhãn
+    # Encode labels
     label_encoder = LabelEncoder()
     train_df['label_encoded'] = label_encoder.fit_transform(train_df['label'])
-    test_df['label_encoded'] = label_encoder.transform(test_df['label'])  # Ánh xạ giống tập huấn luyện
+    test_df['label_encoded'] = label_encoder.transform(test_df['label'])  # Use the same mapping as the training set
     num_classes = len(label_encoder.classes_)
     
     label_mapping = dict(zip(label_encoder.classes_, label_encoder.transform(label_encoder.classes_)))

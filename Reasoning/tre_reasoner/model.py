@@ -14,11 +14,11 @@ from reasoning_v2 import (
 
 # ===================== Pooling helpers =====================
 def pool_entity_emb(X, marks):
-    """Pool entity embedding trên token-level: X=[B,L,H], marks=[B,L] or [B,1,L]."""
+    """Pool entity embeddings at the token level: X=[B,L,H], marks=[B,L] or [B,1,L]."""
     if marks.dim() == 2:
         marks = marks.unsqueeze(1)
     elif marks.dim() == 3 and marks.size(1) != 1:
-        raise ValueError(f"marks phải [B,L] hoặc [B,1,L], hiện tại={marks.shape}")
+        raise ValueError(f"marks must be [B,L] or [B,1,L], current={marks.shape}")
 
     marks = marks.float()                    # [B,1,L]
     mask_sum = marks.sum(dim=2, keepdim=True).clamp(min=1e-6)
@@ -135,15 +135,15 @@ class TREPotential(nn.Module):
         # W: (B, W_len, H)
         Q = torch.cat([P, W], dim=1)
     
-        # key_padding_mask tương ứng:
-        # P -> 1 vị trí, không bị mask
-        # W -> dùng mask gốc
+        # Build the corresponding key_padding_mask:
+        # P -> one position, never masked
+        # W -> use the original word mask
         kpm = torch.cat([
-            torch.zeros(B, 1, dtype=torch.bool, device=W.device),  # cho P
-            word_padding                                     # cho W
+            torch.zeros(B, 1, dtype=torch.bool, device=W.device),  # for P
+            word_padding                                     # for W
         ], dim=1)
-    
-        P_att = None  # attention của P đến W
+
+        P_att = None  # attention from P to W
    
         for i, layer in enumerate(self.joint_layers):
             need_w = (i == len(self.joint_layers)-1)
@@ -151,8 +151,8 @@ class TREPotential(nn.Module):
     
             if need_w and attn is not None:
                 # attn shape: (B, num_heads, Q_len, Q_len)
-                # P là index 0, W bắt đầu từ index 1
-                P_att = attn[:, 0, 1:]  # attention từ P tới toàn bộ W
+                # P is index 0, W starts at index 1
+                P_att = attn[:, 0, 1:]  # attention from P to the entire W
     
         P_out =  Q[:, 0:1]
         W_out =  Q[:, 1:]
@@ -170,11 +170,11 @@ class TREPotential(nn.Module):
     @staticmethod
     def extract_topk_words(extras, words_spacy, topk=10):
         """
-        Từ extras sau inference, trích top-k word theo P_att
+        From extras after inference, extract the top-k words by P_att
 
         extras:
           - "P_att": [B,W]
-          - "word_mask": [B,W] hoặc None
+          - "word_mask": [B,W] or None
 
         return:
           topk_words_P: list[list[(idx, text, score)]]
@@ -190,7 +190,7 @@ class TREPotential(nn.Module):
             if isinstance(words_spacy, (list, tuple)) and b < len(words_spacy):
                 wlist = words_spacy[b]
 
-            # xác định word hợp lệ
+            # determine valid words
             if word_mask is not None:
                 valid_idx = torch.nonzero(word_mask[b], as_tuple=False).flatten().tolist()
             else:

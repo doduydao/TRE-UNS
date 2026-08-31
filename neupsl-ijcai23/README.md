@@ -1,55 +1,69 @@
-# Experiments for "NeuPSL: Neural Probabilistic Soft Logic" presented at IJCAI 2023
+# NeuPSL IJCAI 2023
 
-This repository covers the experiments for the paper [NeuPSL: Neural Probabilistic Soft Logic](https://linqs.org/publications/#id:pryor-ijcai23) presented at IJCAI 2023.
+This folder contains the reproducible experiments for the paper *NeuPSL: Neural Probabilistic Soft Logic*.
 
-```
-@article{pryor2023ijcai,
-    title       = {NeuPSL: Neural Probabilistic Soft Logic},
-    author      = {Connor Pryor* and
-                   Charles Dickens* and
-                   Eriq Augustine and
-                   Alon Albalak and
-                   William Yang Wang and,
-                   Lise Getoor},
-    booktitle   = {International Joint Conference on Artificial Intelligence (IJCAI)},
-    year        = {2023}
-}
+## Structure
+
+```text
+neupsl-ijcai23/
+├── MATRES/      # MATRES NeuPSL dataset/scripts
+├── TBD/         # TBD NeuPSL dataset/scripts
+├── scripts/     # Experiment wrappers and utility scripts
+├── results/     # Generated output
+├── requirements.txt
+└── README.md
 ```
 
+## Installation
 
+Requirements:
 
-## Requirements
-These experiments expect that you are running on a POSIX (Linux/Mac) system.
-The specific application dependencies are as follows:
- - Bash >= 4.0
- - Java >= 7
- - Python >= 3.7
+- Bash 4+
+- Java 7+
+- Python 3.7+
+- POSIX system such as Linux or macOS
 
-Additionally, specific Python3 dependencies to run the exact splits are provided in `requirements.txt`.
-If a different version of tensorflow is desired, please regenerate the data.
-To install all Python3 dependencies run:
+Install Python dependencies:
+
+```bash
+python -m pip install -r requirements.txt
 ```
-pip3 install -r ./requirements.txt
-```
 
-## NeuPSL Experiments
-To reproduce a NeuPSL experiment from the IJCAI 2023 paper simply run the following script:
-```
+## Usage
+
+Run NeuPSL for an experiment:
+
+```bash
 ./scripts/run.sh <experiment>
 ```
-where `<experiment>` may be one of:
- - `citation`: Citation network node classification
- - `mnist-addition`: MNIST-Add1 and MNIST-Add2 with overlap
- - `vspc`: Visual sudoku puzzle classification
 
-The `./scripts/run.sh` script will run NeuPSL on the specified experiment. 
-More specifically, it will run NeuPSL on every data setting used in the paper.
-To do this it will download the data if it does not exist.
-Moreover, `./scripts/run.sh` will call the `./<experiment>/cli/run.sh` file that fetchs the PSL `.jar` file from Maven central and uses it to run NeuPSL. 
+`<experiment>` currently supports:
 
-For individual experiments or to generate new data, please see the README in the corresponding experiment directory.
+- `citation`
+- `mnist-addition`
+- `vspc`
 
-## Baseline Experiments
-Baseline experiments are also provided in this repository. 
-To reproduce baseline results for each experiment run the corresponding run script in the `./<experiment>/other-methods/<baseline>/scripts` directory.
+This script will:
 
+- regenerate data if needed,
+- call `./<experiment>/cli/run.sh`,
+- download the PSL jar from Maven Central if needed,
+- write results to `results/<experiment>/`.
+
+## Baselines
+
+Baseline scripts live inside each experiment folder, following this pattern:
+
+```text
+./<experiment>/other-methods/<baseline>/scripts
+```
+
+## Paper
+
+```text
+@article{pryor2023ijcai,
+    title   = {NeuPSL: Neural Probabilistic Soft Logic},
+    booktitle = {International Joint Conference on Artificial Intelligence (IJCAI)},
+    year    = {2023}
+}
+```

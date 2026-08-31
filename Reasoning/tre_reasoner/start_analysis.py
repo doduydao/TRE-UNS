@@ -48,12 +48,12 @@ def calculate_consistency(df, vague_label='VAGUE'):
     sample_label = df['prediction'].iloc[0]
     is_numeric = isinstance(sample_label, (int, np.integer))
     
-    # Map to standard numeric for logic check
+    # Map to standard numeric values for logic checks
     # 0: AFTER, 1: BEFORE, 2: EQUAL, 3: VAGUE (MATRES Std)
     # I2B2: 0: BEFORE, 1: AFTER, 2: OVERLAP (Typical) -> Needs mapping
     
     # Naive mapping strategies
-    # Strategy: Build adjacency using raw labels, map only for transitivity logic
+    # Strategy: build adjacency using raw labels and map only for transitivity logic
     
     # MATRES Logic
     TRANSITIVITY_MATRES = {
@@ -73,7 +73,7 @@ def calculate_consistency(df, vague_label='VAGUE'):
         'VAGUE': 'VAGUE'
     }
     
-    # Use generic string logic if not numeric.
+    # Use generic string logic if the labels are not numeric.
     # If numeric, assume MATRES ID map (0:AFTER, 1:BEFORE, 2:EQUAL).
     
     doc_groups = df.groupby('doc_id')

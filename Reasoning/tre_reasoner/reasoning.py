@@ -24,13 +24,13 @@ def grad_reverse(x, alpha=1.0):
 
 
 # ============================================================
-# 1. DSL: Predicate, RuleTemplate, parser rules.txt
+# 1. DSL: Predicate, RuleTemplate, parser for rules.txt
 # ============================================================
 
 @dataclass
 class Predicate:
     """
-    Ví dụ:
+    Example:
         name = "Before", args = ["E1", "E2"]
         name = "Type",   args = ["E1", "PROBLEM"]
     """
@@ -42,9 +42,9 @@ class Predicate:
 @dataclass
 class RuleTemplate:
     """
-    Ví dụ:
+    Example:
         R1: Type(E1, PROBLEM) & Type(E2, TEST) & BeforeType(PROBLEM, TEST) => Before(E1, E2)
-        Có thể thêm [HARD] ở RHS để đánh dấu hard rule.
+        [HARD] can be added on the RHS to mark a hard rule.
     """
     name: str
     lhs: List[Predicate]
@@ -56,9 +56,7 @@ PRED_PATTERN = re.compile(r'\s*([!~]?)\s*([A-Za-z_][A-Za-z0-9_]*)\s*\((.*?)\)\s*
 
 
 def parse_predicate(text: str) -> Predicate:
-    """
-    Parse chuỗi: "Before(E1, E2)" -> Predicate("Before", ["E1","E2"])
-    """
+    """Parse a string like "Before(E1, E2)" into Predicate("Before", ["E1","E2"])."""
     m = PRED_PATTERN.match(text)
     if not m:
         raise ValueError(f"Cannot parse predicate: {text}")
@@ -73,7 +71,7 @@ def parse_predicate(text: str) -> Predicate:
 
 def parse_rule_line(line: str) -> Optional[RuleTemplate]:
     """
-    Parse line dạng:
+    Parse a line of the form:
         R1: A(E1,E2) & B(E2,E3) => C(E1,E3) [HARD]
     """
     if "#" in line:
@@ -96,7 +94,7 @@ def parse_rule_line(line: str) -> Optional[RuleTemplate]:
     lhs_parts = [p.strip() for p in lhs_str.split("&") if p.strip()]
     lhs_preds = [parse_predicate(p) for p in lhs_parts]
 
-    # Check for [HARD] tag in rhs
+    # Check for the [HARD] tag in the RHS
     is_hard = False
     if "[HARD]" in rhs_str:
         is_hard = True
@@ -120,7 +118,7 @@ def load_rule_file(path):
 
 
 # ============================================================
-# 2. TermSpec / CompiledRule cho vectorized reasoning
+# 2. TermSpec / CompiledRule for vectorized reasoning
 # ============================================================
 
 @dataclass
@@ -128,9 +126,9 @@ class TermSpec:
     """
     Representation of a term in a vectorized rule.
     source_type: 'M' (Relation) or 'T' (Type)
-    tensor_idx:  Index in M (relation id) or T (type id)
-    var_indices: List of global variable indices that this term uses.
-                 e.g. nếu global vars = [A, B, C], term P(A, C) => [0, 2].
+    tensor_idx: index in M (relation id) or T (type id)
+    var_indices: list of global variable indices used by this term.
+                 e.g. if global vars = [A, B, C], term P(A, C) => [0, 2].
     """
     source_type: str
     tensor_idx: int
@@ -141,11 +139,11 @@ class TermSpec:
 @dataclass
 class CompiledRule:
     """
-    Rule đã compile cho vectorized execution.
-    LHS: list các TermSpec
+    A rule compiled for vectorized execution.
+    LHS: list of TermSpecs
     RHS: 1 TermSpec
-    num_vars: số biến khác nhau trong rule
-    mask_indices: không dùng nữa (trong bản smooth HL-MRF), nhưng giữ để tương thích
+    num_vars: number of distinct variables in the rule
+    mask_indices: no longer used (in the smooth HL-MRF version), but kept for compatibility
     """
     rule_idx: int
     name: str
@@ -157,18 +155,18 @@ class CompiledRule:
 
 
 # ============================================================
-# 3. BatchedContext: thông tin cho một batch document
+# 3. BatchedContext: information for one batch of documents
 # ============================================================
 
 @dataclass
 class BatchedContext:
     """
-    Context cho cả batch, tối ưu cho vectorized computation.
+    Context for the full batch, optimized for vectorized computation.
 
-    scatter_indices: dùng để scatter Q -> M:
+    scatter_indices: used to scatter Q -> M:
         M[batch_idx, row, col] = Q[global_idx]
     T_mask: [B, N, num_types] (1-hot type)
-    entity_mask: [B, N] (1.0 = entity thật, 0.0 = padding)
+    entity_mask: [B, N] (1.0 = real entity, 0.0 = padding)
     """
     scatter_indices: Tuple[torch.Tensor, torch.Tensor, torch.Tensor]
     global_indices: torch.Tensor
@@ -180,7 +178,7 @@ class BatchedContext:
 
 
 # ============================================================
-# 4. Predicate Registry (placeholder, nếu muốn gắn thêm eval thủ công)
+# 4. Predicate Registry (placeholder, if manual eval hooks are needed)
 # ============================================================
 
 class PredicateRegistry:
@@ -198,7 +196,7 @@ class PredicateRegistry:
 
 def create_default_predicate_registry() -> PredicateRegistry:
     reg = PredicateRegistry()
-    # Có thể đăng ký thêm nếu muốn eval rule theo kiểu legacy.
+    # Additional hooks can be registered for legacy-style rule evaluation.
     return reg
 
 
@@ -357,11 +355,11 @@ class UnifiedNeuralReasoningLayer(nn.Module):
     """
     Smooth-Convex Neuro-Symbolic Reasoning Layer.
 
-    - Rule energy: Smooth convex HL-MRF (softplus của linear distance).
-    - Inference: Exponentiated-Gradient (Mirror Descent) trên simplex.
-    - Q: latent logic state, xác định bởi tối ưu convex:
+    - Rule energy: smooth convex HL-MRF (softplus of linear distance).
+    - Inference: exponentiated-gradient (mirror descent) on the simplex.
+    - Q: latent logic state, defined by the convex optimization:
           Q* = argmin_Q [ E_rules(Q) + λ_ent H(Q) ]
-      (KHÔNG còn term KL(Q||P); P chỉ dùng để khởi tạo Q).
+      (the KL(Q||P) term is removed; P is only used to initialize Q).
     """
 
     def __init__(
@@ -441,7 +439,7 @@ class UnifiedNeuralReasoningLayer(nn.Module):
         )
 
     # --------------------------------------------------------
-    # 5.1. Compile rule templates thành CompiledRule
+    # 5.1. Compile rule templates into CompiledRule objects
     # --------------------------------------------------------
     def _compile_rules(self):
         self.generic_rules: List[CompiledRule] = []
@@ -456,7 +454,7 @@ class UnifiedNeuralReasoningLayer(nn.Module):
                     if len(p.args) > 0:
                         all_vars.append(p.args[0])
                 elif p_name in ['BEFORETYPE', 'AFTERTYPE', 'OVERLAPTYPE']:
-                    # Quan hệ giữa type constants, không có var
+                    # Relation between type constants, no variables involved
                     continue
                 else:
                     all_vars.extend(p.args)
@@ -478,7 +476,7 @@ class UnifiedNeuralReasoningLayer(nn.Module):
                     t_idx = self.type_name_to_id.get(type_name, 0)
                     return TermSpec(source_type='T', tensor_idx=t_idx, var_indices=[v_idx], is_negated=pred.is_negated)
 
-                # Quan hệ thời gian (Before, After, Overlap,...)
+                # Temporal relations (Before, After, Overlap, ...)
                 var_indices = [var_to_idx[a] for a in pred.args]
                 r_idx = self.relation_to_index.get(name_up)
                 if r_idx is not None:
@@ -1031,7 +1029,7 @@ class UnifiedNeuralReasoningLayer(nn.Module):
 
     
     # --------------------------------------------------------
-    # 5.6. PSL-style rule loss trên P (cho Baseline+PSL)
+    # 5.6. PSL-style rule loss on P (for Baseline+PSL)
     # --------------------------------------------------------
     def compute_rule_loss_with_probs(
         self,
@@ -1043,9 +1041,9 @@ class UnifiedNeuralReasoningLayer(nn.Module):
         ctx: Optional[BatchedContext] = None,
     ) -> torch.Tensor:
         """
-        Dùng cho kịch bản Baseline+PSL:
+        Used for the Baseline+PSL setup:
         - P = probs
-        - Rule loss = E_rules(P) (KHÔNG KL, KHÔNG entropy)
+        - Rule loss = E_rules(P) (no KL, no entropy)
         """
         if isinstance(doc_ids, torch.Tensor):
             doc_ids_list = doc_ids.detach().cpu().tolist()
@@ -1064,7 +1062,7 @@ class UnifiedNeuralReasoningLayer(nn.Module):
         return self._compute_rule_energy(probs, ctx)
 
     # --------------------------------------------------------
-    # 5.7. forward = alias cho infer_Q (tương thích với code cũ)
+    # 5.7. forward = alias for infer_Q (backward compatibility)
     # --------------------------------------------------------
     def forward(
         self,

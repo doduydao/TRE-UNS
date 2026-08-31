@@ -18,14 +18,14 @@ warnings.filterwarnings("ignore", category=UndefinedMetricWarning)
 
 
 
-# ---------- Helper: chuẩn hóa attention ----------
+# ---------- Helper: normalize attention ----------
 
 def normalize_attention(alpha, word_mask=None, eps: float = 1e-8):
     """
     alpha: [B,W]
-    word_mask: [B,W] bool hoặc None
+    word_mask: [B,W] bool or None
 
-    Trả về: alpha_norm [B,W] đã chuẩn hóa theo word hợp lệ.
+    Returns: alpha_norm [B,W] normalized over valid words.
     """
     if word_mask is not None:
         mask = word_mask.to(alpha.dtype)  # [B,W]
@@ -35,11 +35,11 @@ def normalize_attention(alpha, word_mask=None, eps: float = 1e-8):
     return alpha
 
 
-# ---------- 1) CE chính ----------
+# ---------- 1) Main CE ----------
 
 def loss_ce(logits, labels):
     """
-    CrossEntropy chính.
+    Main cross-entropy loss.
     """
     return F.cross_entropy(logits, labels)
 
@@ -48,15 +48,15 @@ def loss_ce(logits, labels):
 
 def loss_Z_regularization(alpha_P, alpha_Z, word_mask=None):
     """
-    Tính 2 loss:
-      - Entropy của alpha_Z (muốn attention sắc, entropy thấp)
-      - Diversity P–Z (cos_sim cao -> phạt, muốn Z khác P)
+    Compute two losses:
+      - Entropy of alpha_Z (sharp attention means low entropy)
+      - P-Z diversity (high cosine similarity is penalized, Z should differ from P)
 
     alpha_P, alpha_Z: [B,W]
-    word_mask: [B,W] bool hoặc None
+    word_mask: [B,W] bool or None
 
-    Trả về:
-      loss_Z_ent, loss_Z_div  (chưa nhân lambda)
+    Returns:
+      loss_Z_ent, loss_Z_div  (before lambda scaling)
     """
     device = alpha_P.device
     dtype  = alpha_P.dtype
@@ -64,12 +64,12 @@ def loss_Z_regularization(alpha_P, alpha_Z, word_mask=None):
     alpha_P = normalize_attention(alpha_P, word_mask)
     alpha_Z = normalize_attention(alpha_Z, word_mask)
 
-    # 2.1) Entropy penalty cho Z
+    # 2.1) Entropy penalty for Z
     eps = 1e-8
     entropy_Z = -(alpha_Z.clamp_min(eps) * alpha_Z.clamp_min(eps).log()).sum(dim=-1).mean()
     loss_Z_ent = entropy_Z.to(device=device, dtype=dtype)
 
-    # 2.2) Diversity P–Z: cos_sim cao -> phạt
+    # 2.2) P-Z diversity: high cosine similarity is penalized
     sim_PZ = F.cosine_similarity(alpha_P, alpha_Z, dim=-1).mean()
     loss_Z_div = sim_PZ.to(device=device, dtype=dtype)
 
@@ -94,11 +94,11 @@ def loss_psl_document(
         BA, AB, OO
 
     probs:  [B,C]  (softmax(logits_main))
-    e1_ids, e2_ids, doc_ids: list độ dài B (string hoặc int)
+    e1_ids, e2_ids, doc_ids: lists of length B (string or int)
     rel_index: dict {"BEFORE": idx_before, "AFTER": idx_after, "OVERLAP": idx_overlap}
 
-    Trả về:
-      loss_PSL_trans, loss_PSL_sym  (chưa nhân lambda)
+    Returns:
+      loss_PSL_trans, loss_PSL_sym  (before lambda scaling)
     """
     device = probs.device
     dtype  = probs.dtype
@@ -117,7 +117,7 @@ def loss_psl_document(
     n_trans = 0
     n_sym   = 0
 
-    # Lặp từng doc
+    # Iterate over each document
     for d, idxs in doc_to_indices.items():
         if len(idxs) < 2:
             continue
@@ -138,14 +138,14 @@ def loss_psl_document(
                 if i_idx == j_idx:
                     continue
                 if e1_ids[j_idx] != b:
-                    continue  # phải cùng B
+                    continue  # must be in the same batch
 
                 c = e2_ids[j_idx]
                 k_idx = pair_map.get((a, c), None)  # (A,C)
                 if k_idx is None:
                     continue
 
-                # Xác suất quan hệ
+                # Relation probability
                 p_ab_B = probs[i_idx, idx_before]
                 p_ab_A = probs[i_idx, idx_after]
                 p_ab_O = probs[i_idx, idx_overlap]
@@ -179,13 +179,13 @@ def loss_psl_document(
                 # --- OAA: Overlap(A,B) ∧ After(B,C) → After(A,C)
                 viol_OAA = F.relu(p_ab_O + p_bc_A - p_ac_A - 1.0)
 
-                # Cộng dồn tất cả luật transitivity
+                # Accumulate all transitivity rules
                 psl_trans_total = (
                     psl_trans_total
                     + viol_BBB + viol_BOB + viol_OBB
                     + viol_OOO + viol_AAA + viol_AOA + viol_OAA
                 )
-                # mỗi triple (A,B,C) kích hoạt 7 luật
+                # each triple (A,B,C) activates 7 rules
                 n_trans += 7
 
         # ===== 2) Symmetry Dependencies =====
@@ -215,12 +215,12 @@ def loss_psl_document(
             viol_OO = F.relu(p_ab_O - p_ba_O)
 
             psl_sym_total = psl_sym_total + viol_BA + viol_AB + viol_OO
-            n_sym += 3   # 3 luật cho mỗi cặp (A,B)/(B,A)
+            n_sym += 3   # 3 rules for each pair (A,B)/(B,A)
 
     return psl_trans_total, psl_sym_total
 
 
-# ---------- 4) Orchestrator: tổng hợp loss ----------
+# ---------- 4) Orchestrator: aggregate losses ----------
 
 
 def evaluate(dataloader, model, device):
@@ -258,7 +258,7 @@ def evaluate(dataloader, model, device):
             all_predictions.extend(preds.detach().cpu().numpy().tolist())
 
     if len(all_labels) == 0:
-        # tránh crash nếu dev set toàn doc không có pair
+        # avoid crashes if the dev set contains no pairs at all
         cm  = None
         f1  = 0.0
         p   = 0.0
