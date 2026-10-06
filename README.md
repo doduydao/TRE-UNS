@@ -5,6 +5,9 @@ This repo contains two main tracks for temporal relation extraction:
 - `Reasoning/`: a TRE system built around neural + logic reasoning.
 - `neupsl-ijcai23/`: reproducible NeuPSL experiments from the IJCAI 2023 paper.
 
+Link to paper:  Unified Neural-Symbolic Method for Temporal Relation Extraction: https://rdcu.be/8Ydz3aPfFKGa
+
+
 ## Structure
 
 ```text
